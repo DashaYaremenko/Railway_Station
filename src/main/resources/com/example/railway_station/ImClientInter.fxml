@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.HelloController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <AnchorPane prefHeight="700.0" prefWidth="600.0">
+            <Button layoutX="118.0" layoutY="379.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" text="Пошук потяга" />
+            <Button layoutX="445.0" layoutY="379.0" mnemonicParsing="false" text="Купити квиток" />
+            <Button layoutX="740.0" layoutY="379.0" mnemonicParsing="false" text="Повернення квитка" />
+            <Label layoutX="408.0" layoutY="79.0" text="Оберіть дію!" textFill="#2d35c1">
+            <font>
+               <Font name="Century Gothic" size="30.0" />
+            </font></Label>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="63.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/1.jpg" />
+                </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="388.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/2.jpg" />
+            </image>
+        </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="701.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/3.jpg" />
+            </image>
+        </ImageView>
+        </AnchorPane>
+    </children>
+</VBox>
