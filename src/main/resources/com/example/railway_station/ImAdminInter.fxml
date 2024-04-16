@@ -1,9 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="700.0" prefWidth="600.0" />
+      <AnchorPane prefHeight="700.0" prefWidth="600.0">
+         <children>
+            <Button layoutX="801.0" layoutY="537.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="801.0" layoutY="276.0" mnemonicParsing="false" text="Button" />
+            <Button layoutX="147.0" layoutY="276.0" mnemonicParsing="false" text="Button" />
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="727.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/station.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="727.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/careta.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="73.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/train.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="408.0" layoutY="306.0" text="Оберіть дію!" textFill="#2d35c1">
+               <font>
+                  <Font name="Century Gothic" size="30.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="73.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/clientLog.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="147.0" layoutY="537.0" mnemonicParsing="false" text="Button" />
+         </children></AnchorPane>
    </children>
 </VBox>
