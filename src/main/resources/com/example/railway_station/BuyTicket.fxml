@@ -14,22 +14,17 @@
             <Label layoutX="58.0" layoutY="249.0" text="Додаткові Послуги" />
             <TextField layoutX="56.0" layoutY="84.0" prefHeight="26.0" prefWidth="208.0" />
             <TextField layoutX="56.0" layoutY="139.0" prefHeight="26.0" prefWidth="208.0" />
-            <MenuButton layoutX="58.0" layoutY="202.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="208.0" text="MenuButton">
+            <MenuButton layoutX="58.0" layoutY="202.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="208.0" text="Тип Документа">
               <items>
                 <MenuItem mnemonicParsing="false" text="Повний" />
                 <MenuItem mnemonicParsing="false" text="Дитячий" />
                   <MenuItem mnemonicParsing="false" text="Пільговий" />
               </items>
             </MenuButton>
-            <SplitMenuButton layoutX="285.0" layoutY="202.0" mnemonicParsing="false" text="SplitMenuButton">
-              <items>
-                <MenuItem mnemonicParsing="false" text="Action 1" />
-                <MenuItem mnemonicParsing="false" text="Action 2" />
-              </items>
-            </SplitMenuButton>
             <CheckBox layoutX="56.0" layoutY="275.0" mnemonicParsing="false" text="Постільна білизна" />
             <CheckBox layoutX="191.0" layoutY="275.0" mnemonicParsing="false" text="Напій " />
             <CheckBox layoutX="264.0" layoutY="275.0" mnemonicParsing="false" text="Смаколик" />
+            <Label layoutX="271.0" layoutY="344.0" text="Ціна:" />
 
 
          </children>
