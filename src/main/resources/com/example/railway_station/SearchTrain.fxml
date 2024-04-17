@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1 fx:controller=" fx:controller="com.example.railway_station.HelloController">
+   <children>
+      <AnchorPane prefHeight="652.0" prefWidth="1000.0">
+         <children>
+            <Button layoutX="474.0" layoutY="228.0" mnemonicParsing="false" text="Пошук" />
+            <Label layoutX="412.0" layoutY="40.0" text="Пошук потяга" textFill="#2d35c1">
+               <font>
+                  <Font name="Century Gothic" size="25.0" />
+               </font></Label>
+            <Label layoutX="739.0" layoutY="124.0" text="Дата відправлення" />
+            <Label layoutX="486.0" layoutY="115.0" text="Куди" />
+            <Label layoutX="186.0" layoutY="115.0" text="Звідки" />
+            <TableView layoutX="14.0" layoutY="325.0" prefHeight="309.0" prefWidth="964.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <TextField layoutX="378.0" layoutY="149.0" prefHeight="26.0" prefWidth="244.0" />
+            <TextField layoutX="78.0" layoutY="149.0" prefHeight="26.0" prefWidth="244.0" />
+            <DatePicker layoutX="700.0" layoutY="150.0" />
+         </children></AnchorPane>
+   </children>
+</VBox>

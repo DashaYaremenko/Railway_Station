@@ -34,6 +34,18 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+    //interface client
+    public void clickButtonSearchTrain(ActionEvent event){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("SearchTrain.fxml"));
+            Parent parent= loader.load();
+            Stage stage=new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     // interface admin
     public void clickButtonTrans(ActionEvent event){
         try {
