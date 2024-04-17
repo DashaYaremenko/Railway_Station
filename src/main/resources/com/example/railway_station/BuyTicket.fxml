@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="650.0" prefWidth="1000.0">
+         <children>
+            <Button layoutX="285.0" layoutY="390.0" mnemonicParsing="false" text="Купити" />
+            <Label layoutX="56.0" layoutY="66.0" text="Призвіще" />
+            <Label layoutX="56.0" layoutY="121.0" text="Ім'я" />
+            <Label layoutX="56.0" layoutY="184.0" text="Тип Документа" />
+            <Label layoutX="58.0" layoutY="249.0" text="Додаткові Послуги" />
+            <TextField layoutX="56.0" layoutY="84.0" prefHeight="26.0" prefWidth="208.0" />
+            <TextField layoutX="56.0" layoutY="139.0" prefHeight="26.0" prefWidth="208.0" />
+            <MenuButton layoutX="58.0" layoutY="202.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="208.0" text="MenuButton">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Повний" />
+                <MenuItem mnemonicParsing="false" text="Дитячий" />
+                  <MenuItem mnemonicParsing="false" text="Пільговий" />
+              </items>
+            </MenuButton>
+            <SplitMenuButton layoutX="285.0" layoutY="202.0" mnemonicParsing="false" text="SplitMenuButton">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </SplitMenuButton>
+            <CheckBox layoutX="56.0" layoutY="275.0" mnemonicParsing="false" text="Постільна білизна" />
+            <CheckBox layoutX="191.0" layoutY="275.0" mnemonicParsing="false" text="Напій " />
+            <CheckBox layoutX="264.0" layoutY="275.0" mnemonicParsing="false" text="Смаколик" />
+
+
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

@@ -9,7 +9,7 @@
     <children>
         <AnchorPane prefHeight="700.0" prefWidth="600.0">
             <Button layoutX="118.0" layoutY="379.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="95.0" text="Пошук потяга" onAction="#clickButtonSearchTrain"/>
-            <Button layoutX="445.0" layoutY="379.0" mnemonicParsing="false" text="Купити квиток" />
+            <Button layoutX="445.0" layoutY="379.0" mnemonicParsing="false" text="Купити квиток" onAction="#clickButtonBuyTicket" />
             <Button layoutX="740.0" layoutY="379.0" mnemonicParsing="false" text="Повернення квитка" />
             <Label layoutX="408.0" layoutY="79.0" text="Оберіть дію!" textFill="#2d35c1">
             <font>
