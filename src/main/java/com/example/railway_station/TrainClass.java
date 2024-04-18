@@ -16,6 +16,8 @@ public class TrainClass {
         this.ColCruise = colCruise;
         this.TimeTrain = timeTrain;
     }
+
+
     public String getId() {return ID;}
     public void setId(String id) {
         this.ID = id;

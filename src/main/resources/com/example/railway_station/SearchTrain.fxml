@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1 fx:controller=" fx:controller="com.example.railway_station.HelloController">
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1 fx:controller=" fx:controller="com.example.railway_station.SearchTrain">
    <children>
       <AnchorPane prefHeight="652.0" prefWidth="1000.0">
          <children>
@@ -24,9 +24,9 @@
                  <TableColumn fx:id="ColCruColumn" prefWidth="75.0" text="Кількість вагонів" />
               </columns>
             </TableView>
-            <TextField layoutX="378.0" layoutY="149.0" prefHeight="26.0" prefWidth="244.0" />
-            <TextField layoutX="78.0" layoutY="149.0" prefHeight="26.0" prefWidth="244.0" />
-            <DatePicker layoutX="700.0" layoutY="150.0" />
+            <TextField fx:id="destination2" layoutX="378.0" layoutY="149.0" prefHeight="26.0" prefWidth="244.0" />
+            <TextField fx:id="destination1" layoutX="78.0" layoutY="149.0" prefHeight="26.0" prefWidth="244.0" />
+            <DatePicker fx:id="datePicker" layoutX="700.0" layoutY="150.0" />
          </children></AnchorPane>
    </children>
 </VBox>
