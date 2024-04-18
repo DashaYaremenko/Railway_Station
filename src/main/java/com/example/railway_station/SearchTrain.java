@@ -34,6 +34,7 @@ public class SearchTrain {
     @FXML
     private TableColumn<TrainClass,Double> TimeTrainColumn;
 
+    @FXML
     private void ShowButtonAction(ActionEvent event) {
         ObservableList<TrainClass> dataList = FXCollections.observableArrayList();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
