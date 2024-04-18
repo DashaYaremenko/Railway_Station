@@ -14,13 +14,13 @@ public class SearchTrain {
     @FXML
     public Button showButton;
     @FXML
-    private TableView<ClientClass> TableShow;
+    private TableView<TrainClass> TableShow;
     @FXML
-    private TableColumn<ClientClass, String> IdColumn;
+    private TableColumn<TrainClass, String> IdColumn;
     @FXML
-    private TableColumn<ClientClass, String> LastNameColumn;
+    private TableColumn<TrainClass, String> LastNameColumn;
     @FXML
-    private TableColumn<ClientClass, String> FirstNameColumn;
+    private TableColumn<TrainClass, String> FirstNameColumn;
     @FXML
-    private TableColumn<ClientClass, String> TypeDocColumn;
+    private TableColumn<TrainClass, String> TypeDocColumn;
 }
