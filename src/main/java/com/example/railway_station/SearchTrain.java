@@ -18,9 +18,14 @@ public class SearchTrain {
     @FXML
     private TableColumn<TrainClass, String> IdColumn;
     @FXML
-    private TableColumn<TrainClass, String> LastNameColumn;
+    private TableColumn<TrainClass, String> NameM_Column;
     @FXML
-    private TableColumn<TrainClass, String> FirstNameColumn;
+    private TableColumn<TrainClass, String> TypeTrainColumn;
     @FXML
-    private TableColumn<TrainClass, String> TypeDocColumn;
+    private TableColumn<TrainClass, String> TypeCruColumn;
+    private TableColumn<TrainClass, Integer> ColCruColumn;
+    private TableColumn<TrainClass,Double> TimeTrainColumn;
+
+
+
 }
