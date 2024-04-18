@@ -25,8 +25,6 @@
             <CheckBox layoutX="191.0" layoutY="275.0" mnemonicParsing="false" text="Напій " />
             <CheckBox layoutX="264.0" layoutY="275.0" mnemonicParsing="false" text="Смаколик" />
             <Label layoutX="271.0" layoutY="344.0" text="Ціна:" />
-
-
          </children>
       </AnchorPane>
    </children>
