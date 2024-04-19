@@ -4,9 +4,9 @@ public class TrainClass {
     private String ID;
     private String NameM;
     private String TypeTrain;
-    private int ColCruise;
     private String TypeCruise;
     private double TimeTrain;
+    private int ColCruise;
 
     public TrainClass(String id, String nameM, String typeTrain, String typeCruise, int colCruise, double timeTrain) {
         this.ID = id;
@@ -30,16 +30,16 @@ public class TrainClass {
     public void setTypeTrain(String typeTrain) {
         this.TypeTrain = typeTrain;
     }
+    public String getTypeCruise() {
+        return TypeCruise;
+    }
+    public void setTypeCruise(String typeCruise) {this.TypeCruise = typeCruise;}
     public int getColCruise() {
         return ColCruise;
     }
     public void setColCruise(int colCruise) {
         this.ColCruise = colCruise;
     }
-    public String getTypeCruise() {
-        return TypeCruise;
-    }
-    public void setTypeCruise(String typeCruise) {this.TypeCruise = typeCruise;}
     public double getTimeTrain() {return TimeTrain;}
     public void setTimeTrain(double timeTrain) {this.TimeTrain = timeTrain;}
 }

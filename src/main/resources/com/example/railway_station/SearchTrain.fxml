@@ -8,7 +8,7 @@
    <children>
       <AnchorPane prefHeight="652.0" prefWidth="1000.0">
          <children>
-            <Button onAction="#ShowButtonAction" layoutX="474.0" layoutY="228.0" mnemonicParsing="false" text="Пошук" />
+            <Button onAction="#STButtonAction" layoutX="474.0" layoutY="228.0" mnemonicParsing="false" text="Пошук" />
             <Label layoutX="412.0" layoutY="40.0" text="Пошук потяга" textFill="#2d35c1">
                <font>
                   <Font name="Century Gothic" size="25.0" />
@@ -22,6 +22,7 @@
                 <TableColumn fx:id="NameM_Column" prefWidth="75.0" text="Назва маршруту" />
                  <TableColumn fx:id="TimeTrainColumn" prefWidth="75.0" text="Час відправки/прибуття" />
                  <TableColumn fx:id="ColCruColumn" prefWidth="75.0" text="Кількість вагонів" />
+                  <TableColumn fx:id="TypeCruColumn" prefWidth="75.0" text="Тип вагонів" />
               </columns>
             </TableView>
             <TextField fx:id="destination2" layoutX="378.0" layoutY="149.0" prefHeight="26.0" prefWidth="244.0" />
