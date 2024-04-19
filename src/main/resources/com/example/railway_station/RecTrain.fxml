@@ -4,7 +4,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <AnchorPane prefHeight="653.0" prefWidth="1000.0">
@@ -20,6 +19,23 @@
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
+            <Button layoutX="572.0" layoutY="426.0" mnemonicParsing="false" text="Добавити" />
+            <Button layoutX="643.0" layoutY="426.0" mnemonicParsing="false" text="Видалити" />
+            <Button layoutX="714.0" layoutY="426.0" mnemonicParsing="false" text="Відновити список" />
+            <Button layoutX="756.0" layoutY="460.0" mnemonicParsing="false" text="Показати " />
+            <Label layoutX="37.0" layoutY="464.0" text="Назва маршруту" />
+            <Label layoutX="37.0" layoutY="408.0" text="Номер потяга" />
+            <Label layoutX="37.0" layoutY="509.0" text="Тип потяга" />
+            <Label layoutX="37.0" layoutY="551.0" text="Номерація вагоні" />
+            <TextField layoutX="37.0" layoutY="426.0" />
+            <TextField layoutX="37.0" layoutY="486.0" />
+            <TextField layoutX="38.0" layoutY="569.0" />
+            <SplitMenuButton layoutX="38.0" layoutY="527.0" mnemonicParsing="false" text="SplitMenuButton">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </SplitMenuButton>
          </children>
       </AnchorPane>
    </children>
