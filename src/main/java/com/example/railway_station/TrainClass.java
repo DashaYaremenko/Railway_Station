@@ -4,17 +4,13 @@ public class TrainClass {
     private String ID;
     private String NameM;
     private String TypeTrain;
-    private String TypeCruise;
-    private double TimeTrain;
-    private int ColCruise;
+    private int CruiseID;
 
-    public TrainClass(String id, String nameM, String typeTrain, String typeCruise, int colCruise, double timeTrain) {
+    public TrainClass(String id, String nameM, String typeTrain, int cruiseID) {
         this.ID = id;
         this.NameM = nameM;
         this.TypeTrain = typeTrain;
-        this.TypeCruise = typeCruise;
-        this.ColCruise = colCruise;
-        this.TimeTrain = timeTrain;
+        this.CruiseID = cruiseID;
     }
 
 
@@ -30,16 +26,6 @@ public class TrainClass {
     public void setTypeTrain(String typeTrain) {
         this.TypeTrain = typeTrain;
     }
-    public String getTypeCruise() {
-        return TypeCruise;
-    }
-    public void setTypeCruise(String typeCruise) {this.TypeCruise = typeCruise;}
-    public int getColCruise() {
-        return ColCruise;
-    }
-    public void setColCruise(int colCruise) {
-        this.ColCruise = colCruise;
-    }
-    public double getTimeTrain() {return TimeTrain;}
-    public void setTimeTrain(double timeTrain) {this.TimeTrain = timeTrain;}
+    public int getCruiseID() {return CruiseID;}
+    public void setCruiseID(int cruiseID) {this.CruiseID = cruiseID;}
 }
