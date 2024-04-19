@@ -1,4 +1,4 @@
-package com.example.railway_station;
+package com.example.railway_station.TableClasses;
 
 public class TrainClass {
     private String ID;
@@ -12,8 +12,6 @@ public class TrainClass {
         this.TypeTrain = typeTrain;
         this.CruiseID = cruiseID;
     }
-
-
     public String getId() {return ID;}
     public void setId(String id) {
         this.ID = id;

@@ -1,5 +1,6 @@
 package com.example.railway_station;
 
+import com.example.railway_station.TableClasses.TrainClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
