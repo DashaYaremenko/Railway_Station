@@ -8,7 +8,8 @@ public class RecTrain {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "1111";
     public TextField IDTrain, NameTrain, CruiseID,DateAndTime;
-    public SplitMenuButton TypeTrain;
+    public MenuButton typeTrainMenuButton;
+    public MenuItem FlashMenuItem, ElectroMenuItem, DiselMenuItem;
     public Button AddTrainButton,DeleteTrainButton,UpdateTrainButton,LookTrainButton;
     private TableView <TrainClass> TrainTable;
     private TableColumn <TrainClass, Integer> IDTrainCol,CruiseIDCol ;

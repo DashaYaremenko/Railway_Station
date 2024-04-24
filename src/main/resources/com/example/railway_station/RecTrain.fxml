@@ -30,15 +30,15 @@
             <TextField layoutX="37.0" layoutY="426.0" />
             <TextField layoutX="37.0" layoutY="486.0" />
             <TextField layoutX="231.0" layoutY="486.0" />
-            <SplitMenuButton layoutX="231.0" layoutY="426.0" mnemonicParsing="false" text="Тип потяга">
+            <TextField layoutX="38.0" layoutY="548.0" />
+            <Label layoutX="38.0" layoutY="531.0" text="Дата та час" />
+            <MenuButton layoutX="231.0" layoutY="426.0" mnemonicParsing="false" text="Тип потяга">
               <items>
                 <MenuItem mnemonicParsing="false" text="Швидкий" />
                 <MenuItem mnemonicParsing="false" text="Електро" />
-                  <MenuItem mnemonicParsing="false" text="Дизельний" />
+                <MenuItem mnemonicParsing="false" text="Дизельний" />
               </items>
-            </SplitMenuButton>
-            <TextField layoutX="38.0" layoutY="548.0" />
-            <Label layoutX="38.0" layoutY="531.0" text="Дата та час" />
+            </MenuButton>
          </children>
       </AnchorPane>
    </children>
