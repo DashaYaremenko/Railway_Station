@@ -8,7 +8,7 @@
    <children>
       <AnchorPane prefHeight="653.0" prefWidth="1000.0">
          <children>
-            <TableView layoutX="13.0" layoutY="54.0" prefHeight="343.0" prefWidth="974.0">
+            <TableView fx:id="TrainTable" layoutX="13.0" layoutY="54.0" prefHeight="343.0" prefWidth="974.0">
               <columns>
                 <TableColumn prefWidth="75.0" text="C1" />
                 <TableColumn prefWidth="75.0" text="C2" />
