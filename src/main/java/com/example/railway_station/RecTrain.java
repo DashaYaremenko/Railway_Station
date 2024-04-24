@@ -23,6 +23,7 @@ public class RecTrain {
     public MenuButton typeTrainMenuButton;
     public MenuItem FlashMenuItem, ElectroMenuItem, DiselMenuItem;
   //  public Button AddTrainButton,DeleteTrainButton,UpdateTrainButton,LookTrainButton;
+    @FXML
     private TableView <TrainClass> TrainTable;
     private TableColumn <TrainClass, Integer> IDTrainCol,CruiseIDCol,CarriageIDCol ;
     private TableColumn<TrainClass,String> NameTrainCol, TypeTrain;

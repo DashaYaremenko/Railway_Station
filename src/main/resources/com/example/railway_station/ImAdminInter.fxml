@@ -5,13 +5,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.HelloController" >
    <children>
       <AnchorPane prefHeight="700.0" prefWidth="600.0">
          <children>
             <Button layoutX="772.0" layoutY="537.0" mnemonicParsing="false" text="Редактор-Станції" />
             <Button layoutX="772.0" layoutY="276.0" mnemonicParsing="false" text="Редактор-вагони" />
-            <Button layoutX="122.0" layoutY="276.0" mnemonicParsing="false" text="Редактор-потяг" />
+            <Button layoutX="122.0" layoutY="276.0" mnemonicParsing="false" text="Редактор-потяг" onAction="#clickButtonRecTrain" />
             <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="727.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/station.jpg" />

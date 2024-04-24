@@ -57,6 +57,18 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void clickButtonRecTrain(ActionEvent event){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("RecTrain.fxml"));
+            Parent parent= loader.load();
+            Stage stage=new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
     // interface admin
     public void clickButtonTrans(ActionEvent event){
         try {
