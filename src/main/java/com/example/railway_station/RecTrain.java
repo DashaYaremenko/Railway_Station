@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,13 +23,15 @@ public class RecTrain {
     @FXML
     public MenuButton typeTrainMenuButton;
     public MenuItem FlashMenuItem, ElectroMenuItem, DiselMenuItem;
-  //  public Button AddTrainButton,DeleteTrainButton,UpdateTrainButton,LookTrainButton;
+    @FXML
+    public Button AddTrainButton,DeleteTrainButton,UpdateTrainButton,LookTrainButton;
     @FXML
     private TableView <TrainClass> TrainTable;
     private TableColumn <TrainClass, Integer> IDTrainCol,CruiseIDCol,CarriageIDCol ;
     private TableColumn<TrainClass,String> NameTrainCol, TypeTrain;
 
-    private void AddTrainButton(ActionEvent event){
+    @FXML
+    private void AddTrainAction(ActionEvent event){
         String Id = IDTrain.getText();
         String NameT = NameTrain.getText();
         String CruID = CruiseID.getText();
@@ -79,6 +82,23 @@ public class RecTrain {
             throw new RuntimeException(e);
         }
     }
-
+    @FXML
+    private void DeleteButtonAction(ActionEvent event) {
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String id = ID.getText();
+            String sql = "DELETE FROM clients WHERE ID=?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, id);
+                int rowsDeleteT=preparedStatement.executeUpdate();
+                if (rowsDeleteT>0){
+                    System.out.println("Запис видалено успішно");
+                    TableShow.getItems().clear();
+                    ShowButtonAction(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

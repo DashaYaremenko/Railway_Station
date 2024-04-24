@@ -19,7 +19,7 @@
                   <Font name="Century Gothic" size="20.0" />
                </font>
             </Label>
-            <Button layoutX="562.0" layoutY="413.0" mnemonicParsing="false" text="Добавити" />
+            <Button fx:id="AddTrainButton" layoutX="562.0" layoutY="413.0" mnemonicParsing="false" text="Добавити" onAction="#AddTrainAction" />
             <Button layoutX="563.0" layoutY="460.0" mnemonicParsing="false" text="Видалити" />
             <Button layoutX="654.0" layoutY="413.0" mnemonicParsing="false" text="Відновити список" />
             <Button layoutX="654.0" layoutY="460.0" mnemonicParsing="false" text="Показати " />
