@@ -33,33 +33,33 @@ public class SearchTrain {
     @FXML
     private TableColumn<TrainClass,Double> TimeTrainColumn;
 
-    @FXML
-    private void STButtonAction(ActionEvent event) {
-        ObservableList<TrainClass> dataList = FXCollections.observableArrayList();
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "SELECT*FROM trains";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                 ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    String id = resultSet.getString("ID");
-                    String nameM = resultSet.getString("NameM");
-                    String typeCru = resultSet.getString("TypeCru");
-                    double timeTrain = resultSet.getDouble("TimeTrain");
-                    int colCruise = resultSet.getInt("ColCruise");
-                    TrainClass train = new TrainClass(id, nameM, typeCru, colCruise, timeTrain);
-                    dataList.add(train);
-                }
-            }
-            IdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-            NameM_Column.setCellValueFactory(new PropertyValueFactory<>("nameM"));
-            TimeTrainColumn.setCellValueFactory(new PropertyValueFactory<>("timeTrain"));
-            ColCruColumn.setCellValueFactory(new PropertyValueFactory<>("colCruise"));
-            TypeCruColumn.setCellValueFactory(new PropertyValueFactory<>("typeCru"));
-            TableShow.setItems(dataList);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+  //  @FXML
+//    private void STButtonAction(ActionEvent event) {
+//        ObservableList<TrainClass> dataList = FXCollections.observableArrayList();
+//        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+//            String sql = "SELECT*FROM trains";
+//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//                 ResultSet resultSet = preparedStatement.executeQuery()) {
+//                while (resultSet.next()) {
+//                    String id = resultSet.getString("ID");
+//                    String nameM = resultSet.getString("NameM");
+//                    String typeCru = resultSet.getString("TypeCru");
+//                    double timeTrain = resultSet.getDouble("TimeTrain");
+//                    int colCruise = resultSet.getInt("ColCruise");
+//                    TrainClass train = new TrainClass(id, nameM, typeCru, colCruise, timeTrain);
+//                    dataList.add(train);
+//                }
+//            }
+//            IdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+//            NameM_Column.setCellValueFactory(new PropertyValueFactory<>("nameM"));
+//            TimeTrainColumn.setCellValueFactory(new PropertyValueFactory<>("timeTrain"));
+//            ColCruColumn.setCellValueFactory(new PropertyValueFactory<>("colCruise"));
+//            TypeCruColumn.setCellValueFactory(new PropertyValueFactory<>("typeCru"));
+//            TableShow.setItems(dataList);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 
 }

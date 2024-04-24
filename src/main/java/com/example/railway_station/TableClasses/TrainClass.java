@@ -3,21 +3,21 @@ package com.example.railway_station.TableClasses;
 import java.util.List;
 
 public class TrainClass {
-    private String ID;
+    private int ID;
     private String NameM;
     private String TypeTrain;
     private int CruiseID;
-    List<CarriageClass> Carriage;
+    private int Carriage;
 
-    public TrainClass(String id, String nameM, String typeTrain, int cruiseID, List<CarriageClass> carriage) {
+    public TrainClass(int id, String nameM, String typeTrain, int cruiseID, int carriageID) {
         this.ID = id;
         this.NameM = nameM;
         this.TypeTrain = typeTrain;
         this.CruiseID = cruiseID;
-        this.Carriage = carriage;
+        this.Carriage = carriageID;
     }
-    public String getId() {return ID;}
-    public void setId(String id) {
+    public int getId() {return ID;}
+    public void setId(int id) {
         this.ID = id;
     }
     public String getNameM() {
@@ -30,6 +30,6 @@ public class TrainClass {
     }
     public int getCruiseID() {return CruiseID;}
     public void setCruiseID(int cruiseID) {this.CruiseID = cruiseID;}
-    public List<CarriageClass> getCarriage() {return Carriage;}
-    public void setCarriage(List<CarriageClass> carriage) {this.Carriage = carriage;}
+    public int getCarriage() {return Carriage;}
+    public void setCarriage(int carriageID) {this.Carriage = carriageID;}
 }
