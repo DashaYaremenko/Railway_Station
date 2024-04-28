@@ -21,8 +21,7 @@ public class RecTrain {
     @FXML
     public TextField IDTrain, NameTrain, CruiseID,CarriageID;
     @FXML
-    public MenuButton typeTrainMenuButton;
-    public MenuItem FlashMenuItem, ElectroMenuItem, DiselMenuItem;
+    public TextField typeTrain;
     @FXML
     public Button AddTrainButton,DeleteTrainButton,UpdateTrainButton,LookTrainButton;
     @FXML
@@ -32,23 +31,14 @@ public class RecTrain {
     @FXML
     private TableColumn<TrainClass,String> NameTrainCol, TypeTrain;
 
-
-    public void typeTrainMenuButton(ActionEvent event) {
-        MenuItem menuItem = (MenuItem) event.getSource();
-        String menuItemText = menuItem.getText();
-        if (menuItemText.equals("Швидкий")) {
-            typeTrainMenuButton.setText(menuItemText);
-            TrainTable.getItems().add(new TrainClass(" ", " ", menuItemText, 1, 1));
-        }
-    }
-
     @FXML
     private void AddTrainAction(ActionEvent event){
         String Id = IDTrain.getText();
         String NameT = NameTrain.getText();
         String CruID = CruiseID.getText();
         String CarId = CarriageID.getText();
-        String TypeT= typeTrainMenuButton.getText();
+        String TypeT= typeTrain.getText();
+
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO trains (ID, NameM, TypeTrain,CruiseID,CarriageID) VALUES (?,?,?,?,?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
