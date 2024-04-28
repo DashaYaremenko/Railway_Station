@@ -21,7 +21,7 @@ public class RecTrain {
     @FXML
     public TextField IDTrain, NameTrain, CruiseID,CarriageID;
     @FXML
-    public TextField typeTrain;
+    public TextField TypeTrain;
     @FXML
     public Button AddTrainButton,DeleteTrainButton,UpdateTrainButton,LookTrainButton;
     @FXML
@@ -29,7 +29,7 @@ public class RecTrain {
     @FXML
     private TableColumn <TrainClass, Integer> IDTrainCol,CruiseIDCol,CarriageIDCol ;
     @FXML
-    private TableColumn<TrainClass,String> NameTrainCol, TypeTrain;
+    private TableColumn<TrainClass,String> NameTrainCol, TypeTrainCol;
 
     @FXML
     private void AddTrainAction(ActionEvent event){
@@ -37,7 +37,7 @@ public class RecTrain {
         String NameT = NameTrain.getText();
         String CruID = CruiseID.getText();
         String CarId = CarriageID.getText();
-        String TypeT= typeTrain.getText();
+        String TypeT= TypeTrain.getText();
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO trains (ID, NameM, TypeTrain,CruiseID,CarriageID) VALUES (?,?,?,?,?)";
@@ -67,7 +67,7 @@ public class RecTrain {
                 while (resultSet.next()) {
                     String id = resultSet.getString("ID");
                     String nameT = resultSet.getString("NameM");
-                    String typeT = resultSet.getString("TypeT");
+                    String typeT = resultSet.getString("TypeTrain");
                     int cruID = resultSet.getInt("CruID");
                     int carId = resultSet.getInt("CarId");
                     dataList.add(new TrainClass(id, nameT, typeT, cruID,carId));
@@ -75,7 +75,7 @@ public class RecTrain {
             }
             IDTrainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
             NameTrainCol.setCellValueFactory(new PropertyValueFactory<>("nameT"));
-            TypeTrain.setCellValueFactory(new PropertyValueFactory<>("typeT"));
+            TypeTrainCol.setCellValueFactory(new PropertyValueFactory<>("typeT"));
             CruiseIDCol.setCellValueFactory(new PropertyValueFactory<>("cruID"));
             CarriageIDCol.setCellValueFactory(new PropertyValueFactory<>("carId"));
             TrainTable.setItems(dataList);

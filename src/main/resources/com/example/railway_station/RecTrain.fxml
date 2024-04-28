@@ -12,7 +12,7 @@
               <columns>
                 <TableColumn fx:id="IDTrainCol" prefWidth="75.0" text="C1" />
                 <TableColumn fx:id="NameTrainCol" prefWidth="75.0" text="C2" />
-                  <TableColumn fx:id="TypeTrain" prefWidth="75.0" text="C1" />
+                  <TableColumn fx:id="TypeTrainCol" prefWidth="75.0" text="C1" />
                   <TableColumn fx:id="CruiseIDCol" prefWidth="75.0" text="C1" />
                   <TableColumn fx:id="CarriageIDCol" prefWidth="75.0" text="C1" />
               </columns>
@@ -35,7 +35,7 @@
             <TextField fx:id="CarriageID" layoutX="231.0" layoutY="486.0" />
             <TextField fx:id="CruiseID" layoutX="38.0" layoutY="548.0" />
             <Label layoutX="38.0" layoutY="531.0" text="Дата та час" />
-            <TextField fx:id="typeTrain" layoutX="232.0" layoutY="426.0" />
+            <TextField fx:id="TypeTrain" layoutX="232.0" layoutY="426.0" />
 
          </children>
       </AnchorPane>
