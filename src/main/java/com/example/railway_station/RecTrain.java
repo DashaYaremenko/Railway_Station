@@ -27,8 +27,20 @@ public class RecTrain {
     public Button AddTrainButton,DeleteTrainButton,UpdateTrainButton,LookTrainButton;
     @FXML
     private TableView <TrainClass> TrainTable;
+    @FXML
     private TableColumn <TrainClass, Integer> IDTrainCol,CruiseIDCol,CarriageIDCol ;
+    @FXML
     private TableColumn<TrainClass,String> NameTrainCol, TypeTrain;
+
+
+    public void typeTrainMenuButton(ActionEvent event) {
+        MenuItem menuItem = (MenuItem) event.getSource();
+        String menuItemText = menuItem.getText();
+        if (menuItemText.equals("Швидкий")) {
+            typeTrainMenuButton.setText(menuItemText);
+            TrainTable.getItems().add(new TrainClass(" ", " ", menuItemText, 1, 1));
+        }
+    }
 
     @FXML
     private void AddTrainAction(ActionEvent event){
@@ -50,7 +62,6 @@ public class RecTrain {
                     System.out.println("Запис добавлено успішно");
                     ShowButtonAction(event);
                 }
-
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -64,7 +75,7 @@ public class RecTrain {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("ID");
+                    String id = resultSet.getString("ID");
                     String nameT = resultSet.getString("NameM");
                     String typeT = resultSet.getString("TypeT");
                     int cruID = resultSet.getInt("CruID");
@@ -82,23 +93,23 @@ public class RecTrain {
             throw new RuntimeException(e);
         }
     }
-    @FXML
-    private void DeleteButtonAction(ActionEvent event) {
-        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String id = ID.getText();
-            String sql = "DELETE FROM clients WHERE ID=?";
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, id);
-                int rowsDeleteT=preparedStatement.executeUpdate();
-                if (rowsDeleteT>0){
-                    System.out.println("Запис видалено успішно");
-                    TableShow.getItems().clear();
-                    ShowButtonAction(event);
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
+ //   @FXML
+//    private void DeleteButtonAction(ActionEvent event) {
+//        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+//            String id = ID.getText();
+//            String sql = "DELETE FROM clients WHERE ID=?";
+//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+//                preparedStatement.setString(1, id);
+//                int rowsDeleteT=preparedStatement.executeUpdate();
+//                if (rowsDeleteT>0){
+//                    System.out.println("Запис видалено успішно");
+//                    TableShow.getItems().clear();
+//                    ShowButtonAction(event);
+//                }
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 
 }

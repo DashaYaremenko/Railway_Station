@@ -10,8 +10,11 @@
          <children>
             <TableView fx:id="TrainTable" layoutX="13.0" layoutY="54.0" prefHeight="343.0" prefWidth="974.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="IDTrainCol" prefWidth="75.0" text="C1" />
+                <TableColumn fx:id="NameTrainCol" prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="TypeTrain" prefWidth="75.0" text="C1" />
+                  <TableColumn fx:id="CruiseIDCol" prefWidth="75.0" text="C1" />
+                  <TableColumn fx:id="CarriageIDCol" prefWidth="75.0" text="C1" />
               </columns>
             </TableView>
             <Label layoutX="403.0" layoutY="14.0" text="Редагування Потягів">
@@ -32,11 +35,11 @@
             <TextField layoutX="231.0" layoutY="486.0" />
             <TextField layoutX="38.0" layoutY="548.0" />
             <Label layoutX="38.0" layoutY="531.0" text="Дата та час" />
-            <MenuButton layoutX="231.0" layoutY="426.0" mnemonicParsing="false" text="Тип потяга">
+            <MenuButton fx:id="typeTrainMenuButton" layoutX="231.0" layoutY="426.0" mnemonicParsing="false" text="Тип потяга">
               <items>
-                <MenuItem mnemonicParsing="false" text="Швидкий" />
-                <MenuItem mnemonicParsing="false" text="Електро" />
-                <MenuItem mnemonicParsing="false" text="Дизельний" />
+                <MenuItem fx:id="FlashMenuItem" mnemonicParsing="false" text="Швидкий" />
+                <MenuItem fx:id="ElectroMenuItem" mnemonicParsing="false" text="Електро" />
+                <MenuItem fx:id="DiselMenuItem" mnemonicParsing="false" text="Дизельний" />
               </items>
             </MenuButton>
          </children>

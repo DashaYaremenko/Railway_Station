@@ -3,21 +3,21 @@ package com.example.railway_station.TableClasses;
 import java.util.List;
 
 public class TrainClass {
-    private int ID;
+    private String ID;
     private String NameM;
     private String TypeTrain;
     private int CruiseID;
     private int Carriage;
 
-    public TrainClass(int id, String nameM, String typeTrain, int cruiseID, int carriageID) {
+    public TrainClass(String id, String nameM, String typeTrain, int cruiseID, int carriageID) {
         this.ID = id;
         this.NameM = nameM;
         this.TypeTrain = typeTrain;
         this.CruiseID = cruiseID;
         this.Carriage = carriageID;
     }
-    public int getId() {return ID;}
-    public void setId(int id) {
+    public String getId() {return ID;}
+    public void setId(String id) {
         this.ID = id;
     }
     public String getNameM() {
