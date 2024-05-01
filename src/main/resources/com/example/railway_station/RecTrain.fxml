@@ -23,8 +23,8 @@
                </font>
             </Label>
             <Button fx:id="AddTrainButton" layoutX="562.0" layoutY="413.0" mnemonicParsing="false" onAction="#AddTrainAction" text="Добавити" />
-            <Button layoutX="563.0" layoutY="460.0" mnemonicParsing="false" text="Видалити" />
-            <Button layoutX="654.0" layoutY="413.0" mnemonicParsing="false" text="Відновити список" />
+            <Button fx:id="DeleteTrainButton" onAction="#DeleteButtonAction" layoutX="563.0" layoutY="460.0" mnemonicParsing="false" text="Видалити" />
+            <Button fx:id="UpdateTrainButton" onAction="#UpdateButtonAction" layoutX="654.0" layoutY="413.0" mnemonicParsing="false" text="Відновити список" />
             <Button fx:id="LookTrainButton" layoutX="654.0" layoutY="460.0" mnemonicParsing="false" onAction="#ShowButtonAction" text="Показати " />
             <Label layoutX="37.0" layoutY="464.0" text="Назва маршруту(Varchar)" />
             <Label layoutX="37.0" layoutY="408.0" text="Номер потяга (INT)" />

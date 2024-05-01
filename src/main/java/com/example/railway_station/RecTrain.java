@@ -84,17 +84,42 @@ public class RecTrain {
             throw new RuntimeException(e);
         }
     }
- //   @FXML
-//    private void DeleteButtonAction(ActionEvent event) {
+    @FXML
+    private void DeleteButtonAction(ActionEvent event) {
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String id = IDTrain.getText();
+            String sql = "DELETE FROM trains WHERE ID=?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, id);
+                int rowsDeleteT=preparedStatement.executeUpdate();
+                if (rowsDeleteT>0){
+                    System.out.println("Запис видалено успішно");
+                    TrainTable.getItems().clear();
+                    ShowButtonAction(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+//    @FXML
+//    private void UpdateButtonAction(ActionEvent event) {
 //        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-//            String id = ID.getText();
-//            String sql = "DELETE FROM clients WHERE ID=?";
-//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//                preparedStatement.setString(1, id);
-//                int rowsDeleteT=preparedStatement.executeUpdate();
-//                if (rowsDeleteT>0){
-//                    System.out.println("Запис видалено успішно");
-//                    TableShow.getItems().clear();
+//            String Id = IDTrain.getText();
+//            String NameT = NameTrain.getText();
+//            String CruID = CruiseID.getText();
+//            String CarId = CarriageID.getText();
+//            String TypeT= TypeTrain.getText();
+//            String sql="UPDATE trains SET NameM=?, TypeTrain=?, CruiseID=?, CarriageID=? WHERE ID=? ";
+//            try (PreparedStatement preparedStatement=connection.prepareStatement(sql)){
+//                preparedStatement.setString(5, Id);
+//                preparedStatement.setString(1, NameT);
+//                preparedStatement.setString(2, TypeT);
+//                preparedStatement.setString(3, CruID);
+//                preparedStatement.setString(4, CarId);
+//                int rowsUpdate=preparedStatement.executeUpdate();
+//                if (rowsUpdate>0){
+//                    System.out.println("Запис оновлено успішно");
 //                    ShowButtonAction(event);
 //                }
 //            }
@@ -102,5 +127,47 @@ public class RecTrain {
 //            throw new RuntimeException(e);
 //        }
 //    }
+    @FXML
+    private void UpdateButtonAction(ActionEvent event, String fieldToUpdate) {
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String Id = IDTrain.getText();
+            String newValue = ""; // значення, яке ви хочете встановити для вибраного поля
+
+            // в залежності від параметра fieldToUpdate, встановлюємо відповідне значення newValue
+            switch (fieldToUpdate) {
+                case "NameM":
+                    newValue = NameTrain.getText();
+                    break;
+                case "TypeTrain":
+                    newValue = TypeTrain.getText();
+                    break;
+                case "CruiseID":
+                    newValue = CruiseID.getText();
+                    break;
+                case "CarriageID":
+                    newValue = CarriageID.getText();
+                    break;
+                default:
+                    throw new IllegalArgumentException("Invalid field to update: " + fieldToUpdate);
+            }
+
+            // SQL-запит для оновлення лише одного поля
+            String sql = "UPDATE trains SET " + fieldToUpdate + "=? WHERE ID=?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, newValue);
+                preparedStatement.setString(2, Id);
+
+                int rowsUpdate = preparedStatement.executeUpdate();
+                if (rowsUpdate > 0) {
+                    System.out.println("Запис оновлено успішно");
+                    ShowButtonAction(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
