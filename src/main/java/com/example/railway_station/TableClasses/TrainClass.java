@@ -7,14 +7,14 @@ public class TrainClass {
     private String NameM;
     private String TypeTrain;
     private int CruiseID;
-    private int Carriage;
+    private int CarriageID;
 
     public TrainClass(String id, String nameM, String typeTrain, int cruiseID, int carriageID) {
         this.ID = id;
         this.NameM = nameM;
         this.TypeTrain = typeTrain;
         this.CruiseID = cruiseID;
-        this.Carriage = carriageID;
+        this.CarriageID = carriageID;
     }
     public String getId() {return ID;}
     public void setId(String id) {
@@ -30,6 +30,6 @@ public class TrainClass {
     }
     public int getCruiseID() {return CruiseID;}
     public void setCruiseID(int cruiseID) {this.CruiseID = cruiseID;}
-    public int getCarriage() {return Carriage;}
-    public void setCarriage(int carriageID) {this.Carriage = carriageID;}
+    public int getCarriageID() {return CarriageID;}
+    public void setCarriageID(int carriageID) {this.CarriageID = carriageID;}
 }

@@ -58,6 +58,7 @@ public class RecTrain {
         }
     }
 
+    @FXML
     private void ShowButtonAction(ActionEvent event) {
         ObservableList<TrainClass> dataList = FXCollections.observableArrayList();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
@@ -68,16 +69,16 @@ public class RecTrain {
                     String id = resultSet.getString("ID");
                     String nameT = resultSet.getString("NameM");
                     String typeT = resultSet.getString("TypeTrain");
-                    int cruID = resultSet.getInt("CruID");
-                    int carId = resultSet.getInt("CarId");
+                    int cruID = resultSet.getInt("CruiseID");
+                    int carId = resultSet.getInt("CarriageId");
                     dataList.add(new TrainClass(id, nameT, typeT, cruID,carId));
                 }
             }
             IDTrainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            NameTrainCol.setCellValueFactory(new PropertyValueFactory<>("nameT"));
-            TypeTrainCol.setCellValueFactory(new PropertyValueFactory<>("typeT"));
-            CruiseIDCol.setCellValueFactory(new PropertyValueFactory<>("cruID"));
-            CarriageIDCol.setCellValueFactory(new PropertyValueFactory<>("carId"));
+            NameTrainCol.setCellValueFactory(new PropertyValueFactory<>("NameM"));
+            TypeTrainCol.setCellValueFactory(new PropertyValueFactory<>("TypeTrain"));
+            CruiseIDCol.setCellValueFactory(new PropertyValueFactory<>("CruiseID"));
+            CarriageIDCol.setCellValueFactory(new PropertyValueFactory<>("CarriageID"));
             TrainTable.setItems(dataList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
