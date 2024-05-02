@@ -30,7 +30,6 @@ public class RecTrain {
     private TableColumn <TrainClass, Integer> IDTrainCol,CruiseIDCol,CarriageIDCol ;
     @FXML
     private TableColumn<TrainClass,String> NameTrainCol, TypeTrainCol;
-
     @FXML
     private void AddTrainAction(ActionEvent event){
         String Id = IDTrain.getText();
@@ -127,31 +126,13 @@ public class RecTrain {
 //            throw new RuntimeException(e);
 //        }
 //    }
+private String fieldToUpdate;
     @FXML
-    private void UpdateButtonAction(ActionEvent event, String fieldToUpdate) {
+    private void UpdateButtonAction(ActionEvent event) {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String Id = IDTrain.getText();
-            String newValue = ""; // значення, яке ви хочете встановити для вибраного поля
+            String newValue = getNewValue(fieldToUpdate);
 
-            // в залежності від параметра fieldToUpdate, встановлюємо відповідне значення newValue
-            switch (fieldToUpdate) {
-                case "NameM":
-                    newValue = NameTrain.getText();
-                    break;
-                case "TypeTrain":
-                    newValue = TypeTrain.getText();
-                    break;
-                case "CruiseID":
-                    newValue = CruiseID.getText();
-                    break;
-                case "CarriageID":
-                    newValue = CarriageID.getText();
-                    break;
-                default:
-                    throw new IllegalArgumentException("Invalid field to update: " + fieldToUpdate);
-            }
-
-            // SQL-запит для оновлення лише одного поля
             String sql = "UPDATE trains SET " + fieldToUpdate + "=? WHERE ID=?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -166,6 +147,20 @@ public class RecTrain {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+    private String getNewValue(String fieldToUpdate) {
+        switch (fieldToUpdate) {
+            case "NameM":
+                return NameTrain.getText();
+            case "TypeTrain":
+                return TypeTrain.getText();
+            case "CruiseID":
+                return CruiseID.getText();
+            case "CarriageID":
+                return CarriageID.getText();
+            default:
+                throw new IllegalArgumentException("Invalid field to update: " + fieldToUpdate);
         }
     }
 
