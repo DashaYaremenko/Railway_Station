@@ -19,24 +19,25 @@ public class RecTrain {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "1111";
     @FXML
-    public TextField IDTrain, NameTrain, CruiseID,CarriageID;
+    public TextField IDTrain, NameTrain, CruiseID, CarriageID;
     @FXML
     public TextField TypeTrain;
     @FXML
-    public Button AddTrainButton,DeleteTrainButton,UpdateTrainButton,LookTrainButton;
+    public Button AddTrainButton, DeleteTrainButton, UpdateTrainButton, LookTrainButton;
     @FXML
-    private TableView <TrainClass> TrainTable;
+    private TableView<TrainClass> TrainTable;
     @FXML
-    private TableColumn <TrainClass, Integer> IDTrainCol,CruiseIDCol,CarriageIDCol ;
+    private TableColumn<TrainClass, Integer> IDTrainCol, CruiseIDCol, CarriageIDCol;
     @FXML
-    private TableColumn<TrainClass,String> NameTrainCol, TypeTrainCol;
+    private TableColumn<TrainClass, String> NameTrainCol, TypeTrainCol;
+
     @FXML
-    private void AddTrainAction(ActionEvent event){
+    private void AddTrainAction(ActionEvent event) {
         String Id = IDTrain.getText();
         String NameT = NameTrain.getText();
         String CruID = CruiseID.getText();
         String CarId = CarriageID.getText();
-        String TypeT= TypeTrain.getText();
+        String TypeT = TypeTrain.getText();
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO trains (ID, NameM, TypeTrain,CruiseID,CarriageID) VALUES (?,?,?,?,?)";
@@ -46,8 +47,8 @@ public class RecTrain {
                 preparedStatement.setString(3, TypeT);
                 preparedStatement.setString(4, CruID);
                 preparedStatement.setString(5, CarId);
-                int rowsAdd=preparedStatement.executeUpdate();
-                if (rowsAdd>0){
+                int rowsAdd = preparedStatement.executeUpdate();
+                if (rowsAdd > 0) {
                     System.out.println("Запис добавлено успішно");
                     ShowButtonAction(event);
                 }
@@ -70,7 +71,7 @@ public class RecTrain {
                     String typeT = resultSet.getString("TypeTrain");
                     int cruID = resultSet.getInt("CruiseID");
                     int carId = resultSet.getInt("CarriageId");
-                    dataList.add(new TrainClass(id, nameT, typeT, cruID,carId));
+                    dataList.add(new TrainClass(id, nameT, typeT, cruID, carId));
                 }
             }
             IDTrainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -83,6 +84,7 @@ public class RecTrain {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     private void DeleteButtonAction(ActionEvent event) {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
@@ -90,8 +92,8 @@ public class RecTrain {
             String sql = "DELETE FROM trains WHERE ID=?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, id);
-                int rowsDeleteT=preparedStatement.executeUpdate();
-                if (rowsDeleteT>0){
+                int rowsDeleteT = preparedStatement.executeUpdate();
+                if (rowsDeleteT > 0) {
                     System.out.println("Запис видалено успішно");
                     TrainTable.getItems().clear();
                     ShowButtonAction(event);
@@ -126,14 +128,15 @@ public class RecTrain {
 //            throw new RuntimeException(e);
 //        }
 //    }
-private String fieldToUpdate;
+
     @FXML
     private void UpdateButtonAction(ActionEvent event) {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String Id = IDTrain.getText();
-            String newValue = getNewValue(fieldToUpdate);
+            String fieldToUpdate = deterFieldToUpdate();
+            String newValue = getFieldText(fieldToUpdate);
 
-            String sql = "UPDATE trains SET " + fieldToUpdate + "=? WHERE ID=?";
+            String sql = "UPDATE trains SET " + fieldToUpdate + " = ? WHERE ID = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, newValue);
@@ -149,7 +152,20 @@ private String fieldToUpdate;
             throw new RuntimeException(e);
         }
     }
-    private String getNewValue(String fieldToUpdate) {
+    private String deterFieldToUpdate() {
+        if (!NameTrain.getText().isEmpty()) {
+            return "NameM";
+        } else if (!TypeTrain.getText().isEmpty()) {
+            return "TypeTrain";
+        } else if (!CruiseID.getText().isEmpty()) {
+            return "CruiseID";
+        } else if (!CarriageID.getText().isEmpty()) {
+            return "CarriageID";
+        } else {
+            throw new IllegalArgumentException("Invalid field to update");
+        }
+    }
+    private String getFieldText(String fieldToUpdate) {
         switch (fieldToUpdate) {
             case "NameM":
                 return NameTrain.getText();
@@ -163,6 +179,4 @@ private String fieldToUpdate;
                 throw new IllegalArgumentException("Invalid field to update: " + fieldToUpdate);
         }
     }
-
-
 }
