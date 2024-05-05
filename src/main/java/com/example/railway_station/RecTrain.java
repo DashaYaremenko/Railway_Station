@@ -62,7 +62,8 @@ public class RecTrain {
     private void ShowButtonAction(ActionEvent event) {
         ObservableList<TrainClass> dataList = FXCollections.observableArrayList();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "SELECT*FROM trains";
+            String sql = "SELECT * FROM trains\n" +
+                    "JOIN carriage ON trains.CarriageID = carriage.id;";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
