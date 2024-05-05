@@ -26,7 +26,7 @@ public class RecClients {
     @FXML
     private TableColumn<ClientClass, Integer> IDClientCol;
     @FXML
-    private TableColumn<ClientClass, String>  LastNameCol, FirstNameCol, TypeDocCol;
+    private TableColumn<ClientClass, String> LastNameCol, FirstNameCol, TypeDocCol;
 
     @FXML
     private void ShowButtonAction(ActionEvent event) {
@@ -53,5 +53,73 @@ public class RecClients {
         }
     }
 
+    @FXML
+    private void UpdateButtonAction(ActionEvent event) {
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String Id = IDClients.getText();
+            String fieldToUpdate = deterFieldToUpdate();
+            String newValue = getFieldText(fieldToUpdate);
 
+            String sql = "UPDATE clients SET " + fieldToUpdate + " = ? WHERE ID = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, newValue);
+                preparedStatement.setString(2, Id);
+
+                int rowsUpdate = preparedStatement.executeUpdate();
+                if (rowsUpdate > 0) {
+                    System.out.println("Запис оновлено успішно");
+                    ShowButtonAction(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String deterFieldToUpdate() {
+        if (!LastName.getText().isEmpty()) {
+            return "LastName";
+        } else if (!FirstName.getText().isEmpty()) {
+            return "FirstName";
+        } else if (!TypeDoc.getText().isEmpty()) {
+            return "TypeDoc";
+        } else {
+            throw new IllegalArgumentException("Invalid field to update");
+        }
+    }
+
+    private String getFieldText(String fieldToUpdate) {
+        switch (fieldToUpdate) {
+            case "LastName":
+                return LastName.getText();
+            case "FirstName":
+                return FirstName.getText();
+            case "TypeDoc":
+                return TypeDoc.getText();
+            default:
+                throw new IllegalArgumentException("Invalid field to update: " + fieldToUpdate);
+        }
+    }
+
+    private void StaticClientsButtonAction1(ActionEvent event) {
+        String typeDocuments = TypeDoc.getText();
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "SELECT * FROM clients WHERE "+ typeDocuments +" = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, typeDocuments);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+
+
+
+                    }
+                }
+
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
 }
