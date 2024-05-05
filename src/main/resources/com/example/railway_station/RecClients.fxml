@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.RecClients">
+   <children>
+      <AnchorPane prefHeight="653.0" prefWidth="1000.0">
+         <children>
+            <Button fx:id="UpdateClientsButton" layoutX="306.0" layoutY="397.0" mnemonicParsing="false" text="Відновити данні" />
+            <Button fx:id="LookClientsButton" layoutX="306.0" layoutY="450.0" mnemonicParsing="false" text="Показати список" />
+            <Button fx:id="StaticClientsButton1" layoutX="306.0" layoutY="501.0" mnemonicParsing="false" text="Показати список вказаним типом документа" />
+            <Button fx:id="StaticClientsButton2" layoutX="306.0" layoutY="560.0" mnemonicParsing="false" text="Показати клієнта який купив декілька квітків" />
+            <Label layoutX="473.0" layoutY="24.0" text="Редактор клієнтів" />
+            <Label layoutX="36.0" layoutY="375.0" text="ID клієнта " />
+            <Label layoutX="34.0" layoutY="432.0" text="Ім'я клієнта" />
+            <Label layoutX="34.0" layoutY="483.0" text="Призвіще" />
+            <Label layoutX="34.0" layoutY="542.0" text="Тип документа" />
+            <TableView layoutX="37.0" layoutY="65.0" prefHeight="303.0" prefWidth="940.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <TextField fx:id="TypeDoc" layoutX="34.0" layoutY="560.0" />
+            <TextField fx:id="LastName" layoutX="34.0" layoutY="501.0" />
+            <TextField fx:id="FirstName" layoutX="34.0" layoutY="450.0" />
+            <TextField fx:id="IDClients" layoutX="34.0" layoutY="397.0" />
+
+         </children></AnchorPane>
+   </children>
+</VBox>
