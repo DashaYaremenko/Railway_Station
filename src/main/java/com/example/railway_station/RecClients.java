@@ -127,8 +127,10 @@ public class RecClients {
         FirstNameCol.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
         TypeDocCol.setCellValueFactory(new PropertyValueFactory<>("TypeDoc"));
     }
+    @FXML
     private void StaticClientsButtonAction2(ActionEvent event) {
         ObservableList<ClientClass> dataList = FXCollections.observableArrayList();
+
 
     }
 }

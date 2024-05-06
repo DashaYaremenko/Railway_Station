@@ -7,10 +7,10 @@
    <children>
       <AnchorPane prefHeight="653.0" prefWidth="1000.0">
          <children>
-            <Button fx:id="UpdateClientsButton" onAction="#UpdateButtonAction" layoutX="306.0" layoutY="397.0" mnemonicParsing="false" text="Відновити данні" />
-            <Button fx:id="LookClientsButton" onAction="#ShowButtonAction" layoutX="306.0" layoutY="450.0" mnemonicParsing="false" text="Показати список" />
-            <Button fx:id="StaticClientsButton1" onAction="#StaticClientsButtonAction1" layoutX="306.0" layoutY="501.0" mnemonicParsing="false" text="Показати список вказаним типом документа" />
-            <Button fx:id="StaticClientsButton2" layoutX="306.0" layoutY="560.0" mnemonicParsing="false" text="Показати клієнта який купив декілька квітків" />
+            <Button fx:id="UpdateClientsButton" layoutX="306.0" layoutY="397.0" mnemonicParsing="false" onAction="#UpdateButtonAction" text="Відновити данні" />
+            <Button fx:id="LookClientsButton" layoutX="306.0" layoutY="450.0" mnemonicParsing="false" onAction="#ShowButtonAction" text="Показати список" />
+            <Button fx:id="StaticClientsButton1" layoutX="306.0" layoutY="501.0" mnemonicParsing="false" onAction="#StaticClientsButtonAction1" text="Показати список вказаним типом документа" />
+            <Button fx:id="StaticClientsButton2" layoutX="306.0" layoutY="560.0" mnemonicParsing="false" onAction="#StaticClientsButtonAction2" text="Показати клієнта який купив декілька квітків" />
             <Label layoutX="473.0" layoutY="24.0" text="Редактор клієнтів" />
             <Label layoutX="36.0" layoutY="375.0" text="ID клієнта " />
             <Label layoutX="34.0" layoutY="432.0" text="Ім'я клієнта" />
@@ -18,10 +18,10 @@
             <Label layoutX="34.0" layoutY="542.0" text="Тип документа" />
             <TableView fx:id="ClientsTable" layoutX="37.0" layoutY="65.0" prefHeight="303.0" prefWidth="940.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" fx:id="IDClientCol"/>
-                <TableColumn prefWidth="75.0" text="C2" fx:id="LastNameCol"/>
-                 <TableColumn prefWidth="75.0" text="C2" fx:id="FirstNameCol"/>
-                 <TableColumn prefWidth="75.0" text="C2" fx:id="TypeDocCol"/>
+                <TableColumn fx:id="IDClientCol" prefWidth="75.0" text="ID Клієнта" />
+                <TableColumn fx:id="LastNameCol" prefWidth="75.0" text="Призвіще" />
+                 <TableColumn fx:id="FirstNameCol" prefWidth="75.0" text="Ім'я" />
+                 <TableColumn fx:id="TypeDocCol" prefWidth="102.19998168945312" text="Тип Документа" />
               </columns>
             </TableView>
             <TextField fx:id="TypeDoc" layoutX="34.0" layoutY="560.0" />
