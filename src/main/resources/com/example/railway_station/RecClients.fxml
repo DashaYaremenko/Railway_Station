@@ -9,7 +9,7 @@
          <children>
             <Button fx:id="UpdateClientsButton" layoutX="306.0" layoutY="397.0" mnemonicParsing="false" text="Відновити данні" />
             <Button fx:id="LookClientsButton" layoutX="306.0" layoutY="450.0" mnemonicParsing="false" text="Показати список" />
-            <Button fx:id="StaticClientsButton1" layoutX="306.0" layoutY="501.0" mnemonicParsing="false" text="Показати список вказаним типом документа" />
+            <Button fx:id="StaticClientsButton1" onAction="#StaticClientsButtonAction1" layoutX="306.0" layoutY="501.0" mnemonicParsing="false" text="Показати список вказаним типом документа" />
             <Button fx:id="StaticClientsButton2" layoutX="306.0" layoutY="560.0" mnemonicParsing="false" text="Показати клієнта який купив декілька квітків" />
             <Label layoutX="473.0" layoutY="24.0" text="Редактор клієнтів" />
             <Label layoutX="36.0" layoutY="375.0" text="ID клієнта " />

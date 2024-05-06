@@ -32,7 +32,7 @@ public class RecClients {
     private void ShowButtonAction(ActionEvent event) {
         ObservableList<ClientClass> dataList = FXCollections.observableArrayList();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "";
+            String sql = "SELECT * FROM clients";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
@@ -40,7 +40,7 @@ public class RecClients {
                     String nameL = resultSet.getString("LastName");
                     String nameF = resultSet.getString("FirstName");
                     String typD = resultSet.getString("TypeDoc");
-                    dataList.add(new TrainClass(id, nameL, nameF, typD));
+                    dataList.add(new ClientClass(id, nameL, nameF, typD));
                 }
             }
             IDClientCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -102,24 +102,24 @@ public class RecClients {
         }
     }
 
+    @FXML
     private void StaticClientsButtonAction1(ActionEvent event) {
         String typeDocuments = TypeDoc.getText();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "SELECT * FROM clients WHERE "+ typeDocuments +" = ?";
+            String sql = "SELECT * FROM clients WHERE TypeDoc = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, typeDocuments);
                 try (ResultSet resultSet = statement.executeQuery()) {
                     while (resultSet.next()) {
-
-
-
+                        String id = resultSet.getString("Id");
+                        String lastName = resultSet.getString("LastName");
+                        String firstName = resultSet.getString("FirstName");
+                        String docType = resultSet.getString("TypeDoc");
+                        System.out.println("ID: " + id + ", Прізвище: " + lastName + ", Ім'я: " + firstName + ", Тип документу: " + docType);
                     }
                 }
+            } catch (SQLException e) {throw new RuntimeException(e);}
+        } catch (SQLException e) {throw new RuntimeException(e);}
 
-
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
     }
 }

@@ -37,7 +37,7 @@
                   <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/clientLog.jpg" />
                </image>
             </ImageView>
-            <Button layoutX="121.0" layoutY="537.0" mnemonicParsing="false" text="Редактор-клієнт" />
+            <Button layoutX="121.0" layoutY="537.0" mnemonicParsing="false" text="Редактор-клієнт" onAction="#clickButtonRecClients" />
          </children></AnchorPane>
    </children>
 </VBox>
