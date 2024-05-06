@@ -15,6 +15,7 @@ public class BuyTicket {
     private static final String PASSWORD = "1111";
     private Button BuyTicketBtn;
     private TextField LastName, FirstName;
+    @FXML
     private MenuButton TypeDoc;
     private CheckBox Linens, Drink, Snacks;
 
@@ -26,7 +27,7 @@ public class BuyTicket {
     }
     private void addTypeDoc(String selectedTypeDoc) {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO document_types (TypeDoc) VALUES (?)";
+            String sql = "INSERT INTO clients (TypeDoc) VALUES (?)";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
                 statement.setString(1, selectedTypeDoc);
                 statement.executeUpdate();
