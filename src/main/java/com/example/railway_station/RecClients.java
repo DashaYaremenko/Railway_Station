@@ -104,6 +104,7 @@ public class RecClients {
 
     @FXML
     private void StaticClientsButtonAction1(ActionEvent event) {
+        ObservableList<ClientClass> dataList = FXCollections.observableArrayList();
         String typeDocuments = TypeDoc.getText();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "SELECT * FROM clients WHERE TypeDoc = ?";
@@ -115,11 +116,16 @@ public class RecClients {
                         String lastName = resultSet.getString("LastName");
                         String firstName = resultSet.getString("FirstName");
                         String docType = resultSet.getString("TypeDoc");
-                        System.out.println("ID: " + id + ", Прізвище: " + lastName + ", Ім'я: " + firstName + ", Тип документу: " + docType);
+                        dataList.add(new ClientClass(id, lastName, firstName, docType));
                     }
                 }
             } catch (SQLException e) {throw new RuntimeException(e);}
         } catch (SQLException e) {throw new RuntimeException(e);}
+        ClientsTable.setItems(dataList);
+        IDClientCol.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        LastNameCol.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+        FirstNameCol.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
+        TypeDocCol.setCellValueFactory(new PropertyValueFactory<>("TypeDoc"));
 
     }
 }
