@@ -55,8 +55,10 @@ public class SearchTrain {
                 }
             }
             IdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-            NameM_Column.setCellValueFactory(new PropertyValueFactory<>("nameM"));
-            TimeTrainColumn.setCellValueFactory(new PropertyValueFactory<>("timeTrain"));
+            NameM1_Column.setCellValueFactory(new PropertyValueFactory<>("nameM"));
+            NameM2_Column.setCellValueFactory(new PropertyValueFactory<>("nameM"));
+            TimeTrainColumn1.setCellValueFactory(new PropertyValueFactory<>("timeTrain"));
+            TimeTrainColumn2.setCellValueFactory(new PropertyValueFactory<>("timeTrain"));
             ColCruColumn.setCellValueFactory(new PropertyValueFactory<>("colCruise"));
             TypeCruColumn.setCellValueFactory(new PropertyValueFactory<>("typeCru"));
             TableShow.setItems(dataList);

@@ -63,6 +63,7 @@ public class BuyTicket {
         }
     }
 
+    @FXML
     private void handleBuyTicket(ActionEvent event) {
         double totalPrice = 0.0;
 
