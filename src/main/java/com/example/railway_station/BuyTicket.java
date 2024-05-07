@@ -18,6 +18,7 @@ public class BuyTicket {
     @FXML
     private MenuButton TypeDoc;
     private CheckBox Linens, Drink, Snacks;
+    private Label Cost;
 
     @FXML
     private void handleTypeDocSelection(ActionEvent event) {
@@ -38,6 +39,50 @@ public class BuyTicket {
         } catch (SQLException e) {
             throw new RuntimeException("Помилка з'єднання з базою даних: " + e.getMessage());
         }
+    }
+
+    private void addService(String service, double cost) {
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "INSERT INTO tickets (Service, CostTicket) VALUES (?, ?)";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, service);
+                statement.setDouble(2, cost);
+                statement.executeUpdate();
+                System.out.println("Послуга успішно додана до бази даних: " + service);
+            } catch (SQLException e) {
+                throw new RuntimeException("Помилка при вставці послуги: " + e.getMessage());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Помилка з'єднання з базою даних: " + e.getMessage());
+        }
+    }
+
+    private void handleBuyTicket(ActionEvent event) {
+        double totalPrice = 0.0;
+
+        // Отримуємо прізвище та ім'я клієнта з текстових полів
+        String lastName = LastName.getText();
+        String firstName = FirstName.getText();
+
+        // Перевіряємо, які послуги вибрані та додаємо їх до бази даних
+        if (Linens.isSelected()) {
+            addService("Linens", 10.0);
+            totalPrice += 10.0;
+        }
+        if (Drink.isSelected()) {
+            addService("Drink", 5.0);
+            totalPrice += 5.0;
+        }
+        if (Snacks.isSelected()) {
+            addService("Snacks", 7.0);
+            totalPrice += 7.0;
+        }
+
+        // Оновлюємо відображення загальної ціни на мітці Price
+        Price.setText("Total Price: " + totalPrice);
+
+        // Додаємо інформацію про клієнта до бази даних
+        addClient(lastName, firstName);
     }
 
 
