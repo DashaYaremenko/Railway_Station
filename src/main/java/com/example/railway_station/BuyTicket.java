@@ -85,7 +85,7 @@ public class BuyTicket {
         }
 
         // Оновлюємо відображення загальної ціни на мітці Price
-        Price.setText("Total Price: " + totalPrice);
+        Cost.setText(String.valueOf(totalPrice));
 
         // Додаємо інформацію про клієнта до бази даних
         addClient(lastName, firstName);
@@ -93,30 +93,30 @@ public class BuyTicket {
 
 
 
-//    @FXML
-//    private void ByeTicketAction(ActionEvent event) {
-//        String LastN = LastName.getText();
-//        String CruID = CruiseID.getText();
-//        String CarId = CarriageID.getText();
-//        String TypeT = TypeTrain.getText();
-//
-//        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-//            String sql = "INSERT INTO trains (ID, NameM, TypeTrain,CruiseID,CarriageID) VALUES (?,?,?,?,?)";
-//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//                preparedStatement.setString(1, Id);
-//                preparedStatement.setString(2, NameT);
-//                preparedStatement.setString(3, TypeT);
-//                preparedStatement.setString(4, CruID);
-//                preparedStatement.setString(5, CarId);
-//                int rowsAdd = preparedStatement.executeUpdate();
-//                if (rowsAdd > 0) {
-//                    System.out.println("Запис добавлено успішно");
-//                    ShowButtonAction(event);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    @FXML
+    private void ByeTicketAction(ActionEvent event) {
+        String LastN = LastName.getText();
+        String FirstN = FirstName.getText();
+        String CarId = CarriageID.getText();
+        String TypeT = TypeTrain.getText();
+
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "INSERT INTO trains (ID, NameM, TypeTrain,CruiseID,CarriageID) VALUES (?,?,?,?,?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, Id);
+                preparedStatement.setString(2, NameT);
+                preparedStatement.setString(3, TypeT);
+                preparedStatement.setString(4, CruID);
+                preparedStatement.setString(5, CarId);
+                int rowsAdd = preparedStatement.executeUpdate();
+                if (rowsAdd > 0) {
+                    System.out.println("Запис добавлено успішно");
+                    ShowButtonAction(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
