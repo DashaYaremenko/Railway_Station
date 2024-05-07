@@ -25,13 +25,17 @@ public class SearchTrain {
     @FXML
     private TableColumn<TrainClass, String> IdColumn;
     @FXML
-    private TableColumn<TrainClass, String> NameM_Column;
+    private TableColumn<TrainClass, String> NameM1_Column;
+    @FXML
+    private TableColumn<TrainClass, String> NameM2_Column;
     @FXML
     private TableColumn<TrainClass, String> TypeCruColumn;
     @FXML
     private TableColumn<TrainClass, Integer> ColCruColumn;
     @FXML
-    private TableColumn<TrainClass,Double> TimeTrainColumn;
+    private TableColumn<TrainClass,Double> TimeTrainColumn1;
+    @FXML
+    private TableColumn<TrainClass,Double> TimeTrainColumn2;
 
     @FXML
     private void STButtonAction(ActionEvent event) {

@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1 fx:controller=" fx:controller="com.example.railway_station.SearchTrain">
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.SearchTrain">
    <children>
       <AnchorPane prefHeight="652.0" prefWidth="1000.0">
          <children>
-            <Button onAction="#STButtonAction" layoutX="474.0" layoutY="228.0" mnemonicParsing="false" text="Пошук" />
+            <Button layoutX="474.0" layoutY="228.0" mnemonicParsing="false" onAction="#STButtonAction" text="Пошук" />
             <Label layoutX="412.0" layoutY="40.0" text="Пошук потяга" textFill="#2d35c1">
                <font>
                   <Font name="Century Gothic" size="25.0" />
@@ -18,11 +18,13 @@
             <Label layoutX="186.0" layoutY="115.0" text="Звідки" />
             <TableView fx:id="TableShow" layoutX="14.0" layoutY="325.0" prefHeight="309.0" prefWidth="964.0">
               <columns>
-                <TableColumn fx:id="IdColumn" prefWidth="75.0" text="Номер потяга" />
-                <TableColumn fx:id="NameM_Column" prefWidth="75.0" text="Назва маршруту" />
-                 <TableColumn fx:id="TimeTrainColumn" prefWidth="75.0" text="Час відправки/прибуття" />
-                 <TableColumn fx:id="ColCruColumn" prefWidth="75.0" text="Кількість вагонів" />
-                  <TableColumn fx:id="TypeCruColumn" prefWidth="75.0" text="Тип вагонів" />
+                <TableColumn fx:id="IdColumn" prefWidth="95.2000150680542" text="Номер потяга" />
+                <TableColumn fx:id="NameM1_Column" prefWidth="131.39999389648438" text="Назва відправлення" />
+                  <TableColumn fx:id="NameM2_Column" prefWidth="103.40000915527344" text="Назва прибуття" />
+                 <TableColumn fx:id="TimeTrainColumn1" prefWidth="152.5999755859375" text="Час та дата відправки" />
+                  <TableColumn fx:id="TimeTrainColumn2" prefWidth="152.5999755859375" text="Час та дата прибуття" />
+                 <TableColumn fx:id="ColCruColumn" prefWidth="107.79998779296875" text="Кількість вагонів" />
+                  <TableColumn fx:id="TypeCruColumn" prefWidth="85.0" text="Тип вагонів" />
               </columns>
             </TableView>
             <TextField fx:id="destination2" layoutX="378.0" layoutY="149.0" prefHeight="26.0" prefWidth="244.0" />
