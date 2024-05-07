@@ -13,12 +13,18 @@ public class BuyTicket {
     private static final String URL = "jdbc:mysql://localhost:3306/railwaystat";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "1111";
+    @FXML
     private Button BuyTicketBtn;
-    private TextField LastName, FirstName;
+    @FXML
+    private TextField LastName, FirstName,IdTrain, IdCarriage;
     @FXML
     private MenuButton TypeDoc;
+    @FXML
     private CheckBox Linens, Drink, Snacks;
+    @FXML
     private Label Cost;
+    @FXML
+    private DatePicker datePicker;
 
     @FXML
     private void handleTypeDocSelection(ActionEvent event) {
