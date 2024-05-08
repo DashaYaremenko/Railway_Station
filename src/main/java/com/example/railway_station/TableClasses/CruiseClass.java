@@ -6,8 +6,8 @@ public class CruiseClass {
     private String ID;
     private LocalDateTime DateTimeDispatch;
     private LocalDateTime DateTimeArrival;
-    private CruiseClass (String id, LocalDateTime dateTimeDispatch, LocalDateTime dateTimeArrival) {
-        this.ID = id;
+    public CruiseClass(String idCruise, LocalDateTime dateTimeDispatch, LocalDateTime dateTimeArrival) {
+        this.ID = idCruise;
         this.DateTimeDispatch = dateTimeDispatch;
         this.DateTimeArrival = dateTimeArrival;
     }

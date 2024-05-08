@@ -5,7 +5,7 @@ public class CarriageClass {
     private String TypeCarrig;
     private int TrainID;
     private int NumSeats;
-    private CarriageClass(String id, String typeCarrig, int trainID, int numSeats) {
+    public CarriageClass(String id, String typeCarrig, int trainID, int numSeats) {
         this.ID = id;
         this.TypeCarrig = typeCarrig;
         this.TrainID = trainID;

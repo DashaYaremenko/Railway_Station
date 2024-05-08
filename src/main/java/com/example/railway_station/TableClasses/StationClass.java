@@ -3,7 +3,7 @@ package com.example.railway_station.TableClasses;
 public class StationClass {
     private int ID;
     private String NameStation;
-    private StationClass(int id, String nameStation) {
+    public StationClass(int id, String nameStation) {
         this.ID = id;
         this.NameStation = nameStation;
     }
