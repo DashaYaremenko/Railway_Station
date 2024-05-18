@@ -19,6 +19,7 @@
             <TableView fx:id="TableShow" layoutX="14.0" layoutY="325.0" prefHeight="309.0" prefWidth="964.0">
               <columns>
                 <TableColumn fx:id="IdColumn" prefWidth="95.2000150680542" text="Номер потяга" />
+                  <TableColumn fx:id="NameTrainColumn" prefWidth="95" text="Назва потяга" />
                 <TableColumn fx:id="NameM1_Column" prefWidth="131.39999389648438" text="Назва відправлення" />
                   <TableColumn fx:id="NameM2_Column" prefWidth="103.40000915527344" text="Назва прибуття" />
                  <TableColumn fx:id="TimeTrainColumn1" prefWidth="152.5999755859375" text="Час та дата відправки" />

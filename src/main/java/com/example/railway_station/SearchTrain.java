@@ -30,6 +30,8 @@ public class SearchTrain {
     @FXML
     private TableColumn<TrainClass, String> IdColumn;
     @FXML
+    private TableColumn<TrainClass, String> NameTrainColumn;
+    @FXML
     private TableColumn<StationClass, String> NameM1_Column;
     @FXML
     private TableColumn<StationClass, String> NameM2_Column;
@@ -65,11 +67,7 @@ public class SearchTrain {
         ObservableList<CruiseClass> dataList2 = FXCollections.observableArrayList();
         ObservableList<CarriageClass> dataList3 = FXCollections.observableArrayList();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "SELECT t.ID, t.TypeCru, t.ColCruise, s.NameStation, c.TypeCarrig, c.NumSeats, ts.ArrivTime, ts.DeparTime " +
-                    "FROM trains t " +
-                    "JOIN stations s ON t.StationID = s.ID " +
-                    "JOIN carriages c ON t.ID = c.TrainID " +
-                    "JOIN trainstation ts ON t.ID = ts.TrainId";
+            String sql = ;
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
