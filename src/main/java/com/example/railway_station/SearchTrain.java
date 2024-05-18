@@ -72,13 +72,14 @@ public class SearchTrain {
                  ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String id = resultSet.getString("ID");
+                    String nameTrain = resultSet.getString("NameTrain");
                     String nameM1 = resultSet.getString("NameM1");
                     String nameM2 = resultSet.getString("NameM2");
                     String typeCru = resultSet.getString("TypeCru");
                     LocalDateTime timeTrain1 = resultSet.getTimestamp("TimeTrain1").toLocalDateTime();
                     LocalDateTime timeTrain2 = resultSet.getTimestamp("TimeTrain2").toLocalDateTime();
                     int colCruise = resultSet.getInt("ColCruise");
-                    TrainClass train = new TrainClass(id);
+                    TrainClass train = new TrainClass(id,nameTrain);
                     dataList.add(train);
                     StationClass stationClass = new StationClass(nameM1, nameM2);
                     dataList1.add(stationClass);
