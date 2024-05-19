@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="652.0" prefWidth="1000.0">
+         <children>
+            <TableView fx:id="CarriageTable" layoutX="14.0" layoutY="50.0" prefHeight="363.0" prefWidth="970.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <TextField fx:id="IDCarriage" layoutX="29.0" layoutY="461.0" />
+            <TextField fx:id="IDTrain" layoutX="29.0" layoutY="524.0" />
+            <TextField fx:id="TypeCarriage" layoutX="227.0" layoutY="461.0" />
+            <TextField fx:id="NumSeats" layoutX="227.0" layoutY="524.0" />
+            <Label layoutX="29.0" layoutY="444.0" text="ID (INT)" />
+            <Label layoutX="29.0" layoutY="507.0" text="ID Потяга" />
+            <Label layoutX="227.0" layoutY="444.0" text="Тип вагону" />
+            <Label layoutX="227.0" layoutY="507.0" text="Кількість місць" />
+            <Label layoutX="456.0" layoutY="23.0" text="Редактор вагон" />
+            <Button fx:id="AddCarriageButton" layoutX="500.0" layoutY="461.0" mnemonicParsing="false" text="Добавити" />
+            <Button fx:id="UpdateCarriageButton" layoutX="500.0" layoutY="524.0" mnemonicParsing="false" text="Відновити" />
+            <Button fx:id="DeleteCarriageButton" layoutX="640.0" layoutY="461.0" mnemonicParsing="false" text="Видалити" />
+            <Button fx:id="LookCarriageButton" layoutX="640.0" layoutY="524.0" mnemonicParsing="false" text="Показати список" />
+         </children></AnchorPane>
+   </children>
+</VBox>
