@@ -1,9 +1,6 @@
 package com.example.railway_station;
 
-import com.example.railway_station.TableClasses.CarriageClass;
-import com.example.railway_station.TableClasses.CruiseClass;
-import com.example.railway_station.TableClasses.StationClass;
-import com.example.railway_station.TableClasses.TrainClass;
+import com.example.railway_station.TableClasses.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -62,12 +59,22 @@ public class SearchTrain {
         if (selectedDate == null) {
             return;
         }
-        ObservableList<TrainClass> dataList = FXCollections.observableArrayList();
-        ObservableList<StationClass> dataList1 = FXCollections.observableArrayList();
-        ObservableList<CruiseClass> dataList2 = FXCollections.observableArrayList();
-        ObservableList<CarriageClass> dataList3 = FXCollections.observableArrayList();
+        ObservableList<SearchTrainClass> dataList = FXCollections.observableArrayList();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = ;
+            String sql ="SELECT t.ID AS trainID,\n" +
+                    "    t.NameM as NameTrain,\n" +
+                    "    s1.NameStation AS departureStation,\n" +
+                    "    s2.NameStation AS arrivalStation,\n" +
+                    "    ts.DeparTime AS departureTime,\n" +
+                    "    ts.ArrivTime AS arrivalTime,\n" +
+                    "    COUNT(c.ID) AS carriageCount,\n" +
+                    "    GROUP_CONCAT(c.TypeCarrig) AS carriageTypes\n" +
+                    "    FROM trains t\n" +
+                    "    JOIN trainstations ts ON t.ID = ts.TrainId\n" +
+                    "    JOIN stations s1 ON ts.StationID = s1.ID\n" +
+                    "    JOIN stations s2 ON ts.StationID = s2.ID\n" +
+                    "    JOIN carriage c ON t.ID = c.TrainID\n" +
+                    "    GROUP BY t.ID, s1.NameStation, s2.NameStation, ts.DeparTime, ts.ArrivTime\n" ;
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
