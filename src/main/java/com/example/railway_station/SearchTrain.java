@@ -23,7 +23,7 @@ public class SearchTrain {
     @FXML
     public Button showButton;
     @FXML
-    private TableView<TrainClass> TableShow;
+    private TableView<SearchTrainClass> TableShow;
     @FXML
     private TableColumn<TrainClass, String> IdColumn;
     @FXML
@@ -41,76 +41,113 @@ public class SearchTrain {
     @FXML
     private TableColumn<CruiseClass,Timestamp> TimeTrainColumn2;
 
-    private void handleSearch() {
-        LocalDate selectedDate = datePicker.getValue();
-        if (selectedDate != null) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Дата вибрана");
-            alert.setHeaderText(null);
-            alert.setContentText("Обрана дата: " + selectedDate.toString());
-            alert.showAndWait();
-        }
-    }
 
     @FXML
     private void STButtonAction(ActionEvent event) {
-        handleSearch();
         LocalDate selectedDate = datePicker.getValue();
         if (selectedDate == null) {
             return;
         }
+
         ObservableList<SearchTrainClass> dataList = FXCollections.observableArrayList();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql ="SELECT t.ID AS trainID,\n" +
-                    "    t.NameM as NameTrain,\n" +
-                    "    s1.NameStation AS departureStation,\n" +
-                    "    s2.NameStation AS arrivalStation,\n" +
-                    "    ts.DeparTime AS departureTime,\n" +
-                    "    ts.ArrivTime AS arrivalTime,\n" +
-                    "    COUNT(c.ID) AS carriageCount,\n" +
-                    "    GROUP_CONCAT(c.TypeCarrig) AS carriageTypes\n" +
-                    "    FROM trains t\n" +
-                    "    JOIN trainstations ts ON t.ID = ts.TrainId\n" +
-                    "    JOIN stations s1 ON ts.StationID = s1.ID\n" +
-                    "    JOIN stations s2 ON ts.StationID = s2.ID\n" +
-                    "    JOIN carriage c ON t.ID = c.TrainID\n" +
-                    "    GROUP BY t.ID, s1.NameStation, s2.NameStation, ts.DeparTime, ts.ArrivTime\n" ;
-            try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
-                 ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    String id = resultSet.getString("ID");
-                    String nameTrain = resultSet.getString("NameTrain");
-                    String nameM1 = resultSet.getString("NameM1");
-                    String nameM2 = resultSet.getString("NameM2");
-                    String typeCru = resultSet.getString("TypeCru");
-                    LocalDateTime timeTrain1 = resultSet.getTimestamp("TimeTrain1").toLocalDateTime();
-                    LocalDateTime timeTrain2 = resultSet.getTimestamp("TimeTrain2").toLocalDateTime();
-                    int colCruise = resultSet.getInt("ColCruise");
-                    TrainClass train = new TrainClass(id,nameTrain);
-                    dataList.add(train);
-                    StationClass stationClass = new StationClass(nameM1, nameM2);
-                    dataList1.add(stationClass);
-                    CruiseClass cruiseClass = new CruiseClass(timeTrain1, timeTrain2);
-                    dataList2.add(cruiseClass);
-                    String typeCarriage = resultSet.getString("TypeCarriage");
-                    int numSeats = resultSet.getInt("NumSeats");
-                    CarriageClass carriage = new CarriageClass(id, typeCarriage, numSeats);
-                    dataList3.add(carriage);
+            String sql = "SELECT t.ID AS trainID, t.NameM AS NameTrain, s1.NameStation AS departureStation, " +
+                    "s2.NameStation AS arrivalStation, ts.DeparTime AS departureTime, ts.ArrivTime AS arrivalTime, " +
+                    "COUNT(c.ID) AS carriageCount, GROUP_CONCAT(c.TypeCarrig) AS carriageTypes " +
+                    "FROM trains t " +
+                    "JOIN trainstations ts ON t.ID = ts.TrainId " +
+                    "JOIN stations s1 ON ts.DepartureStationID = s1.ID " +
+                    "JOIN stations s2 ON ts.ArrivalStationID = s2.ID " +
+                    "JOIN carriages c ON t.ID = c.TrainID " +
+                    "WHERE DATE(ts.DeparTime) = ? " +
+                    "GROUP BY t.ID, t.NameM, s1.NameStation, s2.NameStation, ts.DeparTime, ts.ArrivTime ";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setDate(1, java.sql.Date.valueOf(selectedDate));
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        String id = resultSet.getString("trainID");
+                        String nameTrain = resultSet.getString("NameTrain");
+                        String departureStation = resultSet.getString("departureStation");
+                        String arrivalStation = resultSet.getString("arrivalStation");
+                        LocalDateTime departureTime = resultSet.getTimestamp("departureTime").toLocalDateTime();
+                        LocalDateTime arrivalTime = resultSet.getTimestamp("arrivalTime").toLocalDateTime();
+                        int carriageCount = resultSet.getInt("carriageCount");
+                        String carriageTypes = resultSet.getString("carriageTypes");
+                        SearchTrainClass searchTrainClass = new SearchTrainClass(id, nameTrain, departureStation, arrivalStation, departureTime, arrivalTime, carriageCount, carriageTypes);
+                        dataList.add(searchTrainClass);
+                    }
                 }
-
             }
-            IdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-            NameM1_Column.setCellValueFactory(new PropertyValueFactory<>("nameM"));
-            NameM2_Column.setCellValueFactory(new PropertyValueFactory<>("nameM"));
-            TimeTrainColumn1.setCellValueFactory(new PropertyValueFactory<>("arrivTime"));
-            TimeTrainColumn2.setCellValueFactory(new PropertyValueFactory<>("deparTime"));
-            ColCruColumn.setCellValueFactory(new PropertyValueFactory<>("colCruise"));
-            TypeCruColumn.setCellValueFactory(new PropertyValueFactory<>("typeCru"));
+
+            IdColumn.setCellValueFactory(new PropertyValueFactory<>("trainID"));
+            NameTrainColumn.setCellValueFactory(new PropertyValueFactory<>("nameTrain"));
+            NameM1_Column.setCellValueFactory(new PropertyValueFactory<>("departureStation"));
+            NameM2_Column.setCellValueFactory(new PropertyValueFactory<>("arrivalStation"));
+            TimeTrainColumn1.setCellValueFactory(new PropertyValueFactory<>("departureTime"));
+            TimeTrainColumn2.setCellValueFactory(new PropertyValueFactory<>("arrivalTime"));
+            ColCruColumn.setCellValueFactory(new PropertyValueFactory<>("carriageCount"));
+            TypeCruColumn.setCellValueFactory(new PropertyValueFactory<>("carriageTypes"));
+
             TableShow.setItems(dataList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+
+//    @FXML
+//    private void STButtonAction(ActionEvent event) {
+//        handleSearch();
+//        LocalDate selectedDate = datePicker.getValue();
+//        if (selectedDate == null) {
+//            return;
+//        }
+//        ObservableList<SearchTrainClass> dataList = FXCollections.observableArrayList();
+//        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+//            String sql ="SELECT t.ID AS trainID,\n" +
+//                    "    t.NameM as NameTrain,\n" +
+//                    "    s1.NameStation AS departureStation,\n" +
+//                    "    s2.NameStation AS arrivalStation,\n" +
+//                    "    ts.DeparTime AS departureTime,\n" +
+//                    "    ts.ArrivTime AS arrivalTime,\n" +
+//                    "    COUNT(c.ID) AS carriageCount,\n" +
+//                    "    GROUP_CONCAT(c.TypeCarrig) AS carriageTypes\n" +
+//                    "    FROM trains t\n" +
+//                    "    JOIN trainstations ts ON t.ID = ts.TrainId\n" +
+//                    "    JOIN stations s1 ON ts.StationID = s1.ID\n" +
+//                    "    JOIN stations s2 ON ts.StationID = s2.ID\n" +
+//                    "    JOIN carriage c ON t.ID = c.TrainID\n" +
+//                    "    GROUP BY t.ID, s1.NameStation, s2.NameStation, ts.DeparTime, ts.ArrivTime\n" ;
+//            try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+//                 ResultSet resultSet = preparedStatement.executeQuery()) {
+//                while (resultSet.next()) {
+//                    String id = resultSet.getString("ID");
+//                    String nameTrain = resultSet.getString("NameTrain");
+//                    String nameM1 = resultSet.getString("NameM1");
+//                    String nameM2 = resultSet.getString("NameM2");
+//                    String typeCru = resultSet.getString("TypeCru");
+//                    LocalDateTime timeTrain1 = resultSet.getTimestamp("TimeTrain1").toLocalDateTime();
+//                    LocalDateTime timeTrain2 = resultSet.getTimestamp("TimeTrain2").toLocalDateTime();
+//                    int colCruise = resultSet.getInt("ColCruise");
+//                    String typeCarriage = resultSet.getString("TypeCarriage");
+//                    int numSeats = resultSet.getInt("NumSeats");
+//                    SearchTrainClass searchTrainClass= new SearchTrainClass(id,nameTrain,nameM1, nameM2,timeTrain1, timeTrain2,typeCarriage, numSeats);
+//                    dataList.add(searchTrainClass);
+//                }
+//
+//            }
+//            IdColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+//            NameM1_Column.setCellValueFactory(new PropertyValueFactory<>("nameM"));
+//            NameM2_Column.setCellValueFactory(new PropertyValueFactory<>("nameM"));
+//            TimeTrainColumn1.setCellValueFactory(new PropertyValueFactory<>("arrivTime"));
+//            TimeTrainColumn2.setCellValueFactory(new PropertyValueFactory<>("deparTime"));
+//            ColCruColumn.setCellValueFactory(new PropertyValueFactory<>("colCruise"));
+//            TypeCruColumn.setCellValueFactory(new PropertyValueFactory<>("typeCru"));
+//            TableShow.setItems(dataList);
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 //    SELECT t.ID AS trainID,
 //    t.NameM as NameTrain,
 //    s1.NameStation AS departureStation,
