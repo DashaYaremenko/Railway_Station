@@ -25,8 +25,8 @@
             <Label layoutX="227.0" layoutY="507.0" text="Кількість місць" />
             <Label layoutX="456.0" layoutY="23.0" text="Редактор вагон" />
             <Button onAction="#AddCarriageAction" fx:id="AddCarriageButton" layoutX="500.0" layoutY="461.0" mnemonicParsing="false" text="Добавити" />
-            <Button fx:id="UpdateCarriageButton" layoutX="500.0" layoutY="524.0" mnemonicParsing="false" text="Відновити" />
-            <Button fx:id="DeleteCarriageButton" layoutX="640.0" layoutY="461.0" mnemonicParsing="false" text="Видалити" />
+            <Button onAction="#UpdateButtonAction" fx:id="UpdateCarriageButton" layoutX="500.0" layoutY="524.0" mnemonicParsing="false" text="Відновити" />
+            <Button onAction="#DeleteButtonAction" fx:id="DeleteCarriageButton" layoutX="640.0" layoutY="461.0" mnemonicParsing="false" text="Видалити" />
             <Button  onAction="#ShowButtonAction" fx:id="LookCarriageButton" layoutX="640.0" layoutY="524.0" mnemonicParsing="false" text="Показати список" />
          </children></AnchorPane>
    </children>

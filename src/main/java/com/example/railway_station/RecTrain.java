@@ -104,32 +104,6 @@ public class RecTrain {
             throw new RuntimeException(e);
         }
     }
-//    @FXML
-//    private void UpdateButtonAction(ActionEvent event) {
-//        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-//            String Id = IDTrain.getText();
-//            String NameT = NameTrain.getText();
-//            String CruID = CruiseID.getText();
-//            String CarId = CarriageID.getText();
-//            String TypeT= TypeTrain.getText();
-//            String sql="UPDATE trains SET NameM=?, TypeTrain=?, CruiseID=?, CarriageID=? WHERE ID=? ";
-//            try (PreparedStatement preparedStatement=connection.prepareStatement(sql)){
-//                preparedStatement.setString(5, Id);
-//                preparedStatement.setString(1, NameT);
-//                preparedStatement.setString(2, TypeT);
-//                preparedStatement.setString(3, CruID);
-//                preparedStatement.setString(4, CarId);
-//                int rowsUpdate=preparedStatement.executeUpdate();
-//                if (rowsUpdate>0){
-//                    System.out.println("Запис оновлено успішно");
-//                    ShowButtonAction(event);
-//                }
-//            }
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
     @FXML
     private void UpdateButtonAction(ActionEvent event) {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {

@@ -77,5 +77,69 @@ public class RecCarriage {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    private void DeleteButtonAction(ActionEvent event) {
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String id = IDCarriage.getText();
+            String sql = "DELETE FROM carriage WHERE ID=?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, id);
+                int rowsDeleteT = preparedStatement.executeUpdate();
+                if (rowsDeleteT > 0) {
+                    System.out.println("Запис видалено успішно");
+                    CarriageTable.getItems().clear();
+                    ShowButtonAction(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    private void UpdateButtonAction(ActionEvent event) {
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String Id = IDCarriage.getText();
+            String fieldToUpdate = deterFieldToUpdate();
+            String newValue = getFieldText(fieldToUpdate);
+
+            String sql = "UPDATE carriage SET " + fieldToUpdate + " = ? WHERE ID = ?";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, newValue);
+                preparedStatement.setString(2, Id);
+
+                int rowsUpdate = preparedStatement.executeUpdate();
+                if (rowsUpdate > 0) {
+                    System.out.println("Запис оновлено успішно");
+                    ShowButtonAction(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    private String deterFieldToUpdate() {
+        if (!IDTrain.getText().isEmpty()) {
+            return "TrainID";
+        } else if (!NumSeats.getText().isEmpty()) {
+            return "NumSeats";
+        } else if (!TypeCarriage.getText().isEmpty()) {
+            return "TypeCarrig";
+        } else {
+            throw new IllegalArgumentException("Invalid field to update");
+        }
+    }
+    private String getFieldText(String fieldToUpdate) {
+        switch (fieldToUpdate) {
+            case "TrainID":
+                return IDTrain.getText();
+            case "NumSeats":
+                return NumSeats.getText();
+            case "TypeCarrig":
+                return TypeCarriage.getText();
+            default:
+                throw new IllegalArgumentException("Invalid field to update: " + fieldToUpdate);
+        }
+    }
 
 }
