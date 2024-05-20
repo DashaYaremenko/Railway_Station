@@ -37,7 +37,7 @@ public class RecCarriage {
         String TypeC = TypeCarriage.getText();
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO carriage (ID, TypeC, IDtrain,NumSeat) VALUES (?,?,?,?)";
+            String sql = "INSERT INTO carriage (ID, TypeCarrig, TrainID,NumSeats) VALUES (?,?,?,?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, ID);
                 preparedStatement.setString(2, TypeC);
@@ -55,25 +55,24 @@ public class RecCarriage {
     }
     @FXML
     private void ShowButtonAction(ActionEvent event) {
-        ObservableList<TrainClass> dataList = FXCollections.observableArrayList();
+        ObservableList<CarriageClass> dataList = FXCollections.observableArrayList();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "SELECT * FROM carriage";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    String id = resultSet.getString("id");
+                    String id = resultSet.getString("ID");
                     int IdTrain = resultSet.getInt("trainID");
                     String typeC = resultSet.getString("typeCarrig");
                     int NumS = resultSet.getInt("numSeats");
-                    dataList.add(new CarriageClass(id, IdTrain, typeC, NumS));
+                    dataList.add(new CarriageClass(id, typeC,IdTrain, NumS));
                 }
             }
-            IDTrainCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-            NameTrainCol.setCellValueFactory(new PropertyValueFactory<>("NameM"));
-            TypeTrainCol.setCellValueFactory(new PropertyValueFactory<>("TypeTrain"));
-            CruiseIDCol.setCellValueFactory(new PropertyValueFactory<>("CruiseID"));
-            CarriageIDCol.setCellValueFactory(new PropertyValueFactory<>("CarriageID"));
-            TrainTable.setItems(dataList);
+            CarriageIDCol.setCellValueFactory(new PropertyValueFactory<>("ID"));
+            TypeCarriageCol.setCellValueFactory(new PropertyValueFactory<>("typeCarrig"));
+            IDTrainCol.setCellValueFactory(new PropertyValueFactory<>("trainID"));
+            NumSeatsCol.setCellValueFactory(new PropertyValueFactory<>("numSeats"));
+            CarriageTable.setItems(dataList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

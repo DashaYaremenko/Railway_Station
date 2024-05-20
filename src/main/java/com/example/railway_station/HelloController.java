@@ -81,6 +81,19 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void clickButtonRecCarriage(ActionEvent event){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("RecCarriage.fxml"));
+            Parent parent= loader.load();
+            Stage stage=new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     // interface admin
     public void clickButtonTrans(ActionEvent event){
         try {
