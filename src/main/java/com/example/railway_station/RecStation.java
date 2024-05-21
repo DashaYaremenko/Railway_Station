@@ -22,6 +22,7 @@ public class RecStation {
     public TableColumn<TrainStatClass,String> DepartureTime;
     public TableColumn<TrainStatClass,Integer> IdTrain;
     public RecStation() {
+
     }
 }
 
