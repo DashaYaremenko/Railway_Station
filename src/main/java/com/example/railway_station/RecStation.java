@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.*;
+import java.time.LocalTime;
 
 public class RecStation {
     private static final String URL = "jdbc:mysql://localhost:3306/railwaystat";
@@ -49,6 +50,30 @@ public class RecStation {
             IdStationCol.setCellValueFactory(new PropertyValueFactory<>("ID"));
             StationNameCol.setCellValueFactory(new PropertyValueFactory<>("NameStation"));
             stationTable.setItems(dataList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    private void ShowButtonAction2(ActionEvent event) {
+        ObservableList<TrainStatClass> dataList = FXCollections.observableArrayList();
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "SELECT * FROM trainstations";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int id = resultSet.getInt("stationID");
+                    int idTrain = resultSet.getInt("trainID");
+                    Time arrivTime =resultSet.getTime("arrivalTime");
+                    Time deparTime=resultSet.getTime("deparTime");
+                    dataList.add(new TrainStatClass(id, idTrain, arrivTime.toLocalTime(), deparTime.toLocalTime()));
+                }
+            }
+            IdTrainCol.setCellValueFactory(new PropertyValueFactory<>("TrainID"));
+            IdStationCol1.setCellValueFactory(new PropertyValueFactory<>("StationID"));
+            ArrivalTimeCol.setCellValueFactory(new PropertyValueFactory<>("ArrivTime"));
+            DepartureTimeCol.setCellValueFactory(new PropertyValueFactory<>("DeparTime"));
+            trainStatTable.setItems(dataList);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

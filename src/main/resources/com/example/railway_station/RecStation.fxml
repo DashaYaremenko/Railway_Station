@@ -39,7 +39,7 @@
             <Button layoutX="725.0" layoutY="414.0" mnemonicParsing="false" text="Добавити" />
             <Button layoutX="834.0" layoutY="414.0" mnemonicParsing="false" text="Відновити" />
             <Button layoutX="726.0" layoutY="465.0" mnemonicParsing="false" text="Видалити" />
-            <Button layoutX="834.0" layoutY="465.0" mnemonicParsing="false" text="Показати весь список" />
+            <Button fx:id="LookStationTrainButton" onAction="#ShowButtonAction2" layoutX="834.0" layoutY="465.0" mnemonicParsing="false" text="Показати весь список" />
             <Button layoutX="725.0" layoutY="508.0" mnemonicParsing="false" text="Список станцій які проїзжає один потяг" />
             <Button layoutX="684.0" layoutY="555.0" mnemonicParsing="false" text=" Список потягів які проїзжають через одну станцію" />
          </children></AnchorPane>
