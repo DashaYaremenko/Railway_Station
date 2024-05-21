@@ -8,16 +8,18 @@
       <AnchorPane prefHeight="650.0" prefWidth="304.0">
          <children>
             <Label layoutX="480.0" layoutY="36.0" text="Редактор станцій" />
-            <TableView layoutX="14.0" layoutY="68.0" prefHeight="313.0" prefWidth="290.0">
+            <TableView fx:id="stationTable" layoutX="14.0" layoutY="68.0" prefHeight="313.0" prefWidth="290.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="IDStation" prefWidth="75.0" text="ID станції" />
+                <TableColumn fx:id="StationName" prefWidth="92.19998168945312" text="Назва станції" />
               </columns>
             </TableView>
-            <TableView layoutX="528.0" layoutY="68.0" prefHeight="328.0" prefWidth="445.0">
+            <TableView fx:id="trainStatTable" layoutX="528.0" layoutY="68.0" prefHeight="328.0" prefWidth="445.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="IdStation" prefWidth="75.0" text="ID станції" />
+                <TableColumn fx:id="IdTrain" prefWidth="75.0" text="ID потяга" />
+                  <TableColumn fx:id="ArrivalTime" prefWidth="75.0" text="Час прибуття" />
+                  <TableColumn fx:id="DepartureTime" prefWidth="75.0" text="Час відправлення" />
               </columns>
             </TableView>
             <Label layoutX="21.0" layoutY="405.0" text="ID станції" />
