@@ -95,9 +95,9 @@ public class HelloController {
     }
 
     // interface admin
-    public void clickButtonTrans(ActionEvent event){
+    public void clickButtonStation(ActionEvent event){
         try {
-            FXMLLoader loader=new FXMLLoader(getClass().getResource("TranstProcess.fxml"));
+            FXMLLoader loader=new FXMLLoader(getClass().getResource("RecStation.fxml"));
             Parent parent=loader.load();
             Stage stage=new Stage();
             stage.setScene(new Scene(parent));
