@@ -78,8 +78,33 @@ public class RecStation {
         }
     }
     @FXML
+    private void AssignStationTrainAction(ActionEvent event) {
+        String ID = IDStation2.getText();
+        String IdTrain = IDTrain.getText();
+        String aTime = arrivalTime.getText();
+        String dTime = departureTime.getText();
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "INSERT INTO trainstations (TrainID,StationID,ArrivTime, DeparTime) VALUES (?,?,?,?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, IdTrain);
+                preparedStatement.setString(2, ID);
+                preparedStatement.setString(3, aTime);
+                preparedStatement.setString(4, dTime);
+                int rowsAdd = preparedStatement.executeUpdate();
+                if (rowsAdd > 0) {
+                    System.out.println("Запис добавлено успішно");
+                    ShowButtonAction2(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
     private void AddStationAction(ActionEvent event) {
-        String Id = IDStation.getText();
+        String Id = IDStation2.getText();
+        String IdTrain = IDTrain.getText();
+
         String NameS = stationName.getText();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO stations (ID, NameStation) VALUES (?,?)";
@@ -96,6 +121,7 @@ public class RecStation {
             throw new RuntimeException(e);
         }
     }
+
 
 }
 

@@ -33,10 +33,10 @@
             <TextField fx:id="IDTrain" layoutX="525.0" layoutY="423.0" />
             <TextField fx:id="IDStation2" layoutX="525.0" layoutY="477.0" />
             <TextField fx:id="arrivalTime" layoutX="525.0" layoutY="530.0" />
-            <TextField fx:id="departureTime" layoutX="527.0" layoutY="586.0" />
+            <TextField fx:id="departureTime" layoutX="525.0" layoutY="586.0" />
             <Label layoutX="529.0" layoutY="512.0" text="Час прибуття" />
             <Label layoutX="531.0" layoutY="568.0" text="Час відправлення" />
-            <Button fx:id="AssignStationTrainButton" layoutX="725.0" layoutY="414.0" mnemonicParsing="false" text="Добавити" />
+            <Button fx:id="AssignStationTrainButton" onAction="#AssignStationTrainAction" layoutX="725.0" layoutY="414.0" mnemonicParsing="false" text="Добавити" />
             <Button fx:id="UpdateStationTrainButton" layoutX="834.0" layoutY="414.0" mnemonicParsing="false" text="Відновити" />
             <Button fx:id="DeleteStationTrainButton" layoutX="726.0" layoutY="465.0" mnemonicParsing="false" text="Видалити" />
             <Button fx:id="LookStationTrainButton" onAction="#ShowButtonAction2" layoutX="834.0" layoutY="465.0" mnemonicParsing="false" text="Показати весь список" />
