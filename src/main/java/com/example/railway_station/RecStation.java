@@ -1,6 +1,5 @@
 package com.example.railway_station;
 
-import com.example.railway_station.TableClasses.ClientClass;
 import com.example.railway_station.TableClasses.StationClass;
 import com.example.railway_station.TableClasses.TrainStatClass;
 import javafx.collections.FXCollections;
@@ -22,7 +21,7 @@ public class RecStation {
     private static final String PASSWORD = "1111";
     @FXML
     public TextField IDStation, stationName;
-    public TextField IDTrain, arrivalTime, departureTime;
+    public TextField IDTrain, arrivalTime, departureTime,IDStation2;
     public Button AddStationButton, LookStationButton,LookStationTrainButton, AssignStationTrainButton, DeleteStationTrainButton,
             UpdateStationTrainButton, FindStationTrainButton1, FindTrainStationButton2;
     public TableView<StationClass> stationTable;
@@ -74,6 +73,25 @@ public class RecStation {
             ArrivalTimeCol.setCellValueFactory(new PropertyValueFactory<>("ArrivTime"));
             DepartureTimeCol.setCellValueFactory(new PropertyValueFactory<>("DeparTime"));
             trainStatTable.setItems(dataList);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @FXML
+    private void AddStationAction(ActionEvent event) {
+        String Id = IDStation.getText();
+        String NameS = stationName.getText();
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "INSERT INTO stations (ID, NameStation) VALUES (?,?)";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, Id);
+                preparedStatement.setString(2, NameS);
+                int rowsAdd = preparedStatement.executeUpdate();
+                if (rowsAdd > 0) {
+                    System.out.println("Запис добавлено успішно");
+                    ShowButtonAction1(event);
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

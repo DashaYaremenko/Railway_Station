@@ -23,25 +23,25 @@
               </columns>
             </TableView>
             <Label layoutX="21.0" layoutY="405.0" text="ID станції" />
-            <TextField layoutX="21.0" layoutY="423.0" />
-            <TextField layoutX="22.0" layoutY="477.0" />
+            <TextField fx:id="IDStation" layoutX="20.0" layoutY="423.0" />
+            <TextField fx:id="stationName" layoutX="20.0" layoutY="477.0" />
             <Label layoutX="22.0" layoutY="460.0" text="Назва станції" />
-            <Button layoutX="200.0" layoutY="427.0" mnemonicParsing="false" text="Добавити" />
+            <Button fx:id="AddStationButton" onAction="#AddStationAction" layoutX="200.0" layoutY="427.0" mnemonicParsing="false" text="Добавити" />
             <Button onAction="#ShowButtonAction1" fx:id="LookStationButton" layoutX="200.0" layoutY="477.0" mnemonicParsing="false" text="Показати список" />
             <Label layoutX="528.0" layoutY="405.0" text="ID потяга" />
             <Label layoutX="528.0" layoutY="460.0" text="ID станції" />
-            <TextField layoutX="528.0" layoutY="423.0" />
-            <TextField layoutX="529.0" layoutY="477.0" />
-            <TextField layoutX="527.0" layoutY="530.0" />
-            <TextField layoutX="527.0" layoutY="586.0" />
+            <TextField fx:id="IDTrain" layoutX="525.0" layoutY="423.0" />
+            <TextField fx:id="IDStation2" layoutX="525.0" layoutY="477.0" />
+            <TextField fx:id="arrivalTime" layoutX="525.0" layoutY="530.0" />
+            <TextField fx:id="departureTime" layoutX="527.0" layoutY="586.0" />
             <Label layoutX="529.0" layoutY="512.0" text="Час прибуття" />
             <Label layoutX="531.0" layoutY="568.0" text="Час відправлення" />
-            <Button layoutX="725.0" layoutY="414.0" mnemonicParsing="false" text="Добавити" />
-            <Button layoutX="834.0" layoutY="414.0" mnemonicParsing="false" text="Відновити" />
-            <Button layoutX="726.0" layoutY="465.0" mnemonicParsing="false" text="Видалити" />
+            <Button fx:id="AssignStationTrainButton" layoutX="725.0" layoutY="414.0" mnemonicParsing="false" text="Добавити" />
+            <Button fx:id="UpdateStationTrainButton" layoutX="834.0" layoutY="414.0" mnemonicParsing="false" text="Відновити" />
+            <Button fx:id="DeleteStationTrainButton" layoutX="726.0" layoutY="465.0" mnemonicParsing="false" text="Видалити" />
             <Button fx:id="LookStationTrainButton" onAction="#ShowButtonAction2" layoutX="834.0" layoutY="465.0" mnemonicParsing="false" text="Показати весь список" />
-            <Button layoutX="725.0" layoutY="508.0" mnemonicParsing="false" text="Список станцій які проїзжає один потяг" />
-            <Button layoutX="684.0" layoutY="555.0" mnemonicParsing="false" text=" Список потягів які проїзжають через одну станцію" />
+            <Button fx:id="FindStationTrainButton1" layoutX="725.0" layoutY="508.0" mnemonicParsing="false" text="Список станцій які проїзжає один потяг" />
+            <Button fx:id="FindTrainStationButton2" layoutX="684.0" layoutY="555.0" mnemonicParsing="false" text=" Список потягів які проїзжають через одну станцію" />
          </children></AnchorPane>
    </children>
 </VBox>
