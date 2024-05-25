@@ -29,6 +29,7 @@ public class RecStation {
     public TableView<TrainStatClass> trainStatTable;
     public TableColumn<StationClass,Integer> IdStationCol;
     public TableColumn<StationClass,String> StationNameCol;
+    public TableColumn<StationClass,String> StationNameCol2;
     public TableColumn<TrainStatClass,String> ArrivalTimeCol;
     public TableColumn<TrainStatClass,String> DepartureTimeCol;
     public TableColumn<TrainStatClass,Integer> IdTrainCol;
@@ -71,6 +72,7 @@ public class RecStation {
             }
             IdStationCol1.setCellValueFactory(new PropertyValueFactory<>("StationID"));
             IdTrainCol.setCellValueFactory(new PropertyValueFactory<>("TrainID"));
+            StationNameCol2.setCellValueFactory(new PropertyValueFactory<>("NameStation"));
             ArrivalTimeCol.setCellValueFactory(new PropertyValueFactory<>("ArrivTime"));
             DepartureTimeCol.setCellValueFactory(new PropertyValueFactory<>("DeparTime"));
             trainStatTable.setItems(dataList);
@@ -193,6 +195,11 @@ public class RecStation {
             default:
                 throw new IllegalArgumentException("Invalid field to update: " + fieldToUpdate);
         }
+    }
+    private void FindStationTrainAction(ActionEvent event) {
+        String idTrain=IDTrain.getText();
+        String idStation=IDStation2.getText();
+        String nameStation=stationName2.getText();
     }
 
 }

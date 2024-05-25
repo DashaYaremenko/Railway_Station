@@ -18,8 +18,9 @@
               <columns>
                   <TableColumn fx:id="IdTrainCol" prefWidth="75.0" text="ID потяга" />
                 <TableColumn fx:id="IdStationCol1" prefWidth="75.0" text="ID станції" />
-                  <TableColumn fx:id="ArrivalTimeCol" prefWidth="84.199951171875" text="Час прибуття" />
-                  <TableColumn fx:id="DepartureTimeCol" prefWidth="111.20001220703125" text="Час відправлення" />
+                  <TableColumn fx:id="StationNameCol2" prefWidth="85.199951171875" text="Назва станції" />
+                  <TableColumn fx:id="ArrivalTimeCol" prefWidth="94.0" text="Час прибуття" />
+                  <TableColumn fx:id="DepartureTimeCol" prefWidth="115.4000244140625" text="Час відправлення" />
               </columns>
             </TableView>
             <Label layoutX="21.0" layoutY="405.0" text="ID станції" />
@@ -37,7 +38,7 @@
             <Label layoutX="526.0" layoutY="534.0" text="Час прибуття" />
             <Label layoutX="526.0" layoutY="581.0" text="Час відправлення" />
             <Button fx:id="AssignStationTrainButton" layoutX="725.0" layoutY="414.0" mnemonicParsing="false" onAction="#AssignStationTrainAction" text="Добавити" />
-            <Button fx:id="UpdateStationTrainButton" onAction="#UpdateButtonAction" layoutX="834.0" layoutY="414.0" mnemonicParsing="false" text="Відновити" />
+            <Button fx:id="UpdateStationTrainButton" layoutX="834.0" layoutY="414.0" mnemonicParsing="false" onAction="#UpdateButtonAction" text="Відновити" />
             <Button fx:id="DeleteStationTrainButton" layoutX="726.0" layoutY="465.0" mnemonicParsing="false" onAction="#DeleteButtonAction" text="Видалити" />
             <Button fx:id="LookStationTrainButton" layoutX="834.0" layoutY="465.0" mnemonicParsing="false" onAction="#ShowButtonAction2" text="Показати весь список" />
             <Button fx:id="FindStationTrainButton1" layoutX="725.0" layoutY="508.0" mnemonicParsing="false" text="Список станцій які проїзжає один потяг" />
