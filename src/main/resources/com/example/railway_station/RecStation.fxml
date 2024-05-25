@@ -7,14 +7,14 @@
    <children>
       <AnchorPane prefHeight="650.0" prefWidth="304.0">
          <children>
-            <Label layoutX="480.0" layoutY="36.0" text="Редактор станцій" />
+            <Label layoutX="480.0" layoutY="24.0" text="Редактор станцій" />
             <TableView fx:id="stationTable" layoutX="14.0" layoutY="68.0" prefHeight="313.0" prefWidth="290.0">
               <columns>
                 <TableColumn fx:id="IdStationCol" prefWidth="75.0" text="ID станції" />
                 <TableColumn fx:id="StationNameCol" prefWidth="92.19998168945312" text="Назва станції" />
               </columns>
             </TableView>
-            <TableView fx:id="trainStatTable" layoutX="528.0" layoutY="68.0" prefHeight="328.0" prefWidth="445.0">
+            <TableView fx:id="trainStatTable" layoutX="537.0" layoutY="54.0" prefHeight="328.0" prefWidth="445.0">
               <columns>
                   <TableColumn fx:id="IdTrainCol" prefWidth="75.0" text="ID потяга" />
                 <TableColumn fx:id="IdStationCol1" prefWidth="75.0" text="ID станції" />
@@ -28,20 +28,22 @@
             <Label layoutX="22.0" layoutY="460.0" text="Назва станції" />
             <Button fx:id="AddStationButton" layoutX="200.0" layoutY="427.0" mnemonicParsing="false" onAction="#AddStationAction" text="Добавити" />
             <Button fx:id="LookStationButton" layoutX="200.0" layoutY="477.0" mnemonicParsing="false" onAction="#ShowButtonAction1" text="Показати список" />
-            <Label layoutX="528.0" layoutY="405.0" text="ID потяга" />
-            <Label layoutX="528.0" layoutY="460.0" text="ID станції" />
-            <TextField fx:id="IDTrain" layoutX="525.0" layoutY="423.0" />
-            <TextField fx:id="IDStation2" layoutX="525.0" layoutY="477.0" />
-            <TextField fx:id="arrivalTime" layoutX="525.0" layoutY="530.0" />
-            <TextField fx:id="departureTime" layoutX="525.0" layoutY="586.0" />
-            <Label layoutX="529.0" layoutY="512.0" text="Час прибуття" />
-            <Label layoutX="531.0" layoutY="568.0" text="Час відправлення" />
+            <Label layoutX="525.0" layoutY="444.0" text="ID потяга" />
+            <Label layoutX="525.0" layoutY="494.0" text="ID станції" />
+            <TextField fx:id="IDTrain" layoutX="524.0" layoutY="464.0" />
+            <TextField fx:id="IDStation2" layoutX="525.0" layoutY="508.0" />
+            <TextField fx:id="arrivalTime" layoutX="525.0" layoutY="555.0" />
+            <TextField fx:id="departureTime" layoutX="525.0" layoutY="599.0" />
+            <Label layoutX="526.0" layoutY="534.0" text="Час прибуття" />
+            <Label layoutX="526.0" layoutY="581.0" text="Час відправлення" />
             <Button fx:id="AssignStationTrainButton" layoutX="725.0" layoutY="414.0" mnemonicParsing="false" onAction="#AssignStationTrainAction" text="Добавити" />
-            <Button fx:id="UpdateStationTrainButton" layoutX="834.0" layoutY="414.0" mnemonicParsing="false" text="Відновити" />
-            <Button fx:id="DeleteStationTrainButton" onAction="#DeleteButtonAction" layoutX="726.0" layoutY="465.0" mnemonicParsing="false" text="Видалити" />
+            <Button fx:id="UpdateStationTrainButton" onAction="#UpdateButtonAction" layoutX="834.0" layoutY="414.0" mnemonicParsing="false" text="Відновити" />
+            <Button fx:id="DeleteStationTrainButton" layoutX="726.0" layoutY="465.0" mnemonicParsing="false" onAction="#DeleteButtonAction" text="Видалити" />
             <Button fx:id="LookStationTrainButton" layoutX="834.0" layoutY="465.0" mnemonicParsing="false" onAction="#ShowButtonAction2" text="Показати весь список" />
             <Button fx:id="FindStationTrainButton1" layoutX="725.0" layoutY="508.0" mnemonicParsing="false" text="Список станцій які проїзжає один потяг" />
             <Button fx:id="FindTrainStationButton2" layoutX="684.0" layoutY="555.0" mnemonicParsing="false" text=" Список потягів які проїзжають через одну станцію" />
+            <TextField fx:id="IDTrS" layoutX="525.0" layoutY="410.0" />
+            <Label layoutX="528.0" layoutY="388.0" text="ID" />
          </children></AnchorPane>
    </children>
 </VBox>

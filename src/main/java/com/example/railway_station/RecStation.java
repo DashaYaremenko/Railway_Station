@@ -20,6 +20,7 @@ public class RecStation {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "1111";
     @FXML
+    public TextField IDTrS;
     public TextField IDStation, stationName;
     public TextField IDTrain, arrivalTime, departureTime,IDStation2;
     public Button AddStationButton, LookStationButton,LookStationTrainButton, AssignStationTrainButton, DeleteStationTrainButton,
@@ -119,7 +120,6 @@ public class RecStation {
             throw new RuntimeException(e);
         }
     }
-
     @FXML
     private void DeleteButtonAction(ActionEvent event) {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
@@ -142,6 +142,56 @@ public class RecStation {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void UpdateButtonAction(ActionEvent event) {
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String Id = IDTrS.getText();
+            String fieldToUpdate = deterFieldToUpdate();
+            String newValue = getFieldText(fieldToUpdate);
+            String sql = "UPDATE trainstations SET " + fieldToUpdate + " = ? WHERE ID = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, newValue);
+                preparedStatement.setString(2, Id);
+                int rowsUpdate = preparedStatement.executeUpdate();
+                if (rowsUpdate > 0) {
+                    System.out.println("Запис оновлено успішно");
+                    ShowButtonAction2(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private String deterFieldToUpdate() {
+        if (!IDTrain.getText().isEmpty()) {
+            return "TrainID";
+        } else if (!IDStation2.getText().isEmpty()) {
+            return "StationID";
+        } else if (!arrivalTime.getText().isEmpty()) {
+            return "ArrivTime";
+        } else if (!departureTime.getText().isEmpty()) {
+            return "DeparTime";
+        } else {
+            throw new IllegalArgumentException("Invalid field to update");
+        }
+    }
+
+    private String getFieldText(String fieldToUpdate) {
+        switch (fieldToUpdate) {
+            case "TrainID":
+                return IDTrain.getText();
+            case "StationID":
+                return IDStation2.getText();
+            case "ArrivTime":
+                return arrivalTime.getText();
+            case "DeparTime":
+                return departureTime.getText();
+            default:
+                throw new IllegalArgumentException("Invalid field to update: " + fieldToUpdate);
         }
     }
 
