@@ -65,7 +65,7 @@ public class RecStation {
                     int idTrain = resultSet.getInt("TrainID");
                     Time arrivTime =resultSet.getTime("ArrivTime");
                     Time deparTime=resultSet.getTime("DeparTime");
-                    dataList.add(new TrainStatClass(id, idTrain, arrivTime.toLocalTime(), deparTime.toLocalTime()));
+                    dataList.add(new TrainStatClass(idTrain,id,arrivTime.toLocalTime(), deparTime.toLocalTime()));
                 }
             }
             IdStationCol1.setCellValueFactory(new PropertyValueFactory<>("StationID"));
@@ -120,6 +120,30 @@ public class RecStation {
         }
     }
 
+    @FXML
+    private void DeleteButtonAction(ActionEvent event) {
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String idTrain = IDTrain.getText();
+            String idStation = IDStation2.getText();
+            String aTime = arrivalTime.getText();
+            String dTime = departureTime.getText();
+            String sql = "DELETE FROM trainstations WHERE TrainID=? and StationID=? and ArrivTime=? and DeparTime=? ";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, idTrain);
+                preparedStatement.setString(2, idStation);
+                preparedStatement.setString(3, aTime);
+                preparedStatement.setString(4, dTime);
+                int rowsDeleteT = preparedStatement.executeUpdate();
+                if (rowsDeleteT > 0) {
+                    System.out.println("Запис видалено успішно");
+                    trainStatTable.getItems().clear();
+                    ShowButtonAction2(event);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 
