@@ -61,15 +61,15 @@ public class RecStation {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql);
                  ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    int id = resultSet.getInt("stationID");
-                    int idTrain = resultSet.getInt("trainID");
-                    Time arrivTime =resultSet.getTime("arrivalTime");
-                    Time deparTime=resultSet.getTime("deparTime");
+                    int id = resultSet.getInt("StationID");
+                    int idTrain = resultSet.getInt("TrainID");
+                    Time arrivTime =resultSet.getTime("ArrivTime");
+                    Time deparTime=resultSet.getTime("DeparTime");
                     dataList.add(new TrainStatClass(id, idTrain, arrivTime.toLocalTime(), deparTime.toLocalTime()));
                 }
             }
-            IdTrainCol.setCellValueFactory(new PropertyValueFactory<>("TrainID"));
             IdStationCol1.setCellValueFactory(new PropertyValueFactory<>("StationID"));
+            IdTrainCol.setCellValueFactory(new PropertyValueFactory<>("TrainID"));
             ArrivalTimeCol.setCellValueFactory(new PropertyValueFactory<>("ArrivTime"));
             DepartureTimeCol.setCellValueFactory(new PropertyValueFactory<>("DeparTime"));
             trainStatTable.setItems(dataList);
@@ -86,8 +86,8 @@ public class RecStation {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO trainstations (TrainID,StationID,ArrivTime, DeparTime) VALUES (?,?,?,?)";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                preparedStatement.setString(1, IdTrain);
                 preparedStatement.setString(2, ID);
+                preparedStatement.setString(1, IdTrain);
                 preparedStatement.setString(3, aTime);
                 preparedStatement.setString(4, dTime);
                 int rowsAdd = preparedStatement.executeUpdate();
@@ -102,9 +102,7 @@ public class RecStation {
     }
     @FXML
     private void AddStationAction(ActionEvent event) {
-        String Id = IDStation2.getText();
-        String IdTrain = IDTrain.getText();
-
+        String Id = IDStation.getText();
         String NameS = stationName.getText();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO stations (ID, NameStation) VALUES (?,?)";
