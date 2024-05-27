@@ -225,13 +225,10 @@ public class RecStation {
     }
 @FXML
 private void findTrainStation(ActionEvent event) {
-    String stationId = IDStation.getText();
+    String stationId = IDStation2.getText();
     ObservableList<TrainStatClass> dataList = FXCollections.observableArrayList();
     try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-        String sql = "SELECT ts.*" +
-                "FROM trainstations ts\n" +
-                "INNER JOIN stations s ON ts.StationID = s.ID\n" +
-                "WHERE ts.TrainID = ?\n";
+        String sql = "SELECT ts.* FROM trainstations ts INNER JOIN stations s ON ts.StationID = s.ID WHERE ts.StationID = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, stationId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {

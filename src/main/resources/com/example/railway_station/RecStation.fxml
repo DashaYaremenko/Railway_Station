@@ -41,7 +41,7 @@
             <Button fx:id="DeleteStationTrainButton" layoutX="726.0" layoutY="465.0" mnemonicParsing="false" onAction="#DeleteButtonAction" text="Видалити" />
             <Button fx:id="LookStationTrainButton" layoutX="834.0" layoutY="465.0" mnemonicParsing="false" onAction="#ShowButtonAction2" text="Показати весь список" />
             <Button fx:id="FindStationTrainButton1" onAction="#findStationTrain" layoutX="725.0" layoutY="508.0" mnemonicParsing="false" text="Список станцій які проїзжає один потяг" />
-            <Button fx:id="FindTrainStationButton2" onAction="#findTrainStation" layoutX="684.0" layoutY="555.0" mnemonicParsing="false" text=" Список потягів які проїзжають через одну станцію" />
+            <Button fx:id="FindTrainStationButton2" onAction="#findTrainStation" layoutX="684.0" layoutY="555.0" mnemonicParsing="false" text="Список потягів які проїзжають через одну станцію" />
             <TextField fx:id="IDTrS" layoutX="525.0" layoutY="410.0" />
             <Label layoutX="528.0" layoutY="388.0" text="ID" />
          </children></AnchorPane>
