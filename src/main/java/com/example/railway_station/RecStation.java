@@ -246,8 +246,4 @@ private void findTrainStation(ActionEvent event) {
         throw new RuntimeException(e);
     }
 }
-
-
-
-
 }
