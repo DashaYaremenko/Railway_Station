@@ -22,18 +22,17 @@ public class RecStation {
     @FXML
     public TextField IDTrS;
     public TextField IDStation, stationName;
-    public TextField IDTrain, arrivalTime, departureTime,IDStation2;
-    public Button AddStationButton, LookStationButton,LookStationTrainButton, AssignStationTrainButton, DeleteStationTrainButton,
+    public TextField IDTrain, arrivalTime, departureTime, IDStation2;
+    public Button AddStationButton, LookStationButton, LookStationTrainButton, AssignStationTrainButton, DeleteStationTrainButton,
             UpdateStationTrainButton, FindStationTrainButton1, FindTrainStationButton2;
     public TableView<StationClass> stationTable;
     public TableView<TrainStatClass> trainStatTable;
-    public TableColumn<StationClass,Integer> IdStationCol;
-    public TableColumn<StationClass,String> StationNameCol;
-    public TableColumn<StationClass,String> StationNameCol2;
-    public TableColumn<TrainStatClass,String> ArrivalTimeCol;
-    public TableColumn<TrainStatClass,String> DepartureTimeCol;
-    public TableColumn<TrainStatClass,Integer> IdTrainCol;
-    public TableColumn<TrainStatClass,Integer> IdStationCol1;
+    public TableColumn<StationClass, Integer> IdStationCol;
+    public TableColumn<StationClass, String> StationNameCol;
+    public TableColumn<TrainStatClass, String> ArrivalTimeCol;
+    public TableColumn<TrainStatClass, String> DepartureTimeCol;
+    public TableColumn<TrainStatClass, Integer> IdTrainCol;
+    public TableColumn<TrainStatClass, Integer> IdStationCol1;
 
     @FXML
     private void ShowButtonAction1(ActionEvent event) {
@@ -55,6 +54,7 @@ public class RecStation {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     private void ShowButtonAction2(ActionEvent event) {
         ObservableList<TrainStatClass> dataList = FXCollections.observableArrayList();
@@ -65,14 +65,13 @@ public class RecStation {
                 while (resultSet.next()) {
                     int id = resultSet.getInt("StationID");
                     int idTrain = resultSet.getInt("TrainID");
-                    Time arrivTime =resultSet.getTime("ArrivTime");
-                    Time deparTime=resultSet.getTime("DeparTime");
-                    dataList.add(new TrainStatClass(idTrain,id,arrivTime.toLocalTime(), deparTime.toLocalTime()));
+                    Time arrivTime = resultSet.getTime("ArrivTime");
+                    Time deparTime = resultSet.getTime("DeparTime");
+                    dataList.add(new TrainStatClass(idTrain, id, arrivTime.toLocalTime(), deparTime.toLocalTime()));
                 }
             }
             IdStationCol1.setCellValueFactory(new PropertyValueFactory<>("StationID"));
             IdTrainCol.setCellValueFactory(new PropertyValueFactory<>("TrainID"));
-            StationNameCol2.setCellValueFactory(new PropertyValueFactory<>("NameStation"));
             ArrivalTimeCol.setCellValueFactory(new PropertyValueFactory<>("ArrivTime"));
             DepartureTimeCol.setCellValueFactory(new PropertyValueFactory<>("DeparTime"));
             trainStatTable.setItems(dataList);
@@ -80,6 +79,7 @@ public class RecStation {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     private void AssignStationTrainAction(ActionEvent event) {
         String ID = IDStation2.getText();
@@ -103,6 +103,7 @@ public class RecStation {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     private void AddStationAction(ActionEvent event) {
         String Id = IDStation.getText();
@@ -122,6 +123,7 @@ public class RecStation {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
     private void DeleteButtonAction(ActionEvent event) {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
@@ -196,11 +198,59 @@ public class RecStation {
                 throw new IllegalArgumentException("Invalid field to update: " + fieldToUpdate);
         }
     }
-    private void FindStationTrainAction(ActionEvent event) {
-        String idTrain=IDTrain.getText();
-        String idStation=IDStation2.getText();
-        String nameStation=stationName2.getText();
-    }
 
+    @FXML
+    private void findStationTrain(ActionEvent event) {
+        String trainId = IDTrain.getText();
+        ObservableList<TrainStatClass> dataList = FXCollections.observableArrayList();
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "SELECT ts.* FROM trainstations ts INNER JOIN stations s ON ts.StationID = s.ID " +
+                    "WHERE ts.TrainID = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setString(1, trainId);
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        int id = resultSet.getInt("TrainID");
+                       int idStation = resultSet.getInt("StationID");
+                        Time arrivTime = resultSet.getTime("ArrivTime");
+                        Time deparTime = resultSet.getTime("DeparTime");
+                        dataList.add(new TrainStatClass(id, idStation,arrivTime.toLocalTime(),deparTime.toLocalTime()));
+                    }
+                }
+                trainStatTable.setItems(dataList);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+@FXML
+private void findTrainStation(ActionEvent event) {
+    String stationId = IDStation.getText();
+    ObservableList<TrainStatClass> dataList = FXCollections.observableArrayList();
+    try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+        String sql = "SELECT ts.*" +
+                "FROM trainstations ts\n" +
+                "INNER JOIN stations s ON ts.StationID = s.ID\n" +
+                "WHERE ts.TrainID = ?\n";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, stationId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int trainId = resultSet.getInt("TrainID");
+                    int idStation = resultSet.getInt("StationID");
+                    Time arrivTime = resultSet.getTime("ArrivTime");
+                    Time deparTime = resultSet.getTime("DeparTime");
+                    dataList.add(new TrainStatClass(trainId, idStation, arrivTime.toLocalTime(), deparTime.toLocalTime()));
+                }
+            }
+            trainStatTable.setItems(dataList);
+        }
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
+    }
 }
 
+
+
+
+}
