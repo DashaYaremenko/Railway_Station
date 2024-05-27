@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.RecClients">
    <children>
@@ -11,7 +12,10 @@
             <Button fx:id="LookClientsButton" layoutX="306.0" layoutY="450.0" mnemonicParsing="false" onAction="#ShowButtonAction" text="Показати список" />
             <Button fx:id="StaticClientsButton1" layoutX="306.0" layoutY="501.0" mnemonicParsing="false" onAction="#StaticClientsButtonAction1" text="Показати список вказаним типом документа" />
             <Button fx:id="StaticClientsButton2" layoutX="306.0" layoutY="560.0" mnemonicParsing="false" onAction="#StaticClientsButtonAction2" text="Показати клієнта який купив декілька квітків" />
-            <Label layoutX="473.0" layoutY="24.0" text="Редактор клієнтів" />
+            <Label layoutX="401.0" layoutY="25.0" text="Редактор клієнтів">
+               <font>
+                  <Font name="Century Gothic" size="23.0" />
+               </font></Label>
             <Label layoutX="36.0" layoutY="375.0" text="ID клієнта " />
             <Label layoutX="34.0" layoutY="432.0" text="Ім'я клієнта" />
             <Label layoutX="34.0" layoutY="483.0" text="Призвіще" />

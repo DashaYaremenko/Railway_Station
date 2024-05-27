@@ -2,32 +2,36 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.RecCarriage">
    <children>
       <AnchorPane prefHeight="652.0" prefWidth="1000.0">
          <children>
-            <TableView fx:id="CarriageTable" layoutX="14.0" layoutY="50.0" prefHeight="363.0" prefWidth="970.0">
+            <TableView fx:id="CarriageTable" layoutX="55.0" layoutY="76.0" prefHeight="506.0" prefWidth="322.0">
               <columns>
-                <TableColumn fx:id="CarriageIDCol" prefWidth="75.0" text="C1" />
-                <TableColumn fx:id="TypeCarriageCol" prefWidth="75.0" text="C2" />
-                 <TableColumn fx:id="IDTrainCol" prefWidth="75.0" text="C2" />
-                 <TableColumn fx:id="NumSeatsCol" prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="CarriageIDCol" prefWidth="75.0" text="ID вагона" />
+                <TableColumn fx:id="TypeCarriageCol" prefWidth="75.0" text="Тип вагона" />
+                 <TableColumn fx:id="IDTrainCol" prefWidth="75.0" text="ID потяга" />
+                 <TableColumn fx:id="NumSeatsCol" prefWidth="93.19996643066406" text="Кіл-сть місць" />
               </columns>
             </TableView>
-            <TextField fx:id="IDCarriage" layoutX="29.0" layoutY="461.0" />
-            <TextField fx:id="IDTrain" layoutX="29.0" layoutY="524.0" />
-            <TextField fx:id="TypeCarriage" layoutX="227.0" layoutY="461.0" />
-            <TextField fx:id="NumSeats" layoutX="227.0" layoutY="524.0" />
-            <Label layoutX="29.0" layoutY="444.0" text="ID (INT)" />
-            <Label layoutX="29.0" layoutY="507.0" text="ID Потяга" />
-            <Label layoutX="227.0" layoutY="444.0" text="Тип вагону" />
-            <Label layoutX="227.0" layoutY="507.0" text="Кількість місць" />
-            <Label layoutX="456.0" layoutY="23.0" text="Редактор вагон" />
-            <Button onAction="#AddCarriageAction" fx:id="AddCarriageButton" layoutX="500.0" layoutY="461.0" mnemonicParsing="false" text="Добавити" />
-            <Button onAction="#UpdateButtonAction" fx:id="UpdateCarriageButton" layoutX="500.0" layoutY="524.0" mnemonicParsing="false" text="Відновити" />
-            <Button onAction="#DeleteButtonAction" fx:id="DeleteCarriageButton" layoutX="640.0" layoutY="461.0" mnemonicParsing="false" text="Видалити" />
-            <Button  onAction="#ShowButtonAction" fx:id="LookCarriageButton" layoutX="640.0" layoutY="524.0" mnemonicParsing="false" text="Показати список" />
+            <TextField fx:id="IDCarriage" layoutX="633.0" layoutY="101.0" />
+            <TextField fx:id="IDTrain" layoutX="633.0" layoutY="209.0" />
+            <TextField fx:id="TypeCarriage" layoutX="633.0" layoutY="152.0" />
+            <TextField fx:id="NumSeats" layoutX="633.0" layoutY="267.0" />
+            <Label layoutX="633.0" layoutY="83.0" text="ID (INT)" />
+            <Label layoutX="637.0" layoutY="191.0" text="ID Потяга" />
+            <Label layoutX="633.0" layoutY="134.0" text="Тип вагону" />
+            <Label layoutX="633.0" layoutY="249.0" text="Кількість місць" />
+            <Label layoutX="398.0" layoutY="25.0" text="Редактор вагон">
+               <font>
+                  <Font name="Century Gothic" size="26.0" />
+               </font></Label>
+            <Button fx:id="AddCarriageButton" layoutX="479.0" layoutY="114.0" mnemonicParsing="false" onAction="#AddCarriageAction" text="Добавити" />
+            <Button fx:id="UpdateCarriageButton" layoutX="478.0" layoutY="222.0" mnemonicParsing="false" onAction="#UpdateButtonAction" text="Відновити" />
+            <Button fx:id="DeleteCarriageButton" layoutX="480.0" layoutY="165.0" mnemonicParsing="false" onAction="#DeleteButtonAction" text="Видалити" />
+            <Button fx:id="LookCarriageButton" layoutX="478.0" layoutY="267.0" mnemonicParsing="false" onAction="#ShowButtonAction" text="Показати список" />
          </children></AnchorPane>
    </children>
 </VBox>
