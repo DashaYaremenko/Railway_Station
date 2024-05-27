@@ -9,7 +9,7 @@
          <Label layoutX="460.0" layoutY="29.0" text="Статус клиєнта" />
          <Button layoutX="688.0" layoutY="119.0" mnemonicParsing="false" text="Подивитися квиток" />
          <Label layoutX="36.0" layoutY="101.0" text="Ваша номерація (ID)" />
-         <TextField layoutX="36.0" layoutY="119.0" />
+         <TextField fx:id="idClient" layoutX="36.0" layoutY="119.0" />
          <TableView layoutX="36.0" layoutY="225.0" prefHeight="394.0" prefWidth="848.0">
            <columns>
              <TableColumn prefWidth="75.0" text="C1" />
