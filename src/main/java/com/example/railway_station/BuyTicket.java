@@ -63,7 +63,7 @@ public class BuyTicket {
         double cost = calculateCost(docType, isLinens, isDrink, isSnacks);
         Cost.setText(cost + " грн");
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO tickets (last_name, first_name, doc_type, train_id, carriage_id,+" +
+            String sql = "INSERT INTO tickets (last_name, first_name, doc_type, train_id, carriage_id," +
                     " departure_date, linens, drink, snacks, cost) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql) {
                 preparedStatement.setString(1, lastName);
@@ -82,4 +82,5 @@ public class BuyTicket {
             throw new RuntimeException(e);
         }
     }
+
 }
