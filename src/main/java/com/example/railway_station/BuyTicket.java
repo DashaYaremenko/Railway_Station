@@ -65,7 +65,7 @@ public class BuyTicket {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO tickets (last_name, first_name, doc_type, train_id, carriage_id," +
                     " departure_date, linens, drink, snacks, cost) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql) {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql); {
                 preparedStatement.setString(1, lastName);
                 preparedStatement.setString(2, firstName);
                 preparedStatement.setString(3, docType);
@@ -82,5 +82,46 @@ public class BuyTicket {
             throw new RuntimeException(e);
         }
     }
+
+    @FXML
+    void handleLinens(ActionEvent event) {
+        boolean linensSelected = Linens.isSelected();
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "UPDATE tickets SET linens = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setBoolean(1, linensSelected);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleDrink(ActionEvent event) {
+        boolean DrinkSelected = Drink.isSelected();
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "UPDATE tickets SET Drink = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setBoolean(1, DrinkSelected);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    void handleSnacks(ActionEvent event) {
+        boolean SnacksSelected = Snacks.isSelected();
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "UPDATE tickets SET Snacks = ?";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setBoolean(1, SnacksSelected);
+                statement.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
