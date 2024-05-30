@@ -65,9 +65,10 @@ public class BuyTicket {
         double cost = calculateCost(docType, isLinens, isDrink, isSnacks);
         Cost.setText("Ціна: "+ cost + " грн");
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO tickets (Client_Id, NumTrain,StationID_1,StationID_2, NumCarrig, departure_date, Linens, Drink, Snacks, CostTicket) " +
+            String sql = "INSERT INTO tickets (Client_Id, NumTrain,StationID_1,StationID_2, NumCarrig, Cruise_ID, Linens, Drink, Snacks, CostTicket) " +
                     "VALUES ((SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, " +
-                    "(SELECT StationID FROM trainstations WHERE StationName = ?), ?, ?, ?, ?, ?, ?)";
+                    "(SELECT ID FROM stations WHERE NameStation = ?),(SELECT ID FROM stations WHERE NameStation = ?)," +
+                    " ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql); {
                 preparedStatement.setString(1, lastName);
                 preparedStatement.setString(2, firstName);
@@ -75,12 +76,12 @@ public class BuyTicket {
                 preparedStatement.setString(4, trainId);
                 preparedStatement.setString(5, station1);
                 preparedStatement.setString(6, station2);
-                preparedStatement.setString(5, carriageId);
-                preparedStatement.setDate(6, Date.valueOf(departureDate));
-                preparedStatement.setBoolean(7, isLinens);
-                preparedStatement.setBoolean(8, isDrink);
-                preparedStatement.setBoolean(9, isSnacks);
-                preparedStatement.setDouble(10, cost);
+                preparedStatement.setString(7, carriageId);
+                preparedStatement.setDate(8, Date.valueOf(departureDate));
+                preparedStatement.setBoolean(9, isLinens);
+                preparedStatement.setBoolean(10, isDrink);
+                preparedStatement.setBoolean(11, isSnacks);
+                preparedStatement.setDouble(12, cost);
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
