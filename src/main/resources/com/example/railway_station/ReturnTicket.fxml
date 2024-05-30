@@ -3,12 +3,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.ReturnTicket">
    <children>
       <AnchorPane prefHeight="657.0" prefWidth="1000.0">
          <children>
-            <TextField layoutX="64.0" layoutY="125.0" />
+            <Button layoutX="603.0" layoutY="349.0" mnemonicParsing="false" text="Повернути квиток" />
+            <Label layoutX="486.0" layoutY="43.0" text="Повернення квитка" />
+            <Label layoutX="106.0" layoutY="175.0" text="ID квитка" />
+            <TextField layoutX="106.0" layoutY="208.0" prefHeight="26.0" prefWidth="323.0" />
          </children>
       </AnchorPane>
    </children>
