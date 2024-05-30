@@ -13,7 +13,7 @@ public class BuyTicket {
     @FXML
     private Button BuyTicketBtn;
     @FXML
-    private TextField LastName, FirstName, IdTrain, IdCarriage;
+    private TextField LastName, FirstName, IdTrain, IdCarriage ,Station1, Station2;
     @FXML
     private MenuButton TypeDoc;
     @FXML
@@ -61,10 +61,10 @@ public class BuyTicket {
         boolean isDrink = Drink.isSelected();
         boolean isSnacks = Snacks.isSelected();
         double cost = calculateCost(docType, isLinens, isDrink, isSnacks);
-        Cost.setText(cost + " грн");
+        Cost.setText("Ціна: "+ cost + " грн");
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO tickets (last_name, first_name, doc_type, train_id, carriage_id," +
-                    " departure_date, linens, drink, snacks, cost) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO tickets (Client_Id, NumTrain,StationID_1,StationID_2, NumCarrig, departure_date, Linens, Drink, Snacks, CostTicket) " +
+                    "VALUES ((SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql); {
                 preparedStatement.setString(1, lastName);
                 preparedStatement.setString(2, firstName);
@@ -86,6 +86,7 @@ public class BuyTicket {
     @FXML
     void handleLinens(ActionEvent event) {
         boolean linensSelected = Linens.isSelected();
+//        String ticketId = getTicketId();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "UPDATE tickets SET linens = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {

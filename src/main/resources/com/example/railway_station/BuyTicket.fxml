@@ -7,7 +7,7 @@
    <children>
       <AnchorPane prefHeight="650.0" prefWidth="1000.0">
          <children>
-            <Button fx:id="BuyTicketBtn" layoutX="386.0" layoutY="449.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="287.0" text="Купити" />
+            <Button fx:id="BuyTicketBtn" onAction="#ByeTicketAction" layoutX="386.0" layoutY="449.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="287.0" text="Купити" />
             <Label layoutX="56.0" layoutY="66.0" text="Призвіще" />
             <Label layoutX="56.0" layoutY="121.0" text="Ім'я" />
             <Label layoutX="56.0" layoutY="184.0" text="Тип Документа" />
@@ -21,16 +21,20 @@
                      <MenuItem mnemonicParsing="false" onAction="#handleTypeDocSelection" text="Пільговий" />
                  </items>
              </MenuButton>
-             <Label layoutX="570.0" layoutY="66.0" text="Номер потяга" />
-             <Label layoutX="570.0" layoutY="121.0" text="Дата та час відправлення" />
-             <Label layoutX="570.0" layoutY="184.0" text="Номер вагону" />
-             <TextField fx:id="IdTrain" layoutX="570.0" layoutY="85.0" prefHeight="26.0" prefWidth="208.0" />
-             <TextField fx:id="IdCarriage" layoutX="570.0" layoutY="202.0" prefHeight="26.0" prefWidth="208.0" />
-             <DatePicker fx:id="datePicker" layoutX="570.0" layoutY="145.0" />
-             <CheckBox fx:id="Linens" onAction="#handleLinens" layoutX="56.0" layoutY="275.0" mnemonicParsing="false" text="Постільна білизна" />
-            <CheckBox fx:id="Drink" onAction="#handleDrink" layoutX="191.0" layoutY="275.0" mnemonicParsing="false" text="Напій " />
-            <CheckBox fx:id="Snacks" onAction="#handleSnacks" layoutX="264.0" layoutY="275.0" mnemonicParsing="false" text="Смаколик" />
+             <Label layoutX="517.0" layoutY="66.0" text="Номер потяга" />
+             <Label layoutX="485.0" layoutY="202.0" text="Дата та час відправлення" />
+             <Label layoutX="516.0" layoutY="249.0" text="Номер вагону" />
+             <TextField fx:id="IdTrain" layoutX="619.0" layoutY="61.0" prefHeight="26.0" prefWidth="208.0" />
+             <TextField fx:id="IdCarriage" layoutX="619.0" layoutY="243.0" prefHeight="26.0" prefWidth="208.0" />
+             <DatePicker fx:id="datePicker" layoutX="635.0" layoutY="202.0" />
+             <CheckBox fx:id="Linens" layoutX="56.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleLinens" text="Постільна білизна" />
+            <CheckBox fx:id="Drink" layoutX="191.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleDrink" text="Напій " />
+            <CheckBox fx:id="Snacks" layoutX="264.0" layoutY="275.0" mnemonicParsing="false" onAction="#handleSnacks" text="Смаколик" />
             <Label fx:id="Cost" layoutX="397.0" layoutY="397.0" text="Ціна:" />
+            <TextField fx:id="Station1" layoutX="619.0" layoutY="107.0" prefHeight="26.0" prefWidth="208.0" />
+            <Label layoutX="503.0" layoutY="111.0" text="Назва відпралення" />
+            <TextField fx:id="Station2" layoutX="619.0" layoutY="153.0" prefHeight="26.0" prefWidth="208.0" />
+            <Label layoutX="512.0" layoutY="157.0" text="Назва прибуття" />
          </children>
       </AnchorPane>
 
