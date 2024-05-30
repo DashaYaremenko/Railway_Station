@@ -56,6 +56,8 @@ public class BuyTicket {
         String docType = TypeDoc.getText();
         String trainId = IdTrain.getText();
         String carriageId = IdCarriage.getText();
+        String station1 = Station1.getText();
+        String station2 = Station2.getText();
         String departureDate = datePicker.getValue().toString();
         boolean isLinens = Linens.isSelected();
         boolean isDrink = Drink.isSelected();
@@ -64,12 +66,15 @@ public class BuyTicket {
         Cost.setText("Ціна: "+ cost + " грн");
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "INSERT INTO tickets (Client_Id, NumTrain,StationID_1,StationID_2, NumCarrig, departure_date, Linens, Drink, Snacks, CostTicket) " +
-                    "VALUES ((SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "VALUES ((SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, " +
+                    "(SELECT StationID FROM trainstations WHERE StationName = ?), ?, ?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(sql); {
                 preparedStatement.setString(1, lastName);
                 preparedStatement.setString(2, firstName);
                 preparedStatement.setString(3, docType);
                 preparedStatement.setString(4, trainId);
+                preparedStatement.setString(5, station1);
+                preparedStatement.setString(6, station2);
                 preparedStatement.setString(5, carriageId);
                 preparedStatement.setDate(6, Date.valueOf(departureDate));
                 preparedStatement.setBoolean(7, isLinens);
