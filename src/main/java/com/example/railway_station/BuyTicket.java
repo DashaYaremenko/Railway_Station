@@ -130,7 +130,7 @@ public class BuyTicket {
             preparedStatement.setString(7, station2);
             preparedStatement.setString(8, station2);
             preparedStatement.setString(9, carriageId);
-            preparedStatement.setDate(, Date.valueOf(departureDate)); // Перетворення LocalDate в java.sql.Date
+            preparedStatement.setDate(10, Date.valueOf(departureDate)); // Перетворення LocalDate в java.sql.Date
             preparedStatement.setBoolean(11, isLinens);
             preparedStatement.setBoolean(12, isDrink);
             preparedStatement.setBoolean(13, isSnacks);
