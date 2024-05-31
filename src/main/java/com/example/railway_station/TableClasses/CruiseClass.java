@@ -15,8 +15,8 @@ public class CruiseClass {
         this.ID = idCruise;
         this.DateDepar=dateDepar;
         this.DateArriv=dateArriv;
-        this.TimeDepar=TimeDepar;
-        this.TimeArriv=TimeArriv;
+        this.TimeDepar=timeDepar;
+        this.TimeArriv=timeArriv;
     }
     public String getID() {return ID;}
     public void setID(String id) {this.ID = id;}
