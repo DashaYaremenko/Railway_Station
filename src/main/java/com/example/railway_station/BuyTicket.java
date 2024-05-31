@@ -30,7 +30,7 @@ public class BuyTicket {
     }
 
     private double calculateCost(String docType, boolean isLinens, boolean isDrink, boolean isSnacks) {
-        double baseCost = 100.0; // базова ціна квитка
+        double baseCost = 100.0;
         switch (docType) {
             case "Повний":
                 baseCost = 100.0;
@@ -65,7 +65,7 @@ public class BuyTicket {
         double cost = calculateCost(docType, isLinens, isDrink, isSnacks);
         Cost.setText("Ціна: "+ cost + " грн");
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO tickets (Client_Id, NumTrain,StationID_1,StationID_2, NumCarrig, Cruise_ID, Linens, Drink, Snacks, CostTicket) " +
+            String sql = "INSERT INTO tickets (ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, DepartureDate, Linens, Drink, Snacks, CostTicket) " +
                     "VALUES ((SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, " +
                     "(SELECT ID FROM stations WHERE NameStation = ?),(SELECT ID FROM stations WHERE NameStation = ?)," +
                     " ?, ?, ?, ?, ?, ?)";
