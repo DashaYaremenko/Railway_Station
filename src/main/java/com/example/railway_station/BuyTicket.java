@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class BuyTicket {
     private static final String URL = "jdbc:mysql://localhost:3306/railwaystat";
@@ -49,6 +50,51 @@ public class BuyTicket {
     }
 
 
+//    @FXML
+//    private void ByeTicketAction(ActionEvent event) {
+//        String lastName = LastName.getText();
+//        String firstName = FirstName.getText();
+//        String docType = TypeDoc.getText();
+//        String trainId = IdTrain.getText();
+//        String carriageId = IdCarriage.getText();
+//        String station1 = Station1.getText();
+//        String station2 = Station2.getText();
+//        String departureDate = datePicker.getValue().toString();
+//        boolean isLinens = Linens.isSelected();
+//        boolean isDrink = Drink.isSelected();
+//        boolean isSnacks = Snacks.isSelected();
+//        double cost = calculateCost(docType, isLinens, isDrink, isSnacks);
+//        Cost.setText("Ціна: "+ cost + " грн");
+//        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+//            String sql = "INSERT INTO tickets (TicketID, ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, DepartureDate, Linens, Drink, Snacks, CostTicket) " +
+//                    "VALUES (DEFAULT, (SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, " +
+//                    "(SELECT ID FROM stations WHERE NameStation = ?), " +
+//                    "(SELECT ID FROM cruise WHERE DeparStationTime = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
+//                    "(SELECT ID FROM stations WHERE NameStation = ?), " +
+//                    "(SELECT ID FROM cruise WHERE ArrivStationTime = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
+//                    "?, ?, ?, ?, ?, ?)";
+//            PreparedStatement preparedStatement = connection.prepareStatement(sql); {
+//                preparedStatement.setString(1, lastName);
+//                preparedStatement.setString(2, firstName);
+//                preparedStatement.setString(3, docType);
+//                preparedStatement.setString(4, trainId);
+//                preparedStatement.setString(5, station1);
+//                preparedStatement.setString(6, station1);
+//                preparedStatement.setString(7, station2);
+//                preparedStatement.setString(8, station2);
+//                preparedStatement.setString(9, carriageId);
+//                preparedStatement.setDate(10, Date.valueOf(departureDate));
+//                preparedStatement.setBoolean(11, isLinens);
+//                preparedStatement.setBoolean(12, isDrink);
+//                preparedStatement.setBoolean(13, isSnacks);
+//                preparedStatement.setDouble(14, cost);
+//                preparedStatement.executeUpdate();
+//            }
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+
     @FXML
     private void ByeTicketAction(ActionEvent event) {
         String lastName = LastName.getText();
@@ -58,41 +104,47 @@ public class BuyTicket {
         String carriageId = IdCarriage.getText();
         String station1 = Station1.getText();
         String station2 = Station2.getText();
-        String departureDate = datePicker.getValue().toString();
+        LocalDate departureDate = datePicker.getValue(); // Отримання дати з datePicker
         boolean isLinens = Linens.isSelected();
         boolean isDrink = Drink.isSelected();
         boolean isSnacks = Snacks.isSelected();
         double cost = calculateCost(docType, isLinens, isDrink, isSnacks);
-        Cost.setText("Ціна: "+ cost + " грн");
+        Cost.setText("Ціна: " + cost + " грн");
+
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO tickets (ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, DepartureDate, Linens, Drink, Snacks, CostTicket) " +
-                    "VALUES ((SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, " +
-                    "(SELECT ID FROM stations WHERE NameStation = ?),(SELECT ID FROM stations WHERE NameStation = ?)," +
-                    " ?, ?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(sql); {
-                preparedStatement.setString(1, lastName);
-                preparedStatement.setString(2, firstName);
-                preparedStatement.setString(3, docType);
-                preparedStatement.setString(4, trainId);
-                preparedStatement.setString(5, station1);
-                preparedStatement.setString(6, station2);
-                preparedStatement.setString(7, carriageId);
-                preparedStatement.setDate(8, Date.valueOf(departureDate));
-                preparedStatement.setBoolean(9, isLinens);
-                preparedStatement.setBoolean(10, isDrink);
-                preparedStatement.setBoolean(11, isSnacks);
-                preparedStatement.setDouble(12, cost);
-                preparedStatement.executeUpdate();
-            }
+            String sql = "INSERT INTO tickets (TicketID, ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, DepartureDate, Linens, Drink, Snacks, CostTicket) " +
+                    "VALUES (DEFAULT, (SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, " +
+                    "(SELECT ID FROM stations WHERE NameStation = ?), " +
+                    "(SELECT ID FROM cruise WHERE DeparStationTime = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
+                    "(SELECT ID FROM stations WHERE NameStation = ?), " +
+                    "(SELECT ID FROM cruise WHERE ArrivStationTime = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
+                    "?, ?, ?, ?, ?, ?)";
+
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, lastName);
+            preparedStatement.setString(2, firstName);
+            preparedStatement.setString(3, docType);
+            preparedStatement.setString(4, trainId);
+            preparedStatement.setString(5, station1);
+            preparedStatement.setString(6, station1);
+            preparedStatement.setString(7, station2);
+            preparedStatement.setString(8, station2);
+            preparedStatement.setString(9, carriageId);
+            preparedStatement.setDate(10, Date.valueOf(departureDate)); // Перетворення LocalDate в java.sql.Date
+            preparedStatement.setBoolean(11, isLinens);
+            preparedStatement.setBoolean(12, isDrink);
+            preparedStatement.setBoolean(13, isSnacks);
+            preparedStatement.setDouble(14, cost);
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
+
     @FXML
     void handleLinens(ActionEvent event) {
         boolean linensSelected = Linens.isSelected();
-//        String ticketId = getTicketId();
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String sql = "UPDATE tickets SET linens = ?";
             try (PreparedStatement statement = connection.prepareStatement(sql)) {
