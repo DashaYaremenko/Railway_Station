@@ -112,12 +112,12 @@ public class BuyTicket {
         Cost.setText("Ціна: " + cost + " грн");
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO tickets (TicketID, ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, DepartureDate, Linens, Drink, Snacks, CostTicket) " +
-                    "VALUES (DEFAULT, (SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, " +
+            String sql = "INSERT INTO tickets (TicketID, ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, CostTicket, Linens, Drink, Snacks) " +
+                    "VALUES ((SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, " +
                     "(SELECT ID FROM stations WHERE NameStation = ?), " +
-                    "(SELECT ID FROM cruise WHERE DeparStationTime = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
+                    "(SELECT ID FROM cruise WHERE DeparDate = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
                     "(SELECT ID FROM stations WHERE NameStation = ?), " +
-                    "(SELECT ID FROM cruise WHERE ArrivStationTime = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
+                    "(SELECT ID FROM cruise WHERE ArrivDate = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
                     "?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -130,7 +130,7 @@ public class BuyTicket {
             preparedStatement.setString(7, station2);
             preparedStatement.setString(8, station2);
             preparedStatement.setString(9, carriageId);
-            preparedStatement.setDate(10, Date.valueOf(departureDate)); // Перетворення LocalDate в java.sql.Date
+            preparedStatement.setDate(, Date.valueOf(departureDate)); // Перетворення LocalDate в java.sql.Date
             preparedStatement.setBoolean(11, isLinens);
             preparedStatement.setBoolean(12, isDrink);
             preparedStatement.setBoolean(13, isSnacks);
