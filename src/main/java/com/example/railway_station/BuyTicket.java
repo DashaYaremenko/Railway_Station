@@ -104,7 +104,7 @@ public class BuyTicket {
         String carriageId = IdCarriage.getText();
         String station1 = Station1.getText();
         String station2 = Station2.getText();
-        LocalDate departureDate = datePicker.getValue(); // Отримання дати з datePicker
+        Date departureDate = Date.valueOf(datePicker.getValue()); // Отримання дати з datePicker
         boolean isLinens = Linens.isSelected();
         boolean isDrink = Drink.isSelected();
         boolean isSnacks = Snacks.isSelected();
@@ -112,12 +112,12 @@ public class BuyTicket {
         Cost.setText("Ціна: " + cost + " грн");
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
-            String sql = "INSERT INTO tickets (TicketID, ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, CostTicket, Linens, Drink, Snacks) " +
-                    "VALUES ((SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, " +
-                    "(SELECT ID FROM stations WHERE NameStation = ?), " +
-                    "(SELECT ID FROM cruise WHERE DeparDate = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
-                    "(SELECT ID FROM stations WHERE NameStation = ?), " +
-                    "(SELECT ID FROM cruise WHERE ArrivDate = (SELECT ID FROM trainstations WHERE NameStation = ?)), " +
+            String sql = "INSERT INTO tickets (ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, CostTicket, Linens, Drink, Snacks) " +
+                    "VALUES ((SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), " +
+                    "?, " +
+                    "(SELECT ts1.ID FROM stations s1 JOIN trainstations ts1 ON s1.ID = ts1.StationID WHERE s1.NameStation = ? AND ts1.DeparDate = ?), " +
+                    "?, " +
+                    "(SELECT ts2.ID FROM stations s2 JOIN trainstations ts2 ON s2.ID = ts2.StationID WHERE s2.NameStation = ?), " +
                     "?, ?, ?, ?, ?, ?)";
 
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -126,7 +126,7 @@ public class BuyTicket {
             preparedStatement.setString(3, docType);
             preparedStatement.setString(4, trainId);
             preparedStatement.setString(5, station1);
-            preparedStatement.setString(6, station1);
+            preparedStatement.setString(6, Date.valueOf(departureDate));
             preparedStatement.setString(7, station2);
             preparedStatement.setString(8, station2);
             preparedStatement.setString(9, carriageId);
@@ -182,5 +182,10 @@ public class BuyTicket {
         }
     }
 
-
+// INSERT INTO tickets (TicketID, ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, CostTicket, Linens, Drink, Snacks) " +
+//             "VALUES (?,(SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), ?, ?, " +
+//             "(SELECT s1.ID FROM stations s1 JOIN trainstations ts1 ON s1.ID = ts1.StationID WHERE s1.NameStation = ? AND ts1.DeparDate = ?), " +
+//             "?, " +
+//             "(SELECT s2.ID FROM stations s2 JOIN trainstations ts2 ON s2.ID = ts2.ArrivalStationID WHERE s2.NameStation = ?), " +
+//             "?, ?, ?, ?, ?, ?)
 }
