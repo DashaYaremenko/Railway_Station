@@ -56,9 +56,9 @@ public class SearchTrain {
                     "COUNT(c.ID) AS carriageCount, GROUP_CONCAT(c.TypeCarrig) AS carriageTypes " +
                     "FROM trains t " +
                     "JOIN trainstations ts ON t.ID = ts.TrainId " +
-                    "JOIN stations s1 ON ts.DepartureStationID = s1.ID " +
-                    "JOIN stations s2 ON ts.ArrivalStationID = s2.ID " +
-                    "JOIN carriages c ON t.ID = c.TrainID " +
+                    "JOIN stations s1 ON ts.ID = s1.ID " +
+                    "JOIN stations s2 ON ts.ID = s2.ID " +
+                    "JOIN carriage c ON t.ID = c.TrainID " +
                     "WHERE DATE(ts.DeparTime) = ? " +
                     "GROUP BY t.ID, t.NameM, s1.NameStation, s2.NameStation, ts.DeparTime, ts.ArrivTime ";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
