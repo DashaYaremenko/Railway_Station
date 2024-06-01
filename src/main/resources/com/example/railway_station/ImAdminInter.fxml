@@ -38,10 +38,18 @@
                </image>
             </ImageView>
             <Button layoutX="121.0" layoutY="537.0" mnemonicParsing="false" onAction="#clickButtonRecClients" text="Редактор-клієнт" />
-            <Button layoutX="467.0" layoutY="550.0" mnemonicParsing="false" text="Button" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="400.0" layoutY="362.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="467.0" layoutY="251.0" mnemonicParsing="false" text="Button" />
-            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="393.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="447.0" layoutY="537.0" mnemonicParsing="false" text="Редактор-білета" />
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="400.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/recTicket.jpg" />
+            </image>
+            </ImageView>
+            <Button layoutX="456.0" layoutY="251.0" mnemonicParsing="false" text="Редактор-годин" />
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="408.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/recTime.jpg" />
+               </image>
+            </ImageView>
          </children></AnchorPane>
    </children>
 </VBox>
