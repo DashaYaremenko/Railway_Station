@@ -203,32 +203,31 @@ Cost.setText("Ціна: "+cost +" грн");
     // Підготовка SQL-запиту
     String sql = "INSERT INTO tickets (ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, CostTicket, Linens, Drink, Snacks) " +
             "VALUES (" +
-            "(SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), " +
-            "(SELECT ts.TrainID FROM trainstations ts JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND ts.DeparDate = ?), " +
-            "(SELECT s1.ID FROM stations s1 WHERE s1.NameStation = ?), " +
-            "(SELECT ts1.ID FROM trainstations ts1 JOIN stations s1 ON ts1.StationID = s1.ID WHERE s1.NameStation = ? AND ts1.DeparDate = ?), " +
-            "(SELECT s2.ID FROM stations s2 WHERE s2.NameStation = ?), " +
-            "(SELECT ts2.ID FROM trainstations ts2 JOIN stations s2 ON ts2.StationID = s2.ID WHERE s2.NameStation = ?), " +
-            "?, ?, ?, ?, ?)";
+            "(SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), " +  // ClientId
+            "?, " +  // TrainNum
+            "(SELECT s1.ID FROM stations s1 WHERE s1.NameStation = ?), " +  // StationID1
+            "(SELECT c1.ID FROM cruise c1 JOIN stations s1 ON c1.ID = s1.ID WHERE s1.NameStation = ? AND c1.DeparDate = ?), " +  // CruiseID1
+            "(SELECT s2.ID FROM stations s2 WHERE s2.NameStation = ?), " +  // StationID2
+            "(SELECT c2.ID FROM cruise c2 JOIN stations s2 ON c2.ID = s2.ID WHERE s2.NameStation = ?), " +  // CruiseID2
+            "?, ?, ?, ?, ?)";;
 
 try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
     PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-        preparedStatement.setString(1, lastName);
-        preparedStatement.setString(2, firstName);
-        preparedStatement.setString(3, docType);
-        preparedStatement.setString(4, trainId);
-        preparedStatement.setString(5, station1);
-        preparedStatement.setDate(6, departureDate); // Перетворення LocalDate в java.sql.Date
-        preparedStatement.setString(7, station1);
-        preparedStatement.setString(8, station1);
-        preparedStatement.setString(9, station2);
-        preparedStatement.setString(10, station2);
-        preparedStatement.setInt(11, Integer.parseInt(carriageId));  // Перетворення carriageId в integer
-        preparedStatement.setDouble(12, cost);
-        preparedStatement.setBoolean(13, isLinens);
-        preparedStatement.setBoolean(14, isDrink);
-        preparedStatement.setBoolean(15, isSnacks);
-        preparedStatement.executeUpdate();
+    preparedStatement.setString(1, lastName);
+    preparedStatement.setString(2, firstName);
+    preparedStatement.setString(3, docType);
+    preparedStatement.setInt(4, Integer.parseInt(trainId));
+    preparedStatement.setString(5, station1);
+    preparedStatement.setString(6, station1);
+    preparedStatement.setDate(7, departureDate);
+    preparedStatement.setString(8, station2);
+    preparedStatement.setString(9, station2);
+    preparedStatement.setInt(10, Integer.parseInt(carriageId));
+    preparedStatement.setDouble(11, cost);
+    preparedStatement.setBoolean(12, isLinens);
+    preparedStatement.setBoolean(13, isDrink);
+    preparedStatement.setBoolean(14, isSnacks);
+    preparedStatement.executeUpdate();
     } catch(SQLException e) {
         throw new RuntimeException(e);
     }
