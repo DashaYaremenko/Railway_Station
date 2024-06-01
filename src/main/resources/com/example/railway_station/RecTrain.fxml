@@ -13,7 +13,6 @@
                 <TableColumn fx:id="IDTrainCol" prefWidth="75.0" text="ID Потяга" />
                 <TableColumn fx:id="NameTrainCol" prefWidth="123.19998168945312" text="Назва маршруту" />
                   <TableColumn fx:id="TypeTrainCol" prefWidth="87.59999084472656" text="Тип потяга" />
-                  <TableColumn fx:id="CruiseIDCol" prefWidth="221.39996337890625" text="Дата та час відправлення/прибуття" />
                   <TableColumn fx:id="CarriageIDCol" minWidth="0.0" prefWidth="93.79998779296875" text="Номер вагону" />
               </columns>
             </TableView>

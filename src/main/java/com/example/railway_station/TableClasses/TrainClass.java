@@ -9,11 +9,10 @@ public class TrainClass {
     private int CruiseID;
     private int CarriageID;
 
-    public TrainClass(String id, String nameM, String typeTrain, int cruiseID, int carriageID) {
+    public TrainClass(String id, String nameM, String typeTrain, int carriageID) {
         this.ID = id;
         this.NameM = nameM;
         this.TypeTrain = typeTrain;
-        this.CruiseID = cruiseID;
         this.CarriageID = carriageID;
     }
     public String getId() {return ID;}
@@ -28,8 +27,6 @@ public class TrainClass {
     public void setTypeTrain(String typeTrain) {
         this.TypeTrain = typeTrain;
     }
-    public int getCruiseID() {return CruiseID;}
-    public void setCruiseID(int cruiseID) {this.CruiseID = cruiseID;}
     public int getCarriageID() {return CarriageID;}
     public void setCarriageID(int carriageID) {this.CarriageID = carriageID;}
 }

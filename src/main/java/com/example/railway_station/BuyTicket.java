@@ -203,20 +203,16 @@ Cost.setText("Ціна: "+cost +" грн");
     // Підготовка SQL-запиту
     String sql = "INSERT INTO tickets (ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, CostTicket, Linens, Drink, Snacks) " +
             "VALUES (" +
-            "(SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?),? " +
-            "(SELECT ts.TrainNum FROM trainstations ts JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND ts.DeparDate = ?), " +
+            "(SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?), " +
+            "(SELECT ts.TrainID FROM trainstations ts JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND ts.DeparDate = ?), " +
             "(SELECT s1.ID FROM stations s1 WHERE s1.NameStation = ?), " +
             "(SELECT ts1.ID FROM trainstations ts1 JOIN stations s1 ON ts1.StationID = s1.ID WHERE s1.NameStation = ? AND ts1.DeparDate = ?), " +
             "(SELECT s2.ID FROM stations s2 WHERE s2.NameStation = ?), " +
             "(SELECT ts2.ID FROM trainstations ts2 JOIN stations s2 ON ts2.StationID = s2.ID WHERE s2.NameStation = ?), " +
             "?, ?, ?, ?, ?)";
 
-try(
-    Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-    PreparedStatement preparedStatement = connection.prepareStatement(sql))
-
-    {
-        // Встановлення параметрів
+try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+    PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
         preparedStatement.setString(1, lastName);
         preparedStatement.setString(2, firstName);
         preparedStatement.setString(3, docType);
@@ -225,22 +221,17 @@ try(
         preparedStatement.setDate(6, departureDate); // Перетворення LocalDate в java.sql.Date
         preparedStatement.setString(7, station1);
         preparedStatement.setString(8, station1);
-        preparedStatement.setDate(9, departureDate); // Перетворення LocalDate в java.sql.Date
+        preparedStatement.setString(9, station2);
         preparedStatement.setString(10, station2);
-        preparedStatement.setString(11, station2);
-        preparedStatement.setInt(12, Integer.parseInt(carriageId));  // Перетворення carriageId в integer
-        preparedStatement.setDouble(13, cost);
-        preparedStatement.setBoolean(14, isLinens);
-        preparedStatement.setBoolean(15, isDrink);
-        preparedStatement.setBoolean(16, isSnacks);
-
-        // Виконання запиту
+        preparedStatement.setInt(11, Integer.parseInt(carriageId));  // Перетворення carriageId в integer
+        preparedStatement.setDouble(12, cost);
+        preparedStatement.setBoolean(13, isLinens);
+        preparedStatement.setBoolean(14, isDrink);
+        preparedStatement.setBoolean(15, isSnacks);
         preparedStatement.executeUpdate();
-    } catch(
-    SQLException e)
-
-    {
+    } catch(SQLException e) {
         throw new RuntimeException(e);
     }
 }
+
 }
