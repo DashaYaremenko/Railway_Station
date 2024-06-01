@@ -27,7 +27,7 @@
                   <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/train.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="408.0" layoutY="289.0" text="Оберіть дію!" textFill="#2d35c1">
+            <Label layoutX="416.0" layoutY="398.0" text="Оберіть дію!" textFill="#2d35c1">
                <font>
                   <Font name="Century Gothic" size="30.0" />
                </font>
@@ -38,14 +38,8 @@
                </image>
             </ImageView>
             <Button layoutX="121.0" layoutY="537.0" mnemonicParsing="false" onAction="#clickButtonRecClients" text="Редактор-клієнт" />
-            <Button layoutX="447.0" layoutY="537.0" mnemonicParsing="false" text="Редактор-білета" />
-            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="400.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/recTicket.jpg" />
-            </image>
-            </ImageView>
-            <Button layoutX="456.0" layoutY="251.0" mnemonicParsing="false" text="Редактор-годин" />
-            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="408.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+            <Button layoutX="456.0" layoutY="276.0" mnemonicParsing="false" text="Редактор-годин" />
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="408.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/recTime.jpg" />
                </image>
