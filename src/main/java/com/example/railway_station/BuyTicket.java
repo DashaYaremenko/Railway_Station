@@ -141,7 +141,6 @@ public class BuyTicket {
             } else {
                 throw new SQLException("Failed to retrieve client ID.");
             }
-
             getStationIdStatement.setString(1,station1);
             getStationIdStatement.setString(2,trainId);
             ResultSet stationId1RS = getStationIdStatement.executeQuery();
@@ -151,7 +150,6 @@ public class BuyTicket {
             } else {
                 throw new SQLException("Failed to retrieve StationID1.");
             }
-
             getStationIdStatement2.setString(1,station2);
             getStationIdStatement2.setString(2,trainId);
             ResultSet stationId2RS = getStationIdStatement2.executeQuery();
@@ -161,7 +159,6 @@ public class BuyTicket {
             } else {
                 throw new SQLException("Failed to retrieve StationID2.");
             }
-
             getCruiseId1Statement.setString(1,station1);
             getCruiseId1Statement.setString(2, String.valueOf(departureDate));
             ResultSet cruiseId1RS = getCruiseId1Statement.executeQuery();
@@ -179,7 +176,6 @@ public class BuyTicket {
             } else {
                 throw new SQLException("Failed to retrieve CruiseID2.");
             }
-
             insertTicketStatement.setInt(1, clientId);
             insertTicketStatement.setInt(2, Integer.parseInt(trainId));
             insertTicketStatement.setInt(3, stationId1);
