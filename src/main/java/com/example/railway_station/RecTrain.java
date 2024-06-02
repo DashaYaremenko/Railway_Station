@@ -127,8 +127,6 @@ public class RecTrain {
             return "NameM";
         } else if (!TypeTrain.getText().isEmpty()) {
             return "TypeTrain";
-        } else if (!CruiseID.getText().isEmpty()) {
-            return "CruiseID";
         } else if (!CarriageID.getText().isEmpty()) {
             return "CarriageID";
         } else {
@@ -141,8 +139,6 @@ public class RecTrain {
                 return NameTrain.getText();
             case "TypeTrain":
                 return TypeTrain.getText();
-            case "CruiseID":
-                return CruiseID.getText();
             case "CarriageID":
                 return CarriageID.getText();
             default:

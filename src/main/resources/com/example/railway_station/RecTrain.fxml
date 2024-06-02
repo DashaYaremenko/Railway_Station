@@ -32,8 +32,6 @@
             <TextField fx:id="IDTrain" layoutX="37.0" layoutY="426.0" />
             <TextField fx:id="NameTrain" layoutX="37.0" layoutY="486.0" />
             <TextField fx:id="CarriageID" layoutX="231.0" layoutY="486.0" />
-            <TextField fx:id="CruiseID" layoutX="38.0" layoutY="548.0" />
-            <Label layoutX="38.0" layoutY="531.0" text="Дата та час (Int)" />
             <TextField fx:id="TypeTrain" layoutX="232.0" layoutY="426.0" />
 
          </children>
