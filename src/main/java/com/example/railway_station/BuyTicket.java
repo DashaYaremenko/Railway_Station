@@ -91,57 +91,111 @@ public class BuyTicket {
             e.printStackTrace();
         }
     }
+
     @FXML
-   private void ByeTicketAction(ActionEvent event) {
-    // Отримання параметрів з форми
-    String lastName = LastName.getText();
-    String firstName = FirstName.getText();
-    String docType = TypeDoc.getText();
-    String trainId = IdTrain.getText();
-    String carriageId = IdCarriage.getText();
-    String station1 = Station1.getText();
-    String station2 = Station2.getText();
-    Date departureDate = Date.valueOf(datePicker.getValue()); // Отримання дати з datePicker
-    boolean isLinens = Linens.isSelected();
-    boolean isDrink = Drink.isSelected();
-    boolean isSnacks = Snacks.isSelected();
-    double cost = calculateCost(docType, isLinens, isDrink, isSnacks);
-Cost.setText("Ціна: "+cost +" грн");
+    private void ByeTicketAction(ActionEvent event) {
+        // Отримання параметрів з форми
+        String lastName = LastName.getText();
+        String firstName = FirstName.getText();
+        String docType = TypeDoc.getText();
+        String trainId = IdTrain.getText();
+        String carriageId = IdCarriage.getText();
+        String station1 = Station1.getText();
+        String station2 = Station2.getText();
+        Date departureDate = Date.valueOf(datePicker.getValue()); // Отримання дати з datePicker
+        boolean isLinens = Linens.isSelected();
+        boolean isDrink = Drink.isSelected();
+        boolean isSnacks = Snacks.isSelected();
+        double cost = calculateCost(docType, isLinens, isDrink, isSnacks);
+        Cost.setText("Ціна: " + cost + " грн");
+        String insertClientSql = "INSERT INTO clients (LastName, FirstName, TypeDoc) VALUES (?, ?, ?)";
+        String ClientIdSql = "(SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?)";
+        String getStationIdSql = "SELECT ts.StationID FROM trainstations ts JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND ts.TrainID = ?";
+        String getCruiseId1Sql = "SELECT c.ID FROM cruise c JOIN trainstations ts ON c.ID = ts.CruiseID JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND c.DeparDate = ?";
+        String getCruiseId2Sql = "SELECT c.ID FROM cruise c JOIN trainstations ts ON c.ID = ts.CruiseID JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ?";
+        String getStationIdSql2 = "SELECT ts.StationID FROM trainstations ts JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND ts.TrainID = ?";
         String sql = "INSERT INTO tickets (ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, CostTicket, Linens, Drink, Snacks)\n" +
-                "VALUES (\n" +
-                "    (SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?),\n" +
-                "    ?,  -- TrainNum\n" +
-                "    (SELECT ts.StationID FROM trainstations ts JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ?),\n" +
-                "    (SELECT c.ID FROM cruise c JOIN trainstations ts ON c.ID = ts.CruiseID1 JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND c.DeparDate = ?),\n" +
-                "    (SELECT ts.StationID FROM trainstations ts JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ?),\n" +
-                "    (SELECT c.ID FROM cruise c JOIN trainstations ts ON c.ID = ts.CruiseID2 JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ?),\n" +
-                "    ?,  -- CarriageID\n" +
-                "    ?,  -- CostTicket\n" +
-                "    ?,  -- Linens\n" +
-                "    ?,  -- Drink\n" +
-                "    ?   -- Snacks\n" +
-                ")";
+                "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
-try(Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-    PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-    preparedStatement.setString(1, lastName);
-    preparedStatement.setString(2, firstName);
-    preparedStatement.setString(3, docType);
-    preparedStatement.setInt(4, Integer.parseInt(trainId));
-    preparedStatement.setString(5, station1);
-    preparedStatement.setString(6, station1);
-    preparedStatement.setDate(7, departureDate);
-    preparedStatement.setString(8, station2);
-    preparedStatement.setString(9, station2);
-    preparedStatement.setInt(10, Integer.parseInt(carriageId));
-    preparedStatement.setDouble(11, cost);
-    preparedStatement.setBoolean(12, isLinens);
-    preparedStatement.setBoolean(13, isDrink);
-    preparedStatement.setBoolean(14, isSnacks);
-    preparedStatement.executeUpdate();
-    } catch(SQLException e) {
-        throw new RuntimeException(e);
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+             PreparedStatement insertClientStatement = connection.prepareStatement(insertClientSql, Statement.RETURN_GENERATED_KEYS);
+             PreparedStatement clientIdStatement = connection.prepareStatement(ClientIdSql);
+             PreparedStatement getStationIdStatement = connection.prepareStatement(getStationIdSql);
+             PreparedStatement getStationIdStatement2= connection.prepareStatement(getStationIdSql2);
+             PreparedStatement getCruiseId1Statement = connection.prepareStatement(getCruiseId1Sql);
+             PreparedStatement getCruiseId2Statement = connection.prepareStatement(getCruiseId2Sql);
+             PreparedStatement insertTicketStatement = connection.prepareStatement(sql)) {
+
+
+            insertClientStatement.setString(1, lastName);
+            insertClientStatement.setString(2, firstName);
+            insertClientStatement.setString(3, docType);
+            insertClientStatement.executeUpdate();
+            clientIdStatement.setString(1, lastName);
+            clientIdStatement.setString(2, firstName);
+            clientIdStatement.setString(3, docType);
+            ResultSet clientIdRS = clientIdStatement.executeQuery();
+            int clientId;
+            if (clientIdRS.next()) {
+                clientId = clientIdRS.getInt(1);
+            } else {
+                throw new SQLException("Failed to retrieve client ID.");
+            }
+
+            getStationIdStatement.setString(1,station1);
+            getStationIdStatement.setString(2,trainId);
+            ResultSet stationId1RS = getStationIdStatement.executeQuery();
+            int stationId1;
+            if (stationId1RS.next()) {
+                stationId1 = stationId1RS.getInt(1);
+            } else {
+                throw new SQLException("Failed to retrieve StationID1.");
+            }
+
+            getStationIdStatement2.setString(1,station2);
+            getStationIdStatement2.setString(2,trainId);
+            ResultSet stationId2RS = getStationIdStatement2.executeQuery();
+            int stationId2;
+            if (stationId2RS.next()) {
+                stationId2 = stationId2RS.getInt(1);
+            } else {
+                throw new SQLException("Failed to retrieve StationID2.");
+            }
+
+            getCruiseId1Statement.setString(1,station1);
+            getCruiseId1Statement.setString(2, String.valueOf(departureDate));
+            ResultSet cruiseId1RS = getCruiseId1Statement.executeQuery();
+            int cruiseId1;
+            if (cruiseId1RS.next()) {
+                cruiseId1 = cruiseId1RS.getInt(1);
+            } else {
+                throw new SQLException("Failed to retrieve CruiseID1.");
+            }
+            getCruiseId2Statement.setString(1,station2);
+            ResultSet cruiseId2RS = getCruiseId2Statement.executeQuery();
+            int cruiseId2;
+            if (cruiseId2RS.next()) {
+                cruiseId2 = cruiseId2RS.getInt(1);
+            } else {
+                throw new SQLException("Failed to retrieve CruiseID2.");
+            }
+
+            insertTicketStatement.setInt(1, clientId);
+            insertTicketStatement.setInt(2, Integer.parseInt(trainId));
+            insertTicketStatement.setInt(3, stationId1);
+            insertTicketStatement.setInt(4, cruiseId1);
+            insertTicketStatement.setInt(5, stationId2);
+            insertTicketStatement.setInt(6, cruiseId2);
+            insertTicketStatement.setInt(7, Integer.parseInt(carriageId));
+            insertTicketStatement.setDouble(8, cost);
+            insertTicketStatement.setBoolean(9, isLinens);
+            insertTicketStatement.setBoolean(10, isDrink);
+            insertTicketStatement.setBoolean(11, isSnacks);
+            insertTicketStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
-}
-
 }
