@@ -57,6 +57,30 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+    public void clickButtonReturnTicket(ActionEvent event){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("ReturnTicket.fxml"));
+            Parent parent= loader.load();
+            Stage stage=new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void clickButtonStatusTicket(ActionEvent event){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("StatusTicket.fxml"));
+            Parent parent= loader.load();
+            Stage stage=new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+
     @FXML
     public void clickButtonRecTrain(ActionEvent event){
         try {
@@ -103,6 +127,17 @@ public class HelloController {
             stage.setScene(new Scene(parent));
             stage.show();
         }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void clickButtonRecTime(ActionEvent event){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("RecTimeTrain.fxml"));
+            Parent parent= loader.load();
+            Stage stage=new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e){
             e.printStackTrace();
         }
     }
