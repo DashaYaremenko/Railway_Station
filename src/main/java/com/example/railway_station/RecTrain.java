@@ -19,7 +19,7 @@ public class RecTrain {
     private static final String USERNAME = "root";
     private static final String PASSWORD = "1111";
     @FXML
-    public TextField IDTrain, NameTrain, CruiseID, CarriageID;
+    public TextField IDTrain, NameTrain, CarriageID;
     @FXML
     public TextField TypeTrain;
     @FXML
