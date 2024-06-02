@@ -93,7 +93,7 @@ public class BuyTicket {
     }
 
     @FXML
-    private void ByeTicketAction(ActionEvent event) {
+    private void BuyTicketAction(ActionEvent event) {
         // Отримання параметрів з форми
         String lastName = LastName.getText();
         String firstName = FirstName.getText();
@@ -111,8 +111,8 @@ public class BuyTicket {
         String insertClientSql = "INSERT INTO clients (LastName, FirstName, TypeDoc) VALUES (?, ?, ?)";
         String ClientIdSql = "(SELECT ID FROM clients WHERE LastName = ? AND FirstName = ? AND TypeDoc = ?)";
         String getStationIdSql = "SELECT ts.StationID FROM trainstations ts JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND ts.TrainID = ?";
-        String getCruiseId1Sql = "SELECT c.ID FROM cruise c JOIN trainstations ts ON c.ID = ts.CruiseID JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND c.DeparDate = ?";
-        String getCruiseId2Sql = "SELECT c.ID FROM cruise c JOIN trainstations ts ON c.ID = ts.CruiseID JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ?";
+        String getCruiseId1Sql = "SELECT c.ID FROM cruise c JOIN trainstations ts ON c.DeparStationTime = ts.ID JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND c.DeparDate = ?";
+        String getCruiseId2Sql = "SELECT c.ID FROM cruise c JOIN trainstations ts ON c.ArrivStationTime = ts.ID JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ?";
         String getStationIdSql2 = "SELECT ts.StationID FROM trainstations ts JOIN stations s ON ts.StationID = s.ID WHERE s.NameStation = ? AND ts.TrainID = ?";
         String sql = "INSERT INTO tickets (ClientId, TrainNum, StationID1, CruiseID1, StationID2, CruiseID2, CarriageID, CostTicket, Linens, Drink, Snacks)\n" +
                 "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
