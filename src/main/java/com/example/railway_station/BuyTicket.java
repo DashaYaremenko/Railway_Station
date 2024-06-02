@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import java.sql.*;
-import java.time.LocalDate;
+
 
 public class BuyTicket {
     private static final String URL = "jdbc:mysql://localhost:3306/railwaystat";
@@ -94,7 +94,6 @@ public class BuyTicket {
 
     @FXML
     private void BuyTicketAction(ActionEvent event) {
-        // Отримання параметрів з форми
         String lastName = LastName.getText();
         String firstName = FirstName.getText();
         String docType = TypeDoc.getText();
@@ -139,7 +138,7 @@ public class BuyTicket {
             if (clientIdRS.next()) {
                 clientId = clientIdRS.getInt(1);
             } else {
-                throw new SQLException("Failed to retrieve client ID.");
+                throw new SQLException();
             }
             getStationIdStatement.setString(1,station1);
             getStationIdStatement.setString(2,trainId);
@@ -148,7 +147,7 @@ public class BuyTicket {
             if (stationId1RS.next()) {
                 stationId1 = stationId1RS.getInt(1);
             } else {
-                throw new SQLException("Failed to retrieve StationID1.");
+                throw new SQLException();
             }
             getStationIdStatement2.setString(1,station2);
             getStationIdStatement2.setString(2,trainId);
@@ -157,7 +156,7 @@ public class BuyTicket {
             if (stationId2RS.next()) {
                 stationId2 = stationId2RS.getInt(1);
             } else {
-                throw new SQLException("Failed to retrieve StationID2.");
+                throw new SQLException();
             }
             getCruiseId1Statement.setString(1,station1);
             getCruiseId1Statement.setString(2, String.valueOf(departureDate));
@@ -166,7 +165,7 @@ public class BuyTicket {
             if (cruiseId1RS.next()) {
                 cruiseId1 = cruiseId1RS.getInt(1);
             } else {
-                throw new SQLException("Failed to retrieve CruiseID1.");
+                throw new SQLException();
             }
             getCruiseId2Statement.setString(1,station2);
             ResultSet cruiseId2RS = getCruiseId2Statement.executeQuery();
@@ -174,7 +173,7 @@ public class BuyTicket {
             if (cruiseId2RS.next()) {
                 cruiseId2 = cruiseId2RS.getInt(1);
             } else {
-                throw new SQLException("Failed to retrieve CruiseID2.");
+                throw new SQLException();
             }
             insertTicketStatement.setInt(1, clientId);
             insertTicketStatement.setInt(2, Integer.parseInt(trainId));
@@ -188,8 +187,6 @@ public class BuyTicket {
             insertTicketStatement.setBoolean(10, isDrink);
             insertTicketStatement.setBoolean(11, isSnacks);
             insertTicketStatement.executeUpdate();
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
