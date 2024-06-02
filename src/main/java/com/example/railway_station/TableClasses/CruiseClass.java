@@ -9,9 +9,9 @@ public class CruiseClass {
     private String ID;
     private Date DateDepar;
     private Date DateArriv;
-    private Time TimeDepar;
-    private Time TimeArriv;
-    public CruiseClass(String idCruise,Date dateDepar,Date dateArriv,Time timeDepar,Time timeArriv) {
+    private String TimeDepar;
+    private String TimeArriv;
+    public CruiseClass(String idCruise,Date dateDepar,String timeDepar,Date dateArriv,String timeArriv) {
         this.ID = idCruise;
         this.DateDepar=dateDepar;
         this.DateArriv=dateArriv;
@@ -24,8 +24,8 @@ public class CruiseClass {
     public void setDateDepar(Date dateTimeDispatch) {this.DateDepar = dateTimeDispatch;}
     public Date getDateArriv() {return DateArriv;}
     public void setDateArriv(Date dateTimeArrival) {this.DateArriv = dateTimeArrival;}
-    public Time getTimeDepar() {return TimeDepar;}
-    public void setTimeDepar(Time timeDepar) {this.TimeDepar = timeDepar;}
-    public Time getTimeArriv() {return TimeArriv;}
-    public void setTimeArriv(Time timeArriv) {this.TimeArriv = timeArriv;}
+    public String getTimeDepar() {return TimeDepar;}
+    public void setTimeDepar(String timeDepar) {this.TimeDepar = timeDepar;}
+    public String getTimeArriv() {return TimeArriv;}
+    public void setTimeArriv(String timeArriv) {this.TimeArriv = timeArriv;}
 }
