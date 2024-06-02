@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class RecCruise {
     private static final String URL = "jdbc:mysql://localhost:3306/railwaystat";
@@ -20,7 +21,7 @@ public class RecCruise {
     @FXML
     public Button LookTime, FunDate,FunTime;
     @FXML
-    public DatePicker Date;
+    public DatePicker DateP;
     @FXML
     public TableView<CruiseClass> cruiseTableView;
     @FXML
@@ -57,5 +58,37 @@ public class RecCruise {
             throw new RuntimeException(e);
         }
     }
+    @FXML
+    private void SearchOfDateAction(ActionEvent event) {
+        ObservableList<CruiseClass> dataList = FXCollections.observableArrayList();
+        LocalDate selectedDate = DateP.getValue();
+        if (selectedDate == null) {
+            return;
+        }
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "SELECT * FROM cruise WHERE DeparDate = ?";
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setDate(1, java.sql.Date.valueOf(selectedDate));
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        String id = resultSet.getString("ID");
+                        Date deparDate = resultSet.getDate("DeparDate");
+                        String deparStationTime = resultSet.getString("DeparStationTime");
+                        Date arrivDate = resultSet.getDate("ArrivDate");
+                        String arrivStationTime = resultSet.getString("ArrivStationTime");
+                        dataList.add(new CruiseClass(id, deparDate, deparStationTime, arrivDate, arrivStationTime));
+                    }
+                }
+            }
+            ShowButtonAction(event);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 }
+
+
+
