@@ -22,10 +22,12 @@
                   <TableColumn fx:id="NameTrainColumn" prefWidth="95" text="Назва потяга" />
                 <TableColumn fx:id="NameM1_Column" prefWidth="131.39999389648438" text="Назва відправлення" />
                   <TableColumn fx:id="NameM2_Column" prefWidth="103.40000915527344" text="Назва прибуття" />
-                 <TableColumn fx:id="TimeTrainColumn1" prefWidth="152.5999755859375" text="Час та дата відправки" />
-                  <TableColumn fx:id="TimeTrainColumn2" prefWidth="152.5999755859375" text="Час та дата прибуття" />
-                 <TableColumn fx:id="ColCruColumn" prefWidth="107.79998779296875" text="Кількість вагонів" />
-                  <TableColumn fx:id="TypeCruColumn" prefWidth="85.0" text="Тип вагонів" />
+                 <TableColumn fx:id="DateTrainColumn1" prefWidth="96.79998779296875" text="Дата відправки" />
+                  <TableColumn fx:id="TimeTrainColumn1" prefWidth="90.79998779296875" text="Час відправки" />
+                  <TableColumn fx:id="DateTrainColumn2" prefWidth="96.20001220703125" text="Дата прибуття" />
+                  <TableColumn fx:id="TimeTrainColumn2" prefWidth="90.20001220703125" text="Час відправки" />
+                 <TableColumn fx:id="ColCruColumn" prefWidth="72.5999755859375" text="К-сть місць" />
+                  <TableColumn fx:id="TypeCruColumn" prefWidth="88.199951171875" text="Тип вагонів" />
               </columns>
             </TableView>
             <TextField fx:id="destination2" layoutX="378.0" layoutY="149.0" prefHeight="26.0" prefWidth="244.0" />
