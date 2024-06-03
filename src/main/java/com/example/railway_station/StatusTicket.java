@@ -55,13 +55,13 @@ public class StatusTicket {
         ObservableList<StatusTicketClass> ticketList = FXCollections.observableArrayList();
 
         String sql = "SELECT t.TicketID, " +
-                "    CONCAT(cl.LastName, ' ', cl.FirstName) AS ClientName, " +
+                "    CONCAT(cl.LastName, ' ', cl.FirstName,' ', cl.TypeDoc) AS ClientName, " +
                 "    t.TrainNum, " +
                 "    s1.NameStation AS Station1, " +
                 "    CONCAT(c1.DeparDate, ' ', ts1.DeparTime) AS Cruise1, " +
                 "    s2.NameStation AS Station2, " +
                 "    CONCAT(c2.ArrivDate, ' ', ts2.ArrivTime) AS Cruise2, " +
-                "    CONCAT(cr.ID, ' ', cr.TypeCarrig) AS CarriageInfo, " +
+                "    CONCAT(cr.ID, ', ', cr.TypeCarrig) AS CarriageInfo, " +
                 "    t.CostTicket, " +
                 "    t.Linens, " +
                 "    t.Drink, " +

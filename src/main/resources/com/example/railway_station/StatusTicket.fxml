@@ -10,20 +10,20 @@
          <Button fx:id="statusButton" layoutX="561.0" layoutY="119.0" mnemonicParsing="false" onAction="#lookTicket" text="Подивитися квиток" />
          <Label layoutX="36.0" layoutY="101.0" text="Призвіще" />
          <TextField fx:id="lastNameClient" layoutX="36.0" layoutY="119.0" />
-         <TableView fx:id="ticketTable" layoutX="2.0" layoutY="218.0" prefHeight="402.0" prefWidth="1134.0">
+         <TableView fx:id="ticketTable" layoutX="2.0" layoutY="218.0" prefHeight="402.0" prefWidth="1194.0">
            <columns>
              <TableColumn fx:id="ticketIDCol" prefWidth="51.99999928474426" text="ID білет" />
-             <TableColumn fx:id="clientIdCol" prefWidth="102.39999771118164" text="Призвіще та Імя" />
-               <TableColumn fx:id="trainIDCol" prefWidth="62.399993896484375" text="№ потяга" />
-               <TableColumn fx:id="station1Col" prefWidth="137.20001220703125" text="Станція відправлення" />
-               <TableColumn fx:id="cruiseId1Col" prefWidth="170.79995727539062" text="Дата та час відправлення" />
-               <TableColumn fx:id="station2Col" prefWidth="108.20001220703125" text="Станція прибуття" />
-               <TableColumn fx:id="cruiseId2Col" prefWidth="130.800048828125" text="Дата та час прибуття" />
-               <TableColumn fx:id="numCarrigeCol" prefWidth="65.20001220703125" text="№ вагону" />
-               <TableColumn fx:id="costTicketCol" prefWidth="77.20001220703125" text="Ціна квитка" />
-               <TableColumn fx:id="linensCol" prefWidth="114.800048828125" text="Постільна білизна" />
-               <TableColumn fx:id="drinkCol" prefWidth="41.199951171875" text="Напій" />
-               <TableColumn fx:id="snakesCol" prefWidth="67.800048828125" text="Смаколик" />
+             <TableColumn fx:id="clientIdCol" prefWidth="176.40000915527344" text="Призвіще та Імя" />
+               <TableColumn fx:id="trainIDCol" prefWidth="63.5999755859375" text="№ потяга" />
+               <TableColumn fx:id="station1Col" prefWidth="144.20001220703125" text="Станція відправлення" />
+               <TableColumn fx:id="cruiseId1Col" prefWidth="162.199951171875" text="Дата та час відправлення" />
+               <TableColumn fx:id="station2Col" prefWidth="106.4000244140625" text="Станція прибуття" />
+               <TableColumn fx:id="cruiseId2Col" prefWidth="128.60003662109375" text="Дата та час прибуття" />
+               <TableColumn fx:id="numCarrigeCol" prefWidth="66.79998779296875" text="№ вагону" />
+               <TableColumn fx:id="costTicketCol" prefWidth="74.5999755859375" text="Ціна квитка" />
+               <TableColumn fx:id="linensCol" prefWidth="113.5999755859375" text="Постільна білизна" />
+               <TableColumn fx:id="drinkCol" prefWidth="40.4000244140625" text="Напій" />
+               <TableColumn fx:id="snakesCol" prefWidth="68.0" text="Смаколик" />
            </columns>
          </TableView>
          <Label layoutX="224.0" layoutY="101.0" text="Ім'я" />
