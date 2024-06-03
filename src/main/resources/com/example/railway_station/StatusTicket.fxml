@@ -7,15 +7,27 @@
 <AnchorPane prefHeight="656.0" prefWidth="1000.0">
       <children>
          <Label layoutX="460.0" layoutY="29.0" text="Статус клиєнта" />
-         <Button layoutX="688.0" layoutY="119.0" mnemonicParsing="false" text="Подивитися квиток" />
-         <Label layoutX="36.0" layoutY="101.0" text="Ваша номерація (ID)" />
-         <TextField fx:id="idClient" layoutX="36.0" layoutY="119.0" />
-         <TableView layoutX="36.0" layoutY="225.0" prefHeight="394.0" prefWidth="848.0">
+         <Button layoutX="561.0" layoutY="119.0" mnemonicParsing="false" text="Подивитися квиток" />
+         <Label layoutX="36.0" layoutY="101.0" text="Призвіще" />
+         <TextField fx:id="lastNameClient" layoutX="36.0" layoutY="119.0" />
+         <TableView fx:id="ticketTable" layoutX="2.0" layoutY="218.0" prefHeight="402.0" prefWidth="993.0">
            <columns>
-             <TableColumn prefWidth="75.0" text="C1" />
-             <TableColumn prefWidth="75.0" text="C2" />
+             <TableColumn fx:id="ticketID" prefWidth="51.99999928474426" text="ID білет" />
+             <TableColumn fx:id="clientId" prefWidth="102.39999771118164" text="Призвіще та Імя" />
+               <TableColumn fx:id="trainID" prefWidth="62.399993896484375" text="№ потяга" />
+               <TableColumn fx:id="station1" prefWidth="87.19999694824219" text="Станція відправлення" />
+               <TableColumn fx:id="cruiseId1" prefWidth="93.20001220703125" text="Дата та час відправлення" />
+               <TableColumn fx:id="station2" prefWidth="108.4000244140625" text="Станція прибуття" />
+               <TableColumn fx:id="cruiseId2" prefWidth="129.79998779296875" text="Дата та час прибуття" />
+               <TableColumn fx:id="numCarrige" prefWidth="64.39996337890625" text="№ вагону" />
+               <TableColumn fx:id="costTicket" prefWidth="76.20001220703125" text="Ціна квитка" />
+               <TableColumn fx:id="linens" prefWidth="114.0" text="Постільна білизна" />
+               <TableColumn fx:id="drink" prefWidth="41.5999755859375" text="Напій" />
+               <TableColumn fx:id="snakes" prefWidth="66.800048828125" text="Смаколик" />
            </columns>
          </TableView>
+         <Label layoutX="224.0" layoutY="101.0" text="Ім'я" />
+         <TextField fx:id="nameClient" layoutX="224.0" layoutY="119.0" />
       </children>
 </AnchorPane>
 </VBox>

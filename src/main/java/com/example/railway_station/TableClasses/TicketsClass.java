@@ -13,7 +13,7 @@ public class TicketsClass {
     private boolean Linens;
     private boolean Drink;
     private boolean Snacks;
-    public TicketsClass(int idTicket,int numTrain, int stationID_1, int stationID_2,int clientId ,int cruiseID1,int cruiseID2, int numCarrig, double costTicket, boolean linens, boolean drink, boolean snacks ) {
+    public TicketsClass(int idTicket,,int clientId, int numTrain, int stationID_1, int stationID_2 ,int cruiseID1,int cruiseID2, int numCarrig, double costTicket, boolean linens, boolean drink, boolean snacks ) {
         this.IDTicket = idTicket;
         this.NumTrain = numTrain;
         this.StationID_1 = stationID_1;
