@@ -54,40 +54,57 @@ public class StatusTicket {
         String lastName = lastNameClient.getText();
         ObservableList<StatusTicketClass> ticketList = FXCollections.observableArrayList();
 
-        String sql = "SELECT t.TicketID, " +
-                "    CONCAT(cl.LastName, ' ', cl.FirstName,' ', cl.TypeDoc) AS ClientName, " +
-                "    t.TrainNum, " +
-                "    s1.NameStation AS Station1, " +
-                "    CONCAT(c1.DeparDate, ' ', ts1.DeparTime) AS Cruise1, " +
-                "    s2.NameStation AS Station2, " +
-                "    CONCAT(c2.ArrivDate, ' ', ts2.ArrivTime) AS Cruise2, " +
-                "    CONCAT(cr.ID, ', ', cr.TypeCarrig) AS CarriageInfo, " +
-                "    t.CostTicket, " +
-                "    t.Linens, " +
-                "    t.Drink, " +
-                "    t.Snacks " +
-                "FROM " +
-                "    tickets t " +
-                "JOIN " +
-                "    clients cl ON t.ClientId = cl.ID " +
-                "JOIN " +
-                "    trainstations ts1 ON t.StationID1 = ts1.StationID " +
-                "JOIN " +
-                "    stations s1 ON ts1.StationID = s1.ID " +
-                "JOIN " +
-                "    trainstations ts2 ON t.StationID2 = ts2.StationID " +
-                "JOIN " +
-                "    stations s2 ON ts2.StationID = s2.ID " +
-                "JOIN " +
-                "    cruise c1 ON t.CruiseID1 = c1.ID " +
-                "JOIN " +
-                "    cruise c2 ON t.CruiseID2 = c2.ID " +
-                "JOIN " +
-                "    carriage cr ON t.CarriageID = cr.ID " +
-                "WHERE " +
-                "    cl.LastName = ? " +
-                "    AND cl.FirstName = ?" +
-                "LIMIT 1";
+        String sql = "WITH RankedTickets AS (" +
+                "    SELECT " +
+                "        t.TicketID, " +
+                "        CONCAT(cl.LastName, ' ', cl.FirstName, ' ', cl.TypeDoc) AS ClientName, " +
+                "        t.TrainNum, " +
+                "        s1.NameStation AS Station1, " +
+                "        CONCAT(c1.DeparDate, ' ', ts1.DeparTime) AS Cruise1, " +
+                "        s2.NameStation AS Station2, " +
+                "        CONCAT(c2.ArrivDate, ' ', ts2.ArrivTime) AS Cruise2, " +
+                "        CONCAT(cr.ID, ', ', cr.TypeCarrig) AS CarriageInfo, " +
+                "        t.CostTicket, " +
+                "        t.Linens, " +
+                "        t.Drink, " +
+                "        t.Snacks," +
+                "        ROW_NUMBER() OVER(PARTITION BY t.TicketID ORDER BY t.TicketID) AS RowNum" +
+                "    FROM " +
+                "        tickets t " +
+                "    JOIN " +
+                "        clients cl ON t.ClientId = cl.ID " +
+                "    JOIN " +
+                "        trainstations ts1 ON t.StationID1 = ts1.StationID " +
+                "    JOIN " +
+                "        stations s1 ON ts1.StationID = s1.ID " +
+                "    JOIN " +
+                "        trainstations ts2 ON t.StationID2 = ts2.StationID " +
+                "    JOIN " +
+                "        stations s2 ON ts2.StationID = s2.ID " +
+                "    JOIN " +
+                "        cruise c1 ON t.CruiseID1 = c1.ID " +
+                "    JOIN " +
+                "        cruise c2 ON t.CruiseID2 = c2.ID " +
+                "    JOIN " +
+                "        carriage cr ON t.CarriageID = cr.ID " +
+                "    WHERE " +
+                "        cl.LastName = ? " +
+                "        AND cl.FirstName = ?)" +
+                "SELECT " +
+                "    TicketID, " +
+                "    ClientName, " +
+                "    TrainNum, " +
+                "    Station1, " +
+                "    Cruise1, " +
+                "    Station2, " +
+                "    Cruise2, " +
+                "    CarriageInfo, " +
+                "    CostTicket, " +
+                "    Linens, " +
+                "    Drink, " +
+                "    Snacks " +
+                "FROM RankedTickets " +
+                "WHERE RowNum = 1;";
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
