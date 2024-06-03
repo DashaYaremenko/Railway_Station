@@ -8,7 +8,7 @@
 <AnchorPane prefHeight="653.0" prefWidth="1000.0">
       <children>
          <Label layoutX="486.0" layoutY="37.0" text="Статистика" />
-         <PieChart fx:id="staticTicketTrains"  layoutX="25.0" layoutY="125.0" prefHeight="349.0" prefWidth="440.0" />
+         <PieChart fx:id="staticTicketTrains" layoutX="25.0" layoutY="125.0" prefHeight="349.0" prefWidth="440.0" />
          <LineChart layoutX="528.0" layoutY="125.0" prefHeight="339.0" prefWidth="449.0">
            <xAxis>
              <CategoryAxis side="BOTTOM" />
@@ -17,6 +17,7 @@
              <NumberAxis prefHeight="309.0" prefWidth="38.0" side="LEFT" />
            </yAxis>
          </LineChart>
+         <Button fx:id="staticTicketTrainsButton" onAction="#staticTicTrain" layoutX="193.0" layoutY="475.0" mnemonicParsing="false" text="R" />
       </children>
 </AnchorPane>
 </VBox>
