@@ -67,7 +67,7 @@ public class RecStation {
                     int idTrain = resultSet.getInt("TrainID");
                     Time arrivTime = resultSet.getTime("ArrivTime");
                     Time deparTime = resultSet.getTime("DeparTime");
-                    dataList.add(new TrainStatClass(idTrain, id, arrivTime.toLocalTime(), deparTime.toLocalTime()));
+                    dataList.add(new TrainStatClass(idTrain, id, arrivTime, deparTime));
                 }
             }
             IdStationCol1.setCellValueFactory(new PropertyValueFactory<>("StationID"));
@@ -214,7 +214,7 @@ public class RecStation {
                        int idStation = resultSet.getInt("StationID");
                         Time arrivTime = resultSet.getTime("ArrivTime");
                         Time deparTime = resultSet.getTime("DeparTime");
-                        dataList.add(new TrainStatClass(id, idStation,arrivTime.toLocalTime(),deparTime.toLocalTime()));
+                        dataList.add(new TrainStatClass(id, idStation,arrivTime,deparTime));
                     }
                 }
                 trainStatTable.setItems(dataList);
@@ -237,7 +237,7 @@ private void findTrainStation(ActionEvent event) {
                     int idStation = resultSet.getInt("StationID");
                     Time arrivTime = resultSet.getTime("ArrivTime");
                     Time deparTime = resultSet.getTime("DeparTime");
-                    dataList.add(new TrainStatClass(trainId, idStation, arrivTime.toLocalTime(), deparTime.toLocalTime()));
+                    dataList.add(new TrainStatClass(trainId, idStation, arrivTime, deparTime));
                 }
             }
             trainStatTable.setItems(dataList);
