@@ -1,9 +1,10 @@
 package com.example.railway_station;
 
-import com.example.railway_station.TableClasses.TicketsClass;
+import com.example.railway_station.TableClasses.StatusTicketClass;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -15,41 +16,45 @@ public class StatusTicket {
     private static final String URL = "jdbc:mysql://localhost:3306/railwaystat";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "1111";
+
+    @FXML
+    private Button statusButton;
     @FXML
     private TextField nameClient, lastNameClient;
     @FXML
-    private TableView ticketTable;
+    private TableView<StatusTicketClass> ticketTable;
     @FXML
-    private TableColumn<TicketsClass,Integer> ticketID;
+    private TableColumn<StatusTicketClass, Integer> ticketIDCol;
     @FXML
-    private TableColumn<TicketsClass,Integer> trainID;
+    private TableColumn<StatusTicketClass, String> clientIdCol;
     @FXML
-    private TableColumn<TicketsClass,Integer> cruiseId1;
+    private TableColumn<StatusTicketClass, Integer> trainIDCol;
     @FXML
-    private TableColumn<TicketsClass,Integer> cruiseId2;
+    private TableColumn<StatusTicketClass, String> station1Col;
     @FXML
-    private TableColumn<TicketsClass,Integer> station1;
+    private TableColumn<StatusTicketClass, String> cruiseId1Col;
     @FXML
-    private TableColumn<TicketsClass,Integer> station2;
+    private TableColumn<StatusTicketClass, String> station2Col;
     @FXML
-    private TableColumn<TicketsClass,Integer> clientId;
+    private TableColumn<StatusTicketClass, String> cruiseId2Col;
     @FXML
-    private TableColumn<TicketsClass,Integer> numCarrige;
+    private TableColumn<StatusTicketClass, String> numCarrigeCol;
     @FXML
-    private TableColumn<TicketsClass,Double> costTicket ;
+    private TableColumn<StatusTicketClass, Double> costTicketCol;
     @FXML
-    private TableColumn<TicketsClass,Boolean> linens;
+    private TableColumn<StatusTicketClass, Boolean> linensCol;
     @FXML
-    private TableColumn<TicketsClass,Boolean> drink;
+    private TableColumn<StatusTicketClass, Boolean> drinkCol;
     @FXML
-    private TableColumn<TicketsClass,Boolean> snakes;
+    private TableColumn<StatusTicketClass, Boolean> snakesCol;
 
+    @FXML
     private void lookTicket() {
         String name = nameClient.getText();
         String lastName = lastNameClient.getText();
-        ObservableList<TicketsClass> ticketList = FXCollections.observableArrayList();
-        String sql = "SELECT " +
-                "    t.TicketID, " +
+        ObservableList<StatusTicketClass> ticketList = FXCollections.observableArrayList();
+
+        String sql = "SELECT t.TicketID, " +
                 "    CONCAT(cl.LastName, ' ', cl.FirstName) AS ClientName, " +
                 "    t.TrainNum, " +
                 "    s1.NameStation AS Station1, " +
@@ -60,7 +65,7 @@ public class StatusTicket {
                 "    t.CostTicket, " +
                 "    t.Linens, " +
                 "    t.Drink, " +
-                "    t.Snacks, " +
+                "    t.Snacks " +
                 "FROM " +
                 "    tickets t " +
                 "JOIN " +
@@ -81,7 +86,8 @@ public class StatusTicket {
                 "    carriage cr ON t.CarriageID = cr.ID " +
                 "WHERE " +
                 "    cl.LastName = ? " +
-                "    AND cl.FirstName = ?";
+                "    AND cl.FirstName = ?" +
+                "LIMIT 1";
 
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -90,46 +96,42 @@ public class StatusTicket {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                 int idTicket=resultSet.getInt("TicketID");
-                 int idTrain=resultSet.getInt("TrainNum");
-                 String cruise1=resultSet.getString("Cruise1");
-                 String cruise2=resultSet.getString("Cruise2");
-                 String station1=resultSet.getString("Station1");
-                 String station2=resultSet.getString("Station2");
-                 String clientName=resultSet.getString("ClientName");
-                 String carriageInfo=resultSet.getString("CarriageInfo");
-                 Double costTicket=resultSet.getDouble("CostTicket");
-                 Boolean linens=resultSet.getBoolean("Linens");
-                 Boolean drink1=resultSet.getBoolean("Drink");
-                 Boolean snacks=resultSet.getBoolean("Snacks");
+                    int idTicket = resultSet.getInt("TicketID");
+                    int idTrain = resultSet.getInt("TrainNum");
+                    String cruise1 = resultSet.getString("Cruise1");
+                    String cruise2 = resultSet.getString("Cruise2");
+                    String station1 = resultSet.getString("Station1");
+                    String station2 = resultSet.getString("Station2");
+                    String clientName = resultSet.getString("ClientName");
+                    String carriageInfo = resultSet.getString("CarriageInfo");
+                    double costTicket = resultSet.getDouble("CostTicket");
+                    boolean linens = resultSet.getBoolean("Linens");
+                    boolean drink1 = resultSet.getBoolean("Drink");
+                    boolean snacks = resultSet.getBoolean("Snacks");
 
-                    ticketList.add(new TicketsClass(idTicket,clientName,idTrain,station1,cruise1,station2,cruise2,carriageInfo,costTicket,linens,drink1,snacks));
+                    ticketList.add(new StatusTicketClass(idTicket, clientName, idTrain, station1, cruise1, station2, cruise2, carriageInfo, costTicket, linens, drink1, snacks));
                 }
 
-            ticketID.setCellValueFactory(new PropertyValueFactory<>("ticketID"));
-            trainID.setCellValueFactory(new PropertyValueFactory<>("trainNum"));
-            cruiseId1.setCellValueFactory(new PropertyValueFactory<>("cruiseId1"));
-            cruiseId2.setCellValueFactory(new PropertyValueFactory<>("cruiseId2"));
-            station1.setCellValueFactory(new PropertyValueFactory<>("station1"));
-            station2.setCellValueFactory(new PropertyValueFactory<>("station2"));
-            clientId.setCellValueFactory(new PropertyValueFactory<>("clientId"));
-            numCarrige.setCellValueFactory(new PropertyValueFactory<>("carriageID"));
-            costTicket.setCellValueFactory(new PropertyValueFactory<>("costTicket"));
-            linens.setCellValueFactory(new PropertyValueFactory<>("linens"));
-            drink.setCellValueFactory(new PropertyValueFactory<>("drink"));
-            snakes.setCellValueFactory(new PropertyValueFactory<>("snacks"));
-            ticketTable.setItems(ticketList);
+                ticketIDCol.setCellValueFactory(new PropertyValueFactory<>("IDTicket"));
+                clientIdCol.setCellValueFactory(new PropertyValueFactory<>("ClientName"));
+                trainIDCol.setCellValueFactory(new PropertyValueFactory<>("IDTrain"));
+                station1Col.setCellValueFactory(new PropertyValueFactory<>("Station1"));
+                cruiseId1Col.setCellValueFactory(new PropertyValueFactory<>("Cruise1"));
+                station2Col.setCellValueFactory(new PropertyValueFactory<>("Station2"));
+                cruiseId2Col.setCellValueFactory(new PropertyValueFactory<>("Cruise2"));
+                numCarrigeCol.setCellValueFactory(new PropertyValueFactory<>("CarriageInfo"));
+                costTicketCol.setCellValueFactory(new PropertyValueFactory<>("CostTicket"));
+                linensCol.setCellValueFactory(new PropertyValueFactory<>("Linens"));
+                drinkCol.setCellValueFactory(new PropertyValueFactory<>("Drink"));
+                snakesCol.setCellValueFactory(new PropertyValueFactory<>("Snacks"));
+                ticketTable.setItems(ticketList);
 
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-
-
     }
-
-
-
 }
+
