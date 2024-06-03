@@ -26,13 +26,15 @@ public class ReturnTicket {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             String idClient1 = idClient.getText();
             String idTicket1 = idTicket.getText();
-            String sql = "START TRANSACTION;" +
-                    "DELETE FROM tickets WHERE TicketID = ?;" +
-                    "DELETE FROM clients WHERE ClientID = ?;" +
-                    "COMMIT;";
+            String sql = "DELETE FROM tickets WHERE TicketID = ? ";
+            String clientSql = "DELETE FROM clients WHERE ID = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, idTicket1);
-                preparedStatement.setString(2, idClient1);
+                preparedStatement.executeUpdate();
+            }
+            try (PreparedStatement preparedStatement = connection.prepareStatement(clientSql)) {
+                preparedStatement.setString(1, idClient1);
+                preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
