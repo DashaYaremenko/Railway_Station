@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.Static">
+<AnchorPane prefHeight="653.0" prefWidth="1000.0">
+      <children>
+         <Label layoutX="486.0" layoutY="37.0" text="Статистика" />
+         <PieChart layoutX="25.0" layoutY="125.0" />
+         <LineChart layoutX="477.0" layoutY="125.0">
+           <xAxis>
+             <CategoryAxis side="BOTTOM" />
+           </xAxis>
+           <yAxis>
+             <NumberAxis side="LEFT" />
+           </yAxis>
+         </LineChart>
+      </children>
+</AnchorPane>
+</VBox>

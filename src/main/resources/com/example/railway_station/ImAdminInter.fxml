@@ -27,7 +27,7 @@
                   <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/train.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="416.0" layoutY="398.0" text="Оберіть дію!" textFill="#2d35c1">
+            <Label layoutX="423.0" layoutY="306.0" text="Оберіть дію!" textFill="#2d35c1">
                <font>
                   <Font name="Century Gothic" size="30.0" />
                </font>
@@ -38,12 +38,18 @@
                </image>
             </ImageView>
             <Button layoutX="121.0" layoutY="537.0" mnemonicParsing="false" onAction="#clickButtonRecClients" text="Редактор-клієнт" />
-            <Button onAction="#clickButtonRecTime" layoutX="456.0" layoutY="276.0" mnemonicParsing="false" text="Редактор-годин" />
-            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="408.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+            <Button layoutX="456.0" layoutY="239.0" mnemonicParsing="false" onAction="#clickButtonRecTime" text="Редактор-годин" />
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="408.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/recTime.jpg" />
                </image>
             </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="408.0" layoutY="363.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/Users/Student/IdeaProjects/Railway_Station/image/staticTrain.jpg" />
+               </image>
+            </ImageView>
+            <Button layoutX="474.0" layoutY="563.0" mnemonicParsing="false" text="Статистика" />
          </children></AnchorPane>
    </children>
 </VBox>
