@@ -141,5 +141,16 @@ public class HelloController {
             e.printStackTrace();
         }
     }
+    public void clickButtonStatic(ActionEvent event){
+        try {
+            FXMLLoader loader= new FXMLLoader(getClass().getResource("Static.fxml"));
+            Parent parent= loader.load();
+            Stage stage=new Stage();
+            stage.setScene(new Scene(parent));
+            stage.show();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
 }
