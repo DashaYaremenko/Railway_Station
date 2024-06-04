@@ -64,27 +64,19 @@ public class SearchTrain {
                     "    ts2.ArrivTime AS ArrivalTime, " +
                     "    cr.NumSeats AS SeatCount, " +
                     "    cr.TypeCarrig AS CarriageType " +
-                    "FROM " +
-                    "    cruise c " +
-                    "JOIN " +
-                    "    trainstations ts1 ON c.DeparStationTime = ts1.ID " +
-                    "JOIN " +
-                    "    stations s1 ON ts1.StationID = s1.ID " +
-                    "JOIN " +
-                    "    trainstations ts2 ON c.ArrivStationTime = ts2.ID " +
-                    "JOIN " +
-                    "    stations s2 ON ts2.StationID = s2.ID " +
-                    "JOIN " +
-                    "    trains t ON ts1.TrainID = t.ID " +
-                    "JOIN " +
-                    "    carriage cr ON t.ID = cr.TrainID " +
-                    "WHERE " +
-                    "    ts1.DeparTime IS NOT NULL " +
+                    "FROM cruise c " +
+                    "JOIN trainstations ts1 ON c.DeparStationTime = ts1.ID " +
+                    "JOIN stations s1 ON ts1.StationID = s1.ID " +
+                    "JOIN trainstations ts2 ON c.ArrivStationTime = ts2.ID " +
+                    "JOIN stations s2 ON ts2.StationID = s2.ID " +
+                    "JOIN trains t ON ts1.TrainID = t.ID " +
+                    "JOIN carriage cr ON t.ID = cr.TrainID " +
+                    "WHERE ts1.DeparTime IS NOT NULL " +
                     "    AND ts2.ArrivTime IS NOT NULL " +
                     "    AND ts1.DeparTime < ts2.ArrivTime " +
                     "    AND c.DeparDate = ? " +
                     "    AND s1.NameStation = ? " +
-                    "    AND s2.NameStation = ?;";
+                    "    AND s2.NameStation = ?";
 
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setDate(1, java.sql.Date.valueOf(selectedDate));
