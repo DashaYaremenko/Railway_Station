@@ -130,7 +130,36 @@ public class RecClients {
     @FXML
     private void StaticClientsButtonAction2(ActionEvent event) {
         ObservableList<ClientClass> dataList = FXCollections.observableArrayList();
-
-
+        try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
+            String sql = "SELECT " +
+                    "    c.ID AS ClientId," +
+                    "    c.LastName," +
+                    "    c.FirstName," +
+                    "    c.TypeDoc," +
+                    "    COUNT(t.TicketID) AS total_tickets_bought " +
+                    "FROM tickets t " +
+                    "JOIN " +
+                    "    clients c ON t.ClientId = c.ID " +
+                    "GROUP BY c.ID, c.LastName, c.FirstName, c.TypeDoc " +
+                    "HAVING COUNT(t.TicketID) > 1";
+            try (PreparedStatement statement = connection.prepareStatement(sql)) {
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    while (resultSet.next()) {
+                        String clientId = resultSet.getString("ClientId");
+                        String lastName = resultSet.getString("LastName");
+                        String firstName = resultSet.getString("FirstName");
+                        String docType = resultSet.getString("TypeDoc");
+                        dataList.add(new ClientClass(clientId, lastName, firstName, docType));
+                    }
+                }
+            } catch (SQLException e) {throw new RuntimeException(e);}
+        } catch (SQLException e) {throw new RuntimeException(e);}
+        ClientsTable.setItems(dataList);
+        IDClientCol.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        LastNameCol.setCellValueFactory(new PropertyValueFactory<>("LastName"));
+        FirstNameCol.setCellValueFactory(new PropertyValueFactory<>("FirstName"));
+        TypeDocCol.setCellValueFactory(new PropertyValueFactory<>("TypeDoc"));
     }
+
+
 }
