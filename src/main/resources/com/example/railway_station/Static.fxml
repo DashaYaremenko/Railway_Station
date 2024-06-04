@@ -9,15 +9,16 @@
       <children>
          <Label layoutX="486.0" layoutY="37.0" text="Статистика" />
          <PieChart fx:id="staticTicketTrains" layoutX="25.0" layoutY="125.0" prefHeight="349.0" prefWidth="440.0" />
-         <LineChart layoutX="528.0" layoutY="125.0" prefHeight="339.0" prefWidth="449.0">
+         <LineChart fx:id="staticCountMonth" layoutX="508.0" layoutY="130.0" prefHeight="339.0" prefWidth="449.0">
            <xAxis>
-             <CategoryAxis side="BOTTOM" />
+             <CategoryAxis fx:id="xAxis" side="BOTTOM" />
            </xAxis>
            <yAxis>
-             <NumberAxis prefHeight="309.0" prefWidth="38.0" side="LEFT" />
+             <NumberAxis fx:id="yAxis" prefHeight="309.0" prefWidth="38.0" side="LEFT" />
            </yAxis>
          </LineChart>
-         <Button fx:id="staticTicketTrainsButton" onAction="#staticTicTrain" layoutX="193.0" layoutY="475.0" mnemonicParsing="false" text="R" />
+         <Button fx:id="staticTicketTrainsButton" layoutX="113.0" layoutY="475.0" mnemonicParsing="false" onAction="#staticTicTrain" text="Загальна кількість білетів по кожному потягу" />
+         <Button fx:id="staticCountMonthButton" onAction="#staticCountMonthAction" layoutX="717.0" layoutY="475.0" mnemonicParsing="false" text="Дохід за місяці" />
       </children>
 </AnchorPane>
 </VBox>
