@@ -40,11 +40,9 @@ public class Static {
                 String trainName = resultSet.getString("train_name");
                 int ticketCount = resultSet.getInt("total_tickets_sold");
 
-                // Додавання даних до PieChart
                 PieChart.Data slice = new PieChart.Data(trainName + " (" + ticketCount + ")", ticketCount);
                 staticTicketTrains.getData().add(slice);
 
-                // Відображення тексту з кількістю квитків на сегментах діаграми
                 slice.nodeProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
                         Text dataText = new Text(String.valueOf(ticketCount));
@@ -83,8 +81,6 @@ public class Static {
                 XYChart.Data<String, Number> data = new XYChart.Data<>(month, totalRevenue);
                 series.getData().add(data);
             }
-
-            // Додавання серії до графіка після налаштування осей
             staticCountMonth.getData().add(series);
 
             resultSet.close();
