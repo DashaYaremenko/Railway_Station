@@ -8,7 +8,7 @@
    <children>
       <AnchorPane prefHeight="650.0" prefWidth="304.0">
          <children>
-            <Label layoutX="398.0" layoutY="24.0" text="Редактор станцій" textFill="#2d35c1">
+            <Label layoutX="398.0" layoutY="14.0" text="Редактор станцій" textFill="#2d35c1">
                <font>
                   <Font name="Century Gothic" size="23.0" />
                </font></Label>

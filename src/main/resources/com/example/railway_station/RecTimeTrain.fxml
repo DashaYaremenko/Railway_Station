@@ -2,11 +2,15 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox alignment="CENTER" prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.RecCruise">
 <AnchorPane prefHeight="668.0" prefWidth="1000.0">
       <children>
-         <Label layoutX="486.0" layoutY="37.0" text="Редактор часу" />
+         <Label layoutX="433.0" layoutY="31.0" text="Редактор часу" textFill="#2d35c1">
+            <font>
+               <Font name="Century Gothic" size="25.0" />
+            </font></Label>
          <TableView fx:id="cruiseTableView" layoutX="36.0" layoutY="86.0" prefHeight="379.0" prefWidth="464.0">
            <columns>
              <TableColumn fx:id="DateCol1" prefWidth="118.20001602172852" text="Дата відправлення" />
@@ -16,11 +20,11 @@
            </columns>
          </TableView>
          <TextField fx:id="Time" layoutX="585.0" layoutY="187.0" />
-         <Button onAction="#ShowButtonAction" fx:id="LookTime" layoutX="585.0" layoutY="250.0" mnemonicParsing="false" text="Подивитися список" />
+         <Button fx:id="LookTime" layoutX="585.0" layoutY="250.0" mnemonicParsing="false" onAction="#ShowButtonAction" text="Подивитися список" />
          <DatePicker fx:id="DateP" layoutX="585.0" layoutY="138.0" />
          <Label layoutX="585.0" layoutY="121.0" text="Дата" />
          <Label layoutX="584.0" layoutY="170.0" text="Час" />
-         <Button onAction="#SearchOfDateAction" fx:id="FunDate" layoutX="585.0" layoutY="289.0" mnemonicParsing="false" text="Показати список за вказоною датою" />
+         <Button fx:id="FunDate" layoutX="585.0" layoutY="289.0" mnemonicParsing="false" onAction="#SearchOfDateAction" text="Показати список за вказоною датою" />
       </children>
 </AnchorPane>
 </VBox>

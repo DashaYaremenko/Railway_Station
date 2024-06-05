@@ -3,22 +3,26 @@
 <?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox prefHeight="650.0" prefWidth="1000.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.Static">
 <AnchorPane prefHeight="653.0" prefWidth="1000.0">
       <children>
-         <Label layoutX="486.0" layoutY="37.0" text="Статистика" />
+         <Label layoutX="423.0" layoutY="41.0" text="Статистика" textFill="#2d35c1">
+            <font>
+               <Font name="Century Gothic" size="27.0" />
+            </font></Label>
          <PieChart fx:id="staticTicketTrains" layoutX="25.0" layoutY="125.0" prefHeight="349.0" prefWidth="440.0" />
          <LineChart fx:id="staticCountMonth" layoutX="508.0" layoutY="130.0" prefHeight="339.0" prefWidth="449.0">
            <xAxis>
-             <CategoryAxis fx:id="xAxis" side="BOTTOM" />
+             <CategoryAxis side="BOTTOM" fx:id="xAxis" />
            </xAxis>
            <yAxis>
              <NumberAxis fx:id="yAxis" prefHeight="309.0" prefWidth="38.0" side="LEFT" />
            </yAxis>
          </LineChart>
          <Button fx:id="staticTicketTrainsButton" layoutX="113.0" layoutY="475.0" mnemonicParsing="false" onAction="#staticTicTrain" text="Загальна кількість білетів по кожному потягу" />
-         <Button fx:id="staticCountMonthButton" onAction="#staticCountMonthAction" layoutX="717.0" layoutY="475.0" mnemonicParsing="false" text="Дохід за місяці" />
+         <Button fx:id="staticCountMonthButton" layoutX="717.0" layoutY="475.0" mnemonicParsing="false" onAction="#staticCountMonthAction" text="Дохід за місяці" />
       </children>
 </AnchorPane>
 </VBox>

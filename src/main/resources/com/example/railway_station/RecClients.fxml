@@ -12,7 +12,7 @@
             <Button fx:id="LookClientsButton" layoutX="306.0" layoutY="450.0" mnemonicParsing="false" onAction="#ShowButtonAction" text="Показати список" />
             <Button fx:id="StaticClientsButton1" layoutX="306.0" layoutY="501.0" mnemonicParsing="false" onAction="#StaticClientsButtonAction1" text="Показати список вказаним типом документа" />
             <Button fx:id="StaticClientsButton2" layoutX="306.0" layoutY="560.0" mnemonicParsing="false" onAction="#StaticClientsButtonAction2" text="Показати клієнта який купив декілька квітків" />
-            <Label layoutX="401.0" layoutY="25.0" text="Редактор клієнтів">
+            <Label layoutX="401.0" layoutY="25.0" text="Редактор клієнтів" textFill="#2d35c1">
                <font>
                   <Font name="Century Gothic" size="23.0" />
                </font></Label>

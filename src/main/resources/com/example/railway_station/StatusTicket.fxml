@@ -2,11 +2,15 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <VBox prefHeight="650.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.railway_station.StatusTicket">
 <AnchorPane prefHeight="656.0" prefWidth="1000.0">
       <children>
-         <Label layoutX="460.0" layoutY="29.0" text="Статус клиєнта" />
+         <Label layoutX="454.0" layoutY="32.0" prefHeight="28.0" prefWidth="214.0" text="Статус клиєнта" textFill="#2d35c1">
+            <font>
+               <Font name="Century Gothic" size="24.0" />
+            </font></Label>
          <Button fx:id="statusButton" layoutX="561.0" layoutY="119.0" mnemonicParsing="false" onAction="#lookTicket" text="Подивитися квиток" />
          <Label layoutX="36.0" layoutY="101.0" text="Призвіще" />
          <TextField fx:id="lastNameClient" layoutX="36.0" layoutY="119.0" />

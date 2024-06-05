@@ -24,7 +24,7 @@
             <Label layoutX="637.0" layoutY="191.0" text="ID Потяга" />
             <Label layoutX="633.0" layoutY="134.0" text="Тип вагону" />
             <Label layoutX="633.0" layoutY="249.0" text="Кількість місць" />
-            <Label layoutX="398.0" layoutY="25.0" text="Редактор вагон">
+            <Label layoutX="398.0" layoutY="25.0" text="Редактор вагон" textFill="#2d35c1">
                <font>
                   <Font name="Century Gothic" size="26.0" />
                </font></Label>

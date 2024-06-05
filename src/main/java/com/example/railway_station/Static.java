@@ -65,7 +65,7 @@ public class Static {
         try (Connection connection = DriverManager.getConnection(URL, USERNAME, PASSWORD)) {
             Statement statement = connection.createStatement();
             String sql = "  SELECT DATE_FORMAT(c.DeparDate, '%Y-%m') AS month," +
-                    "           SUM(t.CostTicket) AS total_revenue" +
+                    "SUM(t.CostTicket) AS total_revenue" +
                     "    FROM tickets t" +
                     "    JOIN cruise c ON t.CruiseID1 = c.ID" +
                     "    GROUP BY DATE_FORMAT(c.DeparDate, '%Y-%m')" +

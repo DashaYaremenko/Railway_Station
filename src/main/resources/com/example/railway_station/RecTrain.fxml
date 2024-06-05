@@ -16,7 +16,7 @@
                   <TableColumn fx:id="CarriageIDCol" minWidth="0.0" prefWidth="93.79998779296875" text="Номер вагону" />
               </columns>
             </TableView>
-            <Label layoutX="403.0" layoutY="14.0" text="Редагування Потягів">
+            <Label layoutX="403.0" layoutY="14.0" text="Редагування Потягів" textFill="#2d35c1">
                <font>
                   <Font name="Century Gothic" size="20.0" />
                </font>
